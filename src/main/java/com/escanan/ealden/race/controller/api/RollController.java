@@ -12,7 +12,7 @@ import java.io.IOException;
 
 @WebServlet(name = "Roll", urlPatterns = "/api/races/roll")
 public class RollController extends ApiController {
-    private final RaceService raceService = RaceServiceImpl.INSTANCE;
+    private RaceService raceService = RaceServiceImpl.INSTANCE;
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -20,5 +20,9 @@ public class RollController extends ApiController {
         race.roll(1, SpeedType.NORMAL);
 
         jsonResponse(race, response);
+    }
+
+    public void setRaceService(RaceService raceService) {
+        this.raceService = raceService;
     }
 }
