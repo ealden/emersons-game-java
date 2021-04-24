@@ -30,6 +30,8 @@ dependencies {
     testImplementation 'io.cucumber:cucumber-junit:6.10.3'
     testImplementation 'org.seleniumhq.selenium:selenium-java:3.141.59'
     testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.mockito:mockito-core:3.+'
+    testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
