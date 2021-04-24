@@ -1,9 +1,11 @@
 package com.escanan.ealden.race.steps;
 
+import com.escanan.ealden.race.EmersonsGame;
 import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.model.SpeedType;
 import com.escanan.ealden.race.page.RacePage;
 import io.cucumber.java.After;
+import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -16,7 +18,16 @@ import static org.hamcrest.Matchers.is;
 public class RacerSteps {
     private static final Racer CURRENT_RACER = new Racer();
 
+    private static EmersonsGame application;
     private RacePage page;
+
+    @Before
+    public void setUp() {
+        if (application == null) {
+            application = new EmersonsGame();
+            application.start();
+        }
+    }
 
     @After
     public void tearDown() {
