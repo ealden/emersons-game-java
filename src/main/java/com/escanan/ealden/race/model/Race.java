@@ -6,7 +6,7 @@ import java.util.List;
 public class Race {
     private final Long id;
     private final List<Racer> racers;
-    private final Racer currentRacer;
+    private Racer currentRacer;
     private final int finishLine;
     private final boolean over;
     private final boolean allCrashed;
@@ -15,7 +15,6 @@ public class Race {
     public Race() {
         id = 1L;
         racers = new ArrayList<>();
-        currentRacer = new Racer();
         finishLine = 10;
         over = false;
         allCrashed = false;
@@ -24,6 +23,7 @@ public class Race {
 
     public Race addRacer(Racer racer) {
         racers.add(racer);
+        currentRacer = racer;
 
         return this;
     }
