@@ -1,1 +1,101 @@
-Hello, World!
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Emerson's Game</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:400,300,600">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/style.css">
+
+    <script src="https://unpkg.com/vue@next"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  </head>
+  <body>
+    <div id="app" class="container">
+      <h1>Emerson's Game</h1>
+
+      <div id="race-message" v-if="ready">
+        <div class="row">
+          <div class="twelve columns centered">
+            <code id="message">{{ message }}</code>
+          </div>
+        </div>
+      </div>
+
+      <div id="race-track" v-if="ready">
+        <div class="row">
+          <div class="one column header">&nbsp;</div>
+          <div class="one column header">&nbsp;</div>
+          <div class="one column header centered" v-for="n in track">{{ n }}</div>
+          <div class="one column header centered">🏁</div>
+        </div>
+        <div class="row border-top" v-for="(racer, i) in racers">
+          <div class="one column">
+            <span v-if="testMode" :id="'test-racer-' + racer.id + '-position'">{{ racer.position }}</span>
+            <span v-if="testMode" :id="'test-racer-' + racer.id + '-damage'">{{ racer.damage }}</span>
+            <span v-if="testMode" :id="'test-racer-' + racer.id + '-crashed'">{{ racer.crashed }}</span>
+            <span class="nowrap">
+              <span v-if="currentRacer.id == racer.id">🎲 </span>
+              <span v-else class="hidden">🎲 </span>
+              <strong>{{ racer.name }}</strong>
+            </span>
+          </div>
+          <div class="one column centered">
+            <template v-if="racer.position == 0">🚘</template>
+            <template v-for="x in racer.damage">❌</template>
+          </div>
+          <div class="one column centered" v-for="n in finishLine">
+            <template v-if="racer.position == n">
+              <template v-if="racer.position == finishLine">🏆</template>
+              <template v-else-if="racer.crashed">🔥</template>
+              <template v-else>🚘</template>
+            </template>
+            <template v-else>&nbsp;</template>
+          </div>
+        </div>
+      </div>
+
+      <div id="race-controls" v-if="ready && !over">
+        <div class="row">
+          <div class="two columns">&nbsp;</div>
+          <div class="eight columns centered">
+            <div>
+              <button :disabled="processing" id="roll-normal-speed" @click="rollNormalSpeed">Normal Speed</button>
+              <button :disabled="processing" id="roll-super-speed" @click="rollSuperSpeed">SUPER SPEED</button>
+            </div>
+          </div>
+          <div class="two columns right-aligned">
+            <button id="new-race" :disabled="processing" @click="newRace">New Race</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="race-over" v-if="over">
+        <div class="five columns">&nbsp;</div>
+        <div class="two columns centered">
+          <button id="play-again" @click="newRace">Play Again</button>
+        </div>
+        <div class="five columns">&nbsp;</div>
+      </div>
+
+      <input v-if="testMode" id="test-roll" v-model="roll">
+
+      <span v-if="testMode && processing" id="test-processing">{{ processing }}</span>
+
+      <div id="about">
+        <p><strong>Emerson's Game</strong> is a racing game that teaches proper software engineering, and why we should focus on quality.  This implementation was built using <a href="https://ealden.escanan.com/specification-by-example-1096b613cce2"><strong>Specification by Example</strong></a>.</p>
+        <p>The rules of Emerson's Game are:</p>
+        <ul class="indent-right">
+          <li>Choose either normal speed or super speed, then roll a dice</li>
+          <li>If you choose normal, odd roll moves 1, while even rolls move 2</li>
+          <li>If you choose super, move on the roll, but take 1 damage each roll</li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="js/index.js"></script>
+  </body>
+</html>

@@ -1,0 +1,53 @@
+h1 {
+  padding-top: 5rem;
+}
+
+#race-track .column {
+  padding: 1rem;
+}
+
+#roll-normal-speed {
+  color: white;
+  background-color: green;
+}
+
+#roll-super-speed {
+  color: white;
+  background-color: red;
+}
+
+.current-racer {
+  font-weight: bold;
+}
+
+.centered {
+  text-align: center;
+}
+
+.right-aligned {
+  text-align: right;
+}
+
+.header {
+  font-weight: bold;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
+.border-top {
+  border-top: solid thin gray;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#about {
+  padding-top: 5rem;
+}
+
+.indent-right {
+  padding-left: 2rem;
+}
