@@ -10,11 +10,15 @@ import java.io.IOException;
 
 @WebServlet(name = "Races", urlPatterns = "/api/races")
 public class RacesController extends ApiController {
+    public static final Race CURRENT_RACE;
+
+    static {
+        CURRENT_RACE = new Race();
+        CURRENT_RACE.addRacer(new Racer());
+    }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Race race = new Race();
-        race.addRacer(new Racer());
-
-        jsonResponse(race, response);
+        jsonResponse(CURRENT_RACE, response);
     }
 }
