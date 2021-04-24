@@ -7,6 +7,10 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.is;
+
 public class RacerSteps {
     private RacePage page;
 
@@ -128,7 +132,7 @@ public class RacerSteps {
 
     @Then("I must see the message: {string}")
     public void assertMessage(String message) {
-        throw new PendingException();
+        assertThat(page.getMessage(), is(equalTo(message)));
     }
 
     @Then("our race must be over!")
