@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.steps;
 
+import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.page.RacePage;
 import io.cucumber.java.After;
 import io.cucumber.java.PendingException;
@@ -12,6 +13,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class RacerSteps {
+    private static final Racer CURRENT_RACER = new Racer();
+
     private RacePage page;
 
     @After
@@ -27,27 +30,27 @@ public class RacerSteps {
 
     @Given("I am at position {int}")
     public void setPosition(int position) {
-        throw new PendingException();
+
     }
 
     @Given("I have damage of {int}")
     public void setDamage(int damage) {
-        throw new PendingException();
+
     }
 
     @Given("I see the finish line at position {int}")
     public void setFinishLine(int finishLine) {
-        throw new PendingException();
+
     }
 
     @When("I choose {string} speed")
     public void speed(String speed) {
-        throw new PendingException();
+
     }
 
     @When("I roll a {int}")
     public void roll(int roll) {
-        throw new PendingException();
+
     }
 
     @When("I choose to start over in a new race")
@@ -62,12 +65,12 @@ public class RacerSteps {
 
     @Then("I must now be at position {int}")
     public void assertNewPosition(int newPosition) {
-        throw new PendingException();
+        assertThat(page.getPositionOf(CURRENT_RACER), is(equalTo(newPosition)));
     }
 
     @Then("I must now have damage of {int}")
     public void assertNewDamage(int newDamage) {
-        throw new PendingException();
+        assertThat(page.getDamageOf(CURRENT_RACER), is(equalTo(newDamage)));
     }
 
     @Then("I must see the race result: WIN")
@@ -142,6 +145,6 @@ public class RacerSteps {
 
     @Then("I must see the race result: --")
     public void assertNoRaceResult() {
-        throw new PendingException();
+        assertThat(page.isOver(), is(false));
     }
 }

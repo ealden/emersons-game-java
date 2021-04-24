@@ -13,6 +13,17 @@ Feature: Emerson's Game
 
   More info at: https://ealden.escanan.com/specification-by-example-1096b613cce2
 
+  Scenario: Race
+    Given I am in a race
+    And   I am at position 0
+    And   I have damage of 0
+    And   I see the finish line at position 10
+    When  I choose "NORMAL" speed
+    And   I roll a 1
+    Then  I must now be at position 1
+    And   I must now have damage of 0
+    And   I must see the race result: --
+
   @wip
   Scenario Outline: Race
     Given I am in a race

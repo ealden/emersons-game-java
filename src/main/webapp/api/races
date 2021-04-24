@@ -4,7 +4,7 @@
         {
             "id": 1,
             "name": "Alice",
-            "position": 0,
+            "position": 1,
             "damage": 0,
             "rank": 1,
             "crashed": false,
