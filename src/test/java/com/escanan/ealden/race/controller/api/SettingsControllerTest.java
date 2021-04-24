@@ -13,9 +13,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import static com.escanan.ealden.race.controller.api.util.IsJsonResponseOf.jsonResponseOf;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -44,12 +44,10 @@ public class SettingsControllerTest {
 
     @Test
     public void doGetMustReturnJsonResponse() throws IOException {
-        String expected = "{\"testMode\":true}";
-
         controller.doGet(request, response);
 
         verify(writer).print(responseBody.capture());
 
-        assertThat(responseBody.getValue(), is(equalTo(expected)));
+        assertThat(responseBody.getValue(), is(jsonResponseOf("/api/settings")));
     }
 }
