@@ -1,7 +1,7 @@
 package com.escanan.ealden.race.controller.api;
 
-import com.escanan.ealden.race.model.Race;
-import com.escanan.ealden.race.model.Racer;
+import com.escanan.ealden.race.service.RaceService;
+import com.escanan.ealden.race.service.impl.RaceServiceImpl;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -10,15 +10,10 @@ import java.io.IOException;
 
 @WebServlet(name = "Races", urlPatterns = "/api/races")
 public class RacesController extends ApiController {
-    public static final Race CURRENT_RACE;
-
-    static {
-        CURRENT_RACE = new Race();
-        CURRENT_RACE.addRacer(new Racer());
-    }
+    private final RaceService raceService = RaceServiceImpl.INSTANCE;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        jsonResponse(CURRENT_RACE, response);
+        jsonResponse(raceService.getCurrentRace(), response);
     }
 }
