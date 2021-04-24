@@ -48,6 +48,6 @@ public class RollControllerTest {
 
         verify(writer).print(responseBody.capture());
 
-        assertThat(responseBody.getValue(), is(jsonResponseOf("/api/races")));
+        assertThat(responseBody.getValue(), is(jsonResponseOf("/api/races/roll")));
     }
 }
