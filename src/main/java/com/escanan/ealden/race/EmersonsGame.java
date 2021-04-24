@@ -1,5 +1,6 @@
 package com.escanan.ealden.race;
 
+import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.core.StandardContext;
 import org.apache.catalina.startup.Tomcat;
@@ -19,8 +20,20 @@ public class EmersonsGame {
     private static final String CLASSES_DIR_PATH = absolutePathOf(CLASSES_DIR);
     private static final String INTERNAL_PATH = "/";
 
-    public static void main(String[] args) throws Exception {
-        Tomcat tomcat = new Tomcat();
+    private Tomcat tomcat;
+
+    public static void main(String[] args) {
+        EmersonsGame application = new EmersonsGame();
+        application.start();
+        application.await();
+    }
+
+    private static String absolutePathOf(String file) {
+        return new File(file).getAbsolutePath();
+    }
+
+    public void start() {
+        tomcat = new Tomcat();
         tomcat.setPort(PORT);
 
         StandardContext ctx = (StandardContext) tomcat.addWebapp(CONTEXT_PATH, WEBAPP_DIR_PATH);
@@ -29,11 +42,14 @@ public class EmersonsGame {
         resources.addPreResources(new DirResourceSet(resources, WEBAPP_MOUNT, CLASSES_DIR_PATH, INTERNAL_PATH));
         ctx.setResources(resources);
 
-        tomcat.start();
-        tomcat.getServer().await();
+        try {
+            tomcat.start();
+        } catch (LifecycleException e) {
+            throw new RuntimeException(e);
+        }
     }
 
-    private static String absolutePathOf(String file) {
-        return new File(file).getAbsolutePath();
+    public void await() {
+        tomcat.getServer().await();
     }
 }
