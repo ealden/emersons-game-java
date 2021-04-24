@@ -10,10 +10,14 @@ import java.io.IOException;
 
 @WebServlet(name = "Races", urlPatterns = "/api/races")
 public class RacesController extends ApiController {
-    private final RaceService raceService = RaceServiceImpl.INSTANCE;
+    private RaceService raceService = RaceServiceImpl.INSTANCE;
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         jsonResponse(raceService.getCurrentRace(), response);
+    }
+
+    public void setRaceService(RaceService raceService) {
+        this.raceService = raceService;
     }
 }

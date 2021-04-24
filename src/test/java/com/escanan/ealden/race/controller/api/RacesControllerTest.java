@@ -1,5 +1,8 @@
 package com.escanan.ealden.race.controller.api;
 
+import com.escanan.ealden.race.model.Race;
+import com.escanan.ealden.race.model.Racer;
+import com.escanan.ealden.race.service.RaceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,6 +27,9 @@ public class RacesControllerTest {
     private RacesController controller;
 
     @Mock
+    private RaceService raceService;
+
+    @Mock
     private HttpServletRequest request;
 
     @Mock
@@ -38,12 +44,18 @@ public class RacesControllerTest {
     @BeforeEach
     public void setUp() throws IOException {
         controller = new RacesController();
+        controller.setRaceService(raceService);
 
         when(response.getWriter()).thenReturn(writer);
     }
 
     @Test
     public void doGetMustReturnJsonResponse() throws IOException {
+        Race race = new Race();
+        race.addRacer(new Racer());
+
+        when(raceService.getCurrentRace()).thenReturn(race);
+
         controller.doGet(request, response);
 
         verify(writer).print(responseBody.capture());
