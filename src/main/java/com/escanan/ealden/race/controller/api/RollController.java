@@ -1,5 +1,7 @@
 package com.escanan.ealden.race.controller.api;
 
+import com.escanan.ealden.race.model.Race;
+import com.escanan.ealden.race.model.SpeedType;
 import com.escanan.ealden.race.service.RaceService;
 import com.escanan.ealden.race.service.impl.RaceServiceImpl;
 
@@ -14,6 +16,9 @@ public class RollController extends ApiController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        jsonResponse(raceService.getCurrentRace(), response);
+        Race race = raceService.getCurrentRace();
+        race.roll(1, SpeedType.NORMAL);
+
+        jsonResponse(race, response);
     }
 }

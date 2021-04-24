@@ -28,6 +28,9 @@ public class Race {
         return this;
     }
 
+    public void roll(int number, SpeedType speedType) {
+    }
+
     public Long getId() {
         return id;
     }
