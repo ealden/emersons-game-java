@@ -29,6 +29,7 @@ public class Race {
     }
 
     public void roll(int number, SpeedType speedType) {
+        currentRacer.setPosition(currentRacer.getPosition() + 1);
     }
 
     public Long getId() {

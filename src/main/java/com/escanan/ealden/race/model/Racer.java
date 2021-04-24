@@ -3,7 +3,7 @@ package com.escanan.ealden.race.model;
 public class Racer {
     private final Long id;
     private final String name;
-    private final int position;
+    private int position;
     private final int damage;
     private final int rank;
     private final boolean crashed;
@@ -13,7 +13,7 @@ public class Racer {
     public Racer() {
         id = 1L;
         name = "Alice";
-        position = 1;
+        position = 0;
         damage = 0;
         rank = 1;
         crashed = false;
@@ -51,5 +51,9 @@ public class Racer {
 
     public boolean isWinner() {
         return winner;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

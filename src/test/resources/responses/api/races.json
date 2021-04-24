@@ -4,7 +4,7 @@
     {
       "id": 1,
       "name": "Alice",
-      "position": 1,
+      "position": 0,
       "damage": 0,
       "rank": 1,
       "crashed": false,
@@ -15,7 +15,7 @@
   "currentRacer": {
     "id": 1,
     "name": "Alice",
-    "position": 1,
+    "position": 0,
     "damage": 0,
     "rank": 1,
     "crashed": false,

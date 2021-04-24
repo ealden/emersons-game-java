@@ -1,6 +1,7 @@
 package com.escanan.ealden.race.steps;
 
 import com.escanan.ealden.race.model.Racer;
+import com.escanan.ealden.race.model.SpeedType;
 import com.escanan.ealden.race.page.RacePage;
 import io.cucumber.java.After;
 import io.cucumber.java.PendingException;
@@ -50,7 +51,7 @@ public class RacerSteps {
 
     @When("I roll a {int}")
     public void roll(int roll) {
-
+        page.roll(roll, SpeedType.NORMAL);
     }
 
     @When("I choose to start over in a new race")
