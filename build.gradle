@@ -7,6 +7,16 @@ plugins {
 group 'com.escanan.ealden.race'
 version '1.0.0-SNAPSHOT'
 
+configurations {
+    cucumberRuntime {
+        extendsFrom testImplementation
+    }
+    developmentOnly
+    runtimeClasspath {
+        extendsFrom developmentOnly
+    }
+}
+
 repositories {
     mavenCentral()
 }
@@ -22,6 +32,24 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+task cucumber() {
+    dependsOn assemble, compileTestJava
+
+    doLast {
+        def feature = 'src/test/resources'
+
+        if (project.hasProperty('feature')) {
+            feature = project.getProperty('feature')
+        }
+
+        javaexec {
+            main = 'io.cucumber.core.cli.Main'
+            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+            args = ['--tags', 'not @wip', '--plugin', 'pretty', '--glue', 'com.escanan.ealden.race', feature]
+        }
+    }
 }
 
 application {
