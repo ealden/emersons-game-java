@@ -15,10 +15,10 @@ public class Racer {
     static final String DAMAGED = "damaged";
     static final String WINNER = "winner";
 
-    private final Long id;
     private final String name;
     private final int rank;
     private final boolean damaged;
+    private Long id;
     private Race race;
     private int position;
     private int damage;
@@ -30,7 +30,6 @@ public class Racer {
     public Racer(String name) {
         this.name = name;
 
-        id = 1L;
         position = 0;
         damage = 0;
         rank = 1;
@@ -44,6 +43,10 @@ public class Racer {
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {

@@ -137,14 +137,16 @@ public class RacerTest {
 
     @Test
     public void asJSON() {
+        Long id = 1L;
         String name = "Alice";
 
         Racer racer = new Racer(name);
+        racer.setId(id);
         racer.setRace(currentRace);
 
         Map<String, Object> json = racer.asJSON();
 
-        assertThat(json, hasEntry(ID, 1L));
+        assertThat(json, hasEntry(ID, id));
         assertThat(json, hasEntry(NAME, name));
         assertThat(json, hasEntry(POSITION, 0));
         assertThat(json, hasEntry(DAMAGE, 0));

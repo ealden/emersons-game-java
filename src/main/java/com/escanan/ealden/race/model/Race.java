@@ -36,6 +36,7 @@ public class Race {
     public Race addRacer(Racer racer) {
         racers.add(racer);
 
+        racer.setId(Long.valueOf(racers.size()));
         racer.setRace(this);
 
         currentRacer = racer;
