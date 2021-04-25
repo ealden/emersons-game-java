@@ -15,25 +15,18 @@ public class Racer {
     static final String DAMAGED = "damaged";
     static final String WINNER = "winner";
 
-    private final String name;
-    private final int rank;
-    private final boolean damaged;
     private Long id;
+    private String name;
     private Race race;
     private int position;
     private int damage;
+    private int rank = 1;
 
     public Racer() {
-        this(null);
     }
 
     public Racer(String name) {
         this.name = name;
-
-        position = 0;
-        damage = 0;
-        rank = 1;
-        damaged = false;
     }
 
     public void roll(int number, SpeedType speedType) {
@@ -90,7 +83,7 @@ public class Racer {
     }
 
     public boolean isDamaged() {
-        return damaged;
+        return false;
     }
 
     public boolean isWinner() {
