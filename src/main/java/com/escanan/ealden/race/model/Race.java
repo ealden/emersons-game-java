@@ -6,6 +6,8 @@ import java.util.List;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Roll.createRoll;
+import static com.escanan.ealden.race.model.SpeedType.NORMAL;
+import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static java.lang.String.format;
 
 public class Race {
@@ -103,20 +105,56 @@ public class Race {
     }
 
     public String getMessage() {
-        if (isAllCrashed()) {
-            return "All racers CRASHED!!! This race is over!";
-        } else if (lastRoll != null) {
+        if (isTimeToRace()) {
+            return format("Time to RACE!  %s rolls first!", currentRacer.getName());
+        } else if (isAllCrashed()) {
+            return "All racers CRASHED!!!  This race is over!";
+        } else if (isOver()) {
+            return format("%s wins the race!  Congratulations!!!", lastRoll.getRacer().getName());
+        } else if (isRacing() && lastRoll.getRacer().isCrashed()) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
+                    lastRoll.getRacer().getName(),
+                    lastRoll.getSpeedType().toString().toUpperCase(),
+                    lastRoll.getNumber(),
+                    lastRoll.getMove(),
+                    lastRoll.getRacer().getName(),
+                    currentRacer.getName());
+        } else if (isRacing() && lastRoll.getRacer().isDamaged() && (NORMAL == lastRoll.getSpeedType())) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!",
+                    lastRoll.getRacer().getName(),
+                    lastRoll.getSpeedType().toString().toUpperCase(),
+                    lastRoll.getNumber(),
+                    lastRoll.getMove(),
+                    lastRoll.getRacer().getName(),
+                    lastRoll.getNewDamage(),
+                    currentRacer.getName());
+        } else if (isRacing() && lastRoll.getRacer().isDamaged() && (SUPER == lastRoll.getSpeedType())) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!",
+                    lastRoll.getRacer().getName(),
+                    lastRoll.getSpeedType().toString().toUpperCase(),
+                    lastRoll.getNumber(),
+                    lastRoll.getMove(),
+                    lastRoll.getRacer().getName(),
+                    lastRoll.getNewDamage(),
+                    currentRacer.getName());
+        } else if (isRacing()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
                     lastRoll.getMove(),
                     currentRacer.getName());
-        } else if (currentRacer != null) {
-            return format("Time to RACE!  %s rolls first!", currentRacer.getName());
         } else {
             return null;
         }
+    }
+
+    private boolean isTimeToRace() {
+        return ((currentRacer != null) && (lastRoll == null));
+    }
+
+    private boolean isRacing() {
+        return ((currentRacer != null) && (lastRoll != null));
     }
 
     public void setId(Long id) {
