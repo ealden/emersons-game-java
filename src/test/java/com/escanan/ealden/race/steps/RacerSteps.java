@@ -21,6 +21,8 @@ public class RacerSteps {
     private static EmersonsGame application;
     private RacePage page;
 
+    private SpeedType speedType;
+
     @Before
     public void setUp() {
         if (application == null) {
@@ -58,12 +60,12 @@ public class RacerSteps {
 
     @When("I choose {string} speed")
     public void speed(String speed) {
-
+        speedType = SpeedType.valueOf(speed);
     }
 
     @When("I roll a {int}")
     public void roll(int roll) {
-        page.roll(roll, SpeedType.NORMAL);
+        page.roll(roll, speedType);
     }
 
     @When("I choose to start over in a new race")

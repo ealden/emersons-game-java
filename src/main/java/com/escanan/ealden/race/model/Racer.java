@@ -4,7 +4,7 @@ public class Racer {
     private final Long id;
     private final String name;
     private int position;
-    private final int damage;
+    private int damage;
     private final int rank;
     private final boolean crashed;
     private final boolean damaged;
@@ -23,6 +23,7 @@ public class Racer {
 
     public void roll(int number, SpeedType speedType) {
         position += speedType.move(number, damage);
+        damage += speedType.getDamage();
     }
 
     public Long getId() {

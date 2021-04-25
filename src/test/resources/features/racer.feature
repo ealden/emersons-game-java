@@ -34,6 +34,16 @@ Feature: Emerson's Game
       | 0         | 0       | NORMAL  | 5     | 1     | 1             | 0           | NO      | NO  | --      |
       | 0         | 0       | NORMAL  | 6     | 2     | 2             | 0           | NO      | NO  | --      |
 
+    Examples: SUPER speed is move based on roll but take 2 damage every time we roll
+
+      | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
+      | 0         | 0       | SUPER   | 1     | 1     | 1             | 2           | NO      | NO  | --      |
+      | 0         | 0       | SUPER   | 2     | 2     | 2             | 2           | NO      | NO  | --      |
+      | 0         | 0       | SUPER   | 3     | 3     | 3             | 2           | NO      | NO  | --      |
+      | 0         | 0       | SUPER   | 4     | 4     | 4             | 2           | NO      | NO  | --      |
+      | 0         | 0       | SUPER   | 5     | 5     | 5             | 2           | NO      | NO  | --      |
+      | 0         | 0       | SUPER   | 6     | 6     | 6             | 2           | NO      | NO  | --      |
+
   @wip
   Scenario Outline: Race
     And   I must now have a log entry with the following:
@@ -46,16 +56,6 @@ Feature: Emerson's Game
           * New Damage: <New Damage>
           * Crashed: "<Crashed>"
           * Win: "<Win>"
-
-    Examples: SUPER speed is move based on roll but take 2 damage every time we roll
-
-      | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
-      | 0         | 0       | SUPER   | 1     | 1     | 1             | 2           | NO      | NO  | --      |
-      | 0         | 0       | SUPER   | 2     | 2     | 2             | 2           | NO      | NO  | --      |
-      | 0         | 0       | SUPER   | 3     | 3     | 3             | 2           | NO      | NO  | --      |
-      | 0         | 0       | SUPER   | 4     | 4     | 4             | 2           | NO      | NO  | --      |
-      | 0         | 0       | SUPER   | 5     | 5     | 5             | 2           | NO      | NO  | --      |
-      | 0         | 0       | SUPER   | 6     | 6     | 6             | 2           | NO      | NO  | --      |
 
     Examples: Damage is deducted from each roll
 
