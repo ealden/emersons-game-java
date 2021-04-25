@@ -3,6 +3,7 @@ package com.escanan.ealden.race.controller.api;
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.service.RaceService;
+import com.google.gson.Gson;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -13,8 +14,11 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.escanan.ealden.race.Matchers.jsonResponseOf;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -31,6 +35,9 @@ public class RollControllerTest {
 
     @Mock
     private HttpServletRequest request;
+
+    @Mock
+    private BufferedReader reader;
 
     @Mock
     private HttpServletResponse response;
@@ -55,6 +62,15 @@ public class RollControllerTest {
         race.addRacer(new Racer());
 
         when(raceService.getCurrentRace()).thenReturn(race);
+
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put("speedType", "NORMAL");
+        parameters.put("roll", "1");
+
+        String requestBody = new Gson().toJson(parameters);
+
+        when(request.getReader()).thenReturn(reader);
+        when(reader.readLine()).thenReturn(requestBody).thenReturn(null);
 
         controller.doPost(request, response);
 
