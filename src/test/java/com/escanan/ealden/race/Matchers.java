@@ -1,6 +1,6 @@
 package com.escanan.ealden.race;
 
-import com.escanan.ealden.race.controller.api.util.IsJsonResponseOf;
+import com.escanan.ealden.race.util.IsJsonResponseOf;
 import org.hamcrest.Matcher;
 
 import java.io.IOException;

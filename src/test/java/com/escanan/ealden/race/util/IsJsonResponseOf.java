@@ -1,4 +1,4 @@
-package com.escanan.ealden.race.controller.api.util;
+package com.escanan.ealden.race.util;
 
 import org.hamcrest.Description;
 import org.hamcrest.TypeSafeMatcher;
