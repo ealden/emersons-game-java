@@ -1,6 +1,9 @@
 package com.escanan.ealden.race.model;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 import static com.escanan.ealden.race.model.Roll.createRoll;
 
@@ -13,18 +16,19 @@ public class Race {
     static final String ALL_CRASHED = "allCrashed";
     static final String MESSAGE = "message";
 
+    private static final int DEFAULT_FINISH_LINE = 10;
+
     private final Long id;
     private final List<Racer> racers;
-    private Racer currentRacer;
-    private final int finishLine;
+    private final int finishLine = DEFAULT_FINISH_LINE;
     private final boolean allCrashed;
     private final String message;
+    private Racer currentRacer;
     private Roll lastRoll;
 
     public Race() {
         id = 1L;
         racers = new ArrayList<>();
-        finishLine = 10;
         allCrashed = false;
         message = "Time to RACE!  Alice rolls first!";
     }
