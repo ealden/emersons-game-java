@@ -184,4 +184,28 @@ public class RacerTest {
 
         assertThat(racer.isWinner(), is(false));
     }
+
+    @Test
+    public void isCrashedMustReturnFalseIfDamageLessThanMaxDamage() {
+        Racer racer = new Racer();
+        racer.setDamage(MAX_DAMAGE - 1);
+
+        assertThat(racer.isCrashed(), is(false));
+    }
+
+    @Test
+    public void isCrashedMustReturnTrueIfDamageEqualToMaxDamage() {
+        Racer racer = new Racer();
+        racer.setDamage(MAX_DAMAGE);
+
+        assertThat(racer.isCrashed(), is(true));
+    }
+
+    @Test
+    public void isCrashedMustReturnTrueIfDamageMoreThanMaxDamage() {
+        Racer racer = new Racer();
+        racer.setDamage(MAX_DAMAGE + 1);
+
+        assertThat(racer.isCrashed(), is(true));
+    }
 }

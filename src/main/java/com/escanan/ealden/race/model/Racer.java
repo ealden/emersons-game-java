@@ -4,6 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Racer {
+    static final int MAX_DAMAGE = 6;
+
     static final String ID = "id";
     static final String NAME = "name";
     static final String POSITION = "position";
@@ -17,7 +19,6 @@ public class Racer {
     private final String name;
     private Race race;
     private final int rank;
-    private final boolean crashed;
     private final boolean damaged;
     private int position;
     private int damage;
@@ -28,7 +29,6 @@ public class Racer {
         position = 0;
         damage = 0;
         rank = 1;
-        crashed = false;
         damaged = false;
     }
 
@@ -74,7 +74,7 @@ public class Racer {
     }
 
     public boolean isCrashed() {
-        return crashed;
+        return (damage >= MAX_DAMAGE);
     }
 
     public boolean isDamaged() {

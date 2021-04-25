@@ -52,6 +52,7 @@ public class Race {
         lastRoll.setMove(speedType.move(number, oldDamage));
         lastRoll.setNewPosition(currentRacer.getPosition());
         lastRoll.setNewDamage(currentRacer.getDamage());
+        lastRoll.setCrashed(currentRacer.isCrashed());
     }
 
     public Roll getLastRoll() {
