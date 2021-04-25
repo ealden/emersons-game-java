@@ -22,7 +22,7 @@ public class Racer {
     }
 
     public void roll(int number, SpeedType speedType) {
-        position += 1;
+        position += speedType.move(number, damage);
     }
 
     public Long getId() {

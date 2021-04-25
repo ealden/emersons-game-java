@@ -8,11 +8,44 @@ import static org.hamcrest.Matchers.is;
 
 public class RacerTest {
     @Test
-    public void rollMustSetPositionTo1WithNoDamageIfRollIs1AndSpeedTypeNormal() {
+    public void rollMustSetPositionTo1WithNoDamageIfRollIsOddAndSpeedTypeNormal() {
         Racer racer = new Racer();
         racer.roll(1, NORMAL);
 
         assertThat(racer.getPosition(), is(1));
+        assertThat(racer.getDamage(), is(0));
+
+        racer = new Racer();
+        racer.roll(3, NORMAL);
+
+        assertThat(racer.getPosition(), is(1));
+        assertThat(racer.getDamage(), is(0));
+
+        racer = new Racer();
+        racer.roll(5, NORMAL);
+
+        assertThat(racer.getPosition(), is(1));
+        assertThat(racer.getDamage(), is(0));
+    }
+
+    @Test
+    public void rollMustSetPositionTo2WithNoDamageIfRollIsEvenAndSpeedTypeNormal() {
+        Racer racer = new Racer();
+        racer.roll(2, NORMAL);
+
+        assertThat(racer.getPosition(), is(2));
+        assertThat(racer.getDamage(), is(0));
+
+        racer = new Racer();
+        racer.roll(4, NORMAL);
+
+        assertThat(racer.getPosition(), is(2));
+        assertThat(racer.getDamage(), is(0));
+
+        racer = new Racer();
+        racer.roll(6, NORMAL);
+
+        assertThat(racer.getPosition(), is(2));
         assertThat(racer.getDamage(), is(0));
     }
 }
