@@ -11,10 +11,6 @@ public class RaceServiceImpl implements RaceService {
 
     @Override
     public Race getCurrentRace() {
-        if (currentRace == null) {
-            currentRace = newRace();
-        }
-
         return currentRace;
     }
 
