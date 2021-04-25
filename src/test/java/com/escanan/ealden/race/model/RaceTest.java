@@ -92,7 +92,7 @@ public class RaceTest {
         race.addRacer(racer2);
         race.addRacer(racer3);
 
-        racer3.setPosition(Racer.FINISH_LINE);
+        racer3.setPosition(race.getFinishLine());
 
         assertThat(race.isOver(), is(true));
     }

@@ -4,8 +4,6 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Racer {
-    static final int FINISH_LINE = 10;
-
     static final String ID = "id";
     static final String NAME = "name";
     static final String POSITION = "position";
@@ -52,8 +50,8 @@ public class Racer {
     }
 
     public int getPosition() {
-        if (position > FINISH_LINE) {
-            return FINISH_LINE;
+        if (position > race.getFinishLine()) {
+            return race.getFinishLine();
         } else {
             return position;
         }
@@ -84,7 +82,7 @@ public class Racer {
     }
 
     public boolean isWinner() {
-        return (position >= FINISH_LINE);
+        return (position >= race.getFinishLine());
     }
 
     public void setRace(Race race) {
