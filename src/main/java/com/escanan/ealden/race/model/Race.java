@@ -18,20 +18,11 @@ public class Race {
 
     private static final int DEFAULT_FINISH_LINE = 10;
 
-    private final Long id;
-    private final List<Racer> racers;
+    private final List<Racer> racers = new ArrayList<>();
     private final int finishLine = DEFAULT_FINISH_LINE;
-    private final boolean allCrashed;
-    private final String message;
+    private Long id;
     private Racer currentRacer;
     private Roll lastRoll;
-
-    public Race() {
-        id = 1L;
-        racers = new ArrayList<>();
-        allCrashed = false;
-        message = "Time to RACE!  Alice rolls first!";
-    }
 
     public Race addRacer(Racer racer) {
         racers.add(racer);
@@ -84,11 +75,15 @@ public class Race {
     }
 
     public boolean isAllCrashed() {
-        return allCrashed;
+        return false;
     }
 
     public String getMessage() {
-        return message;
+        return "Time to RACE!  Alice rolls first!";
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Map<String, Object> asJSON() {
