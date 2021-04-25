@@ -17,7 +17,7 @@ public class RaceServiceImpl implements RaceService {
     @Override
     public Race newRace() {
         Race race = new Race();
-        race.addRacer(new Racer());
+        race.addRacer(new Racer("Alice"));
 
         return save(race);
     }

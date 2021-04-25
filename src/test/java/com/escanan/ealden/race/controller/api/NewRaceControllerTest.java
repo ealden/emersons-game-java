@@ -52,7 +52,7 @@ public class NewRaceControllerTest {
     @Test
     public void doPostMustCreateANewRace() throws IOException {
         Race currentRace = new Race();
-        currentRace.addRacer(new Racer());
+        currentRace.addRacer(new Racer("Alice"));
 
         when(raceService.newRace()).thenReturn(currentRace);
 

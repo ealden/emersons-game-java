@@ -17,15 +17,20 @@ public class Racer {
 
     private final Long id;
     private final String name;
-    private Race race;
     private final int rank;
     private final boolean damaged;
+    private Race race;
     private int position;
     private int damage;
 
     public Racer() {
+        this(null);
+    }
+
+    public Racer(String name) {
+        this.name = name;
+
         id = 1L;
-        name = "Alice";
         position = 0;
         damage = 0;
         rank = 1;
@@ -47,6 +52,10 @@ public class Racer {
 
     public Race getRace() {
         return race;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
     }
 
     public int getPosition() {
@@ -83,10 +92,6 @@ public class Racer {
 
     public boolean isWinner() {
         return (position >= race.getFinishLine());
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
     }
 
     public Map<String, Object> asJSON() {

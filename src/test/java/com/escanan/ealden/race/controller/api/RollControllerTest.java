@@ -61,7 +61,7 @@ public class RollControllerTest {
     @Test
     public void doPostMustReturnJsonResponse() throws IOException {
         Race currentRace = new Race();
-        currentRace.addRacer(new Racer());
+        currentRace.addRacer(new Racer("Alice"));
 
         when(raceService.getCurrentRace()).thenReturn(currentRace);
 
