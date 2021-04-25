@@ -90,18 +90,6 @@ Feature: Emerson's Game
       | 2         | 5       | SUPER   | 5     | 0     | 2             | 7           | YES     | NO  | --      |
       | 2         | 5       | SUPER   | 6     | 1     | 3             | 7           | YES     | NO  | --      |
 
-  Scenario Outline: Race
-    Given I am in a race
-    And   I am at position <Position>
-    And   I have damage of <Damage>
-    And   I see the finish line at position 10
-    When  I choose "<Speed>" speed
-    And   I roll a <Roll>
-    Then  I must now be at position <New Position>
-    And   I must now have damage of <New Damage>
-    And   I must see the race result: <Result>
-    And   I must now have a log entry with the following:
-
     Examples: We win if we reach the finish line!
 
       | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |

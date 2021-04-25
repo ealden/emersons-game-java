@@ -53,6 +53,7 @@ public class Race {
         lastRoll.setNewPosition(currentRacer.getPosition());
         lastRoll.setNewDamage(currentRacer.getDamage());
         lastRoll.setCrashed(currentRacer.isCrashed());
+        lastRoll.setWin(currentRacer.isWinner());
     }
 
     public Roll getLastRoll() {
