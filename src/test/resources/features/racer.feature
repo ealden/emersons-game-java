@@ -44,19 +44,6 @@ Feature: Emerson's Game
       | 0         | 0       | SUPER   | 5     | 5     | 5             | 2           | NO      | NO  | --      |
       | 0         | 0       | SUPER   | 6     | 6     | 6             | 2           | NO      | NO  | --      |
 
-  @wip
-  Scenario Outline: Race
-    And   I must now have a log entry with the following:
-          * Position: <Position>
-          * Damage: <Damage>
-          * Speed: "<Speed>"
-          * Roll: <Roll>
-          * Move: <Move>
-          * New Position: <New Position>
-          * New Damage: <New Damage>
-          * Crashed: "<Crashed>"
-          * Win: "<Win>"
-
     Examples: Damage is deducted from each roll
 
       | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
@@ -72,6 +59,19 @@ Feature: Emerson's Game
       | 1         | 1       | SUPER   | 4     | 3     | 4             | 3           | NO      | NO  | --      |
       | 1         | 1       | SUPER   | 5     | 4     | 5             | 3           | NO      | NO  | --      |
       | 1         | 1       | SUPER   | 6     | 5     | 6             | 3           | NO      | NO  | --      |
+
+  @wip
+  Scenario Outline: Race
+    And   I must now have a log entry with the following:
+          * Position: <Position>
+          * Damage: <Damage>
+          * Speed: "<Speed>"
+          * Roll: <Roll>
+          * Move: <Move>
+          * New Position: <New Position>
+          * New Damage: <New Damage>
+          * Crashed: "<Crashed>"
+          * Win: "<Win>"
 
     Examples: We will no longer be able to move given enough damage
 

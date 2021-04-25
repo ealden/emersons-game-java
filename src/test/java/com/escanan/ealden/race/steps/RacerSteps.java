@@ -40,22 +40,24 @@ public class RacerSteps {
 
     @Given("I am in a race")
     public void newRace() {
+        page = new RacePage(true);
+
+        page.resetRace();
+
         RaceService raceService = RaceServiceImpl.INSTANCE;
         race = raceService.getCurrentRace();
 
-        page = new RacePage(true);
-        page.resetRace();
         page.load();
     }
 
     @Given("I am at position {int}")
     public void setPosition(int position) {
-
+        race.getCurrentRacer().setPosition(position);
     }
 
     @Given("I have damage of {int}")
     public void setDamage(int damage) {
-
+        race.getCurrentRacer().setDamage(damage);
     }
 
     @Given("I see the finish line at position {int}")

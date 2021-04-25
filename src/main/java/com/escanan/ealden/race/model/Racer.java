@@ -57,4 +57,12 @@ public class Racer {
     public boolean isWinner() {
         return winner;
     }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
+    }
 }
