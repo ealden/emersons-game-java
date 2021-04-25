@@ -50,12 +50,24 @@ public class RaceTest {
     }
 
     @Test
+    public void addRacerMustOnlySetFirstRacerAsCurrentRacer() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        race.addRacer(new Racer());
+
+        assertThat(race.getCurrentRacer(), is(sameInstance(racer)));
+    }
+
+    @Test
     public void asJSON() {
         Long id = 1L;
 
         Race race = new Race();
         race.setId(id);
-        race.addRacer(new Racer());
+        race.addRacer(new Racer("Alice"));
 
         Map<String, Object> json = race.asJSON();
 
@@ -83,7 +95,7 @@ public class RaceTest {
         assertThat(json, hasEntry(FINISH_LINE, 10));
         assertThat(json, hasEntry(OVER, false));
         assertThat(json, hasEntry(ALL_CRASHED, false));
-        assertThat(json, hasEntry(MESSAGE, "Time to RACE!  Alice rolls first!"));
+        assertThat(json, hasEntry(MESSAGE, null));
     }
 
     @Test

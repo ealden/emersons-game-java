@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Roll.createRoll;
+import static java.lang.String.format;
 
 public class Race {
     static final String ID = "id";
@@ -31,7 +32,9 @@ public class Race {
         racer.setRace(this);
         racer.setRank(racers.size());
 
-        currentRacer = racer;
+        if (currentRacer == null) {
+            currentRacer = racer;
+        }
 
         return this;
     }
@@ -86,10 +89,12 @@ public class Race {
     }
 
     public String getMessage() {
-        if (!isAllCrashed()) {
-            return "Time to RACE!  Alice rolls first!";
-        } else {
+        if (isAllCrashed()) {
             return "All racers CRASHED!!! This race is over!";
+        } else if (currentRacer != null) {
+            return format("Time to RACE!  %s rolls first!", currentRacer.getName());
+        } else {
+            return null;
         }
     }
 
