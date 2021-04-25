@@ -13,10 +13,6 @@ public class Roll {
     private boolean crashed;
     private boolean win;
 
-    public Roll() {
-        racer = new Racer();
-    }
-
     public Long getId() {
         return id;
     }
