@@ -37,6 +37,7 @@ public class RacerSteps {
     @Given("I am in a race")
     public void newRace() {
         page = new RacePage(true);
+        page.resetRace();
         page.load();
     }
 
