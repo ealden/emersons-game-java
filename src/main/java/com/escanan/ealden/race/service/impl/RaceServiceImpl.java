@@ -18,6 +18,9 @@ public class RaceServiceImpl implements RaceService {
     public Race newRace() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
+        race.addRacer(new Racer("Bob"));
+        race.addRacer(new Racer("Charlie"));
+        race.addRacer(new Racer("Dave"));
 
         return save(race);
     }
