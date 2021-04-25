@@ -54,18 +54,6 @@ Feature: Emerson's Game
       | 0         | 0       | SUPER   | 5     | 5     | 5             | 2           | NO      | NO  | --      |
       | 0         | 0       | SUPER   | 6     | 6     | 6             | 2           | NO      | NO  | --      |
 
-  Scenario Outline: Race
-    Given I am in a race
-    And   I am at position <Position>
-    And   I have damage of <Damage>
-    And   I see the finish line at position 10
-    When  I choose "<Speed>" speed
-    And   I roll a <Roll>
-    Then  I must now be at position <New Position>
-    And   I must now have damage of <New Damage>
-    And   I must see the race result: <Result>
-    And   I must now have a log entry with the following:
-
     Examples: Damage is deducted from each roll
 
       | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
@@ -81,6 +69,18 @@ Feature: Emerson's Game
       | 1         | 1       | SUPER   | 4     | 3     | 4             | 3           | NO      | NO  | --      |
       | 1         | 1       | SUPER   | 5     | 4     | 5             | 3           | NO      | NO  | --      |
       | 1         | 1       | SUPER   | 6     | 5     | 6             | 3           | NO      | NO  | --      |
+
+  Scenario Outline: Race
+    Given I am in a race
+    And   I am at position <Position>
+    And   I have damage of <Damage>
+    And   I see the finish line at position 10
+    When  I choose "<Speed>" speed
+    And   I roll a <Roll>
+    Then  I must now be at position <New Position>
+    And   I must now have damage of <New Damage>
+    And   I must see the race result: <Result>
+    And   I must now have a log entry with the following:
 
     Examples: We will no longer be able to move given enough damage
 
