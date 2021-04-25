@@ -1,6 +1,8 @@
 package com.escanan.ealden.race.model;
 
 public class Racer {
+    static final int FINISH_LINE = 10;
+
     private final Long id;
     private final String name;
     private int position;
@@ -35,7 +37,11 @@ public class Racer {
     }
 
     public int getPosition() {
-        return position;
+        if (position > FINISH_LINE) {
+            return FINISH_LINE;
+        } else {
+            return position;
+        }
     }
 
     public int getDamage() {

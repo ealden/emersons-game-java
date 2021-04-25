@@ -2,6 +2,7 @@ package com.escanan.ealden.race.model;
 
 import org.junit.jupiter.api.Test;
 
+import static com.escanan.ealden.race.model.Racer.FINISH_LINE;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -87,5 +88,25 @@ public class RacerTest {
 
         assertThat(racer.getPosition(), is(6));
         assertThat(racer.getDamage(), is(2));
+    }
+
+    @Test
+    public void getPositionMustReturnCurrentPositionIfNotYetOnFinishLine() {
+        int position = FINISH_LINE - 1;
+
+        Racer racer = new Racer();
+        racer.setPosition(position);
+
+        assertThat(racer.getPosition(), is(position));
+    }
+
+    @Test
+    public void getPositionMustReturnFinishLineIfCrossedFinishLine() {
+        int position = FINISH_LINE + 10;
+
+        Racer racer = new Racer();
+        racer.setPosition(position);
+
+        assertThat(racer.getPosition(), is(FINISH_LINE));
     }
 }
