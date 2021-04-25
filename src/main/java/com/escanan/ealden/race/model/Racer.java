@@ -20,7 +20,7 @@ public class Racer {
     private Race race;
     private int position;
     private int damage;
-    private int rank = 1;
+    private int rank;
 
     public Racer() {
     }
@@ -88,6 +88,10 @@ public class Racer {
 
     public boolean isWinner() {
         return (position >= race.getFinishLine());
+    }
+
+    public void setRank(int rank) {
+        this.rank = rank;
     }
 
     public Map<String, Object> asJSON() {

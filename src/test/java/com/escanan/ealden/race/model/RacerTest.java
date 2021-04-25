@@ -139,10 +139,12 @@ public class RacerTest {
     public void asJSON() {
         Long id = 1L;
         String name = "Alice";
+        int rank = 1;
 
         Racer racer = new Racer(name);
         racer.setId(id);
         racer.setRace(currentRace);
+        racer.setRank(rank);
 
         Map<String, Object> json = racer.asJSON();
 
@@ -150,7 +152,7 @@ public class RacerTest {
         assertThat(json, hasEntry(NAME, name));
         assertThat(json, hasEntry(POSITION, 0));
         assertThat(json, hasEntry(DAMAGE, 0));
-        assertThat(json, hasEntry(RANK, 1));
+        assertThat(json, hasEntry(RANK, rank));
         assertThat(json, hasEntry(CRASHED, false));
         assertThat(json, hasEntry(DAMAGED, false));
         assertThat(json, hasEntry(WINNER, false));

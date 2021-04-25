@@ -38,6 +38,16 @@ public class RaceTest {
     }
 
     @Test
+    public void addRacerMustSetRankToRacersCount() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        assertThat(racer.getRank(), is(equalTo(1)));
+    }
+
+    @Test
     public void asJSON() {
         Long id = 1L;
 

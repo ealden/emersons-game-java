@@ -29,6 +29,7 @@ public class Race {
 
         racer.setId(Long.valueOf(racers.size()));
         racer.setRace(this);
+        racer.setRank(racers.size());
 
         currentRacer = racer;
 
