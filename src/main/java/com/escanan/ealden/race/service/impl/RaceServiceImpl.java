@@ -23,9 +23,7 @@ public class RaceServiceImpl implements RaceService {
         Race race = new Race();
         race.addRacer(new Racer());
 
-        this.currentRace = race;
-
-        return race;
+        return save(race);
     }
 
     @Override
