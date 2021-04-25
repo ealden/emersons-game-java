@@ -51,10 +51,10 @@ public class RacesControllerTest {
 
     @Test
     public void doGetMustReturnJsonResponse() throws IOException {
-        Race race = new Race();
-        race.addRacer(new Racer());
+        Race currentRace = new Race();
+        currentRace.addRacer(new Racer());
 
-        when(raceService.getCurrentRace()).thenReturn(race);
+        when(raceService.getCurrentRace()).thenReturn(currentRace);
 
         controller.doGet(request, response);
 

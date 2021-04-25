@@ -60,10 +60,10 @@ public class RollControllerTest {
 
     @Test
     public void doPostMustReturnJsonResponse() throws IOException {
-        Race race = new Race();
-        race.addRacer(new Racer());
+        Race currentRace = new Race();
+        currentRace.addRacer(new Racer());
 
-        when(raceService.getCurrentRace()).thenReturn(race);
+        when(raceService.getCurrentRace()).thenReturn(currentRace);
 
         Map<String, String> parameters = new HashMap<>();
         parameters.put(SPEED_TYPE_PARAM, "NORMAL");
