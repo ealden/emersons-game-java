@@ -44,13 +44,10 @@ public class RacerSteps {
 
     @Given("I am in a race")
     public void newRace() {
-        page = new RacePage(true);
-
-        page.resetRace();
-
         raceService = RaceServiceImpl.INSTANCE;
-        race = raceService.getCurrentRace();
+        race = raceService.newRace();
 
+        page = new RacePage(true);
         page.load();
     }
 

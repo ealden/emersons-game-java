@@ -15,7 +15,6 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElem
 
 public class RacePage {
     private static final String ROOT_URL = "http://localhost:8080/";
-    private static final String RESET_RACE_URL = "http://localhost:8080/reset";
     private static final String CRASHED = "true";
 
     private final WebDriver driver;
@@ -38,12 +37,6 @@ public class RacePage {
 
     public RacePage load() {
         driver.navigate().to(ROOT_URL);
-
-        return this;
-    }
-
-    public RacePage resetRace() {
-        driver.navigate().to(RESET_RACE_URL);
 
         return this;
     }
