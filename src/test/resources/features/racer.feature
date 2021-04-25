@@ -60,6 +60,16 @@ Feature: Emerson's Game
       | 1         | 1       | SUPER   | 5     | 4     | 5             | 3           | NO      | NO  | --      |
       | 1         | 1       | SUPER   | 6     | 5     | 6             | 3           | NO      | NO  | --      |
 
+    Examples: We will no longer be able to move given enough damage
+
+      | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
+      | 2         | 5       | NORMAL  | 1     | 0     | 2             | 5           | NO      | NO  | --      |
+      | 2         | 5       | NORMAL  | 2     | 0     | 2             | 5           | NO      | NO  | --      |
+      | 2         | 5       | NORMAL  | 3     | 0     | 2             | 5           | NO      | NO  | --      |
+      | 2         | 5       | NORMAL  | 4     | 0     | 2             | 5           | NO      | NO  | --      |
+      | 2         | 5       | NORMAL  | 5     | 0     | 2             | 5           | NO      | NO  | --      |
+      | 2         | 5       | NORMAL  | 6     | 0     | 2             | 5           | NO      | NO  | --      |
+
   @wip
   Scenario Outline: Race
     And   I must now have a log entry with the following:
@@ -72,16 +82,6 @@ Feature: Emerson's Game
           * New Damage: <New Damage>
           * Crashed: "<Crashed>"
           * Win: "<Win>"
-
-    Examples: We will no longer be able to move given enough damage
-
-      | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
-      | 2         | 5       | NORMAL  | 1     | 0     | 2             | 5           | NO      | NO  | --      |
-      | 2         | 5       | NORMAL  | 2     | 0     | 2             | 5           | NO      | NO  | --      |
-      | 2         | 5       | NORMAL  | 3     | 0     | 2             | 5           | NO      | NO  | --      |
-      | 2         | 5       | NORMAL  | 4     | 0     | 2             | 5           | NO      | NO  | --      |
-      | 2         | 5       | NORMAL  | 5     | 0     | 2             | 5           | NO      | NO  | --      |
-      | 2         | 5       | NORMAL  | 6     | 0     | 2             | 5           | NO      | NO  | --      |
 
     Examples: We will crash given max damage
 
