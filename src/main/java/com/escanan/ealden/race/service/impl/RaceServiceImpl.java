@@ -7,15 +7,15 @@ import com.escanan.ealden.race.service.RaceService;
 public class RaceServiceImpl implements RaceService {
     public static final RaceService INSTANCE = new RaceServiceImpl();
 
-    private Race race;
+    private Race currentRace;
 
     @Override
     public Race getCurrentRace() {
-        if (race == null) {
-            race = newRace();
+        if (currentRace == null) {
+            currentRace = newRace();
         }
 
-        return race;
+        return currentRace;
     }
 
     @Override
@@ -23,7 +23,7 @@ public class RaceServiceImpl implements RaceService {
         Race race = new Race();
         race.addRacer(new Racer());
 
-        this.race = race;
+        this.currentRace = race;
 
         return race;
     }
