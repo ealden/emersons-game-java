@@ -20,7 +20,7 @@ public class RollTest {
 
         Roll roll = Roll.fromParameters(parameters);
 
-        assertThat(roll.getRoll(), is(equalTo(1)));
+        assertThat(roll.getNumber(), is(equalTo(1)));
         assertThat(roll.getSpeedType(), is(equalTo(SpeedType.NORMAL)));
     }
 
@@ -31,7 +31,7 @@ public class RollTest {
 
         Roll roll = Roll.fromParameters(parameters);
 
-        assertThat(roll.getRoll(), is(nullValue()));
+        assertThat(roll.getNumber(), is(nullValue()));
         assertThat(roll.getSpeedType(), is(equalTo(SpeedType.NORMAL)));
     }
 }

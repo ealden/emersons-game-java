@@ -8,7 +8,7 @@ public class Roll {
     public static final String ROLL_PARAM = "roll";
     public static final String SPEED_TYPE_PARAM = "speedType";
 
-    private Integer roll;
+    private Integer number;
     private SpeedType speedType;
 
     public static Roll fromParameters(Map<String, String> parameters) {
@@ -21,22 +21,22 @@ public class Roll {
         SpeedType speedType = SpeedType.valueOf(parameters.get(SPEED_TYPE_PARAM));
 
         Roll roll = new Roll();
-        roll.setRoll(number);
+        roll.setNumber(number);
         roll.setSpeedType(speedType);
 
         return roll;
     }
 
-    public Integer getRoll() {
-        return roll;
+    public Integer getNumber() {
+        return number;
     }
 
     public SpeedType getSpeedType() {
         return speedType;
     }
 
-    public void setRoll(Integer roll) {
-        this.roll = roll;
+    public void setNumber(Integer number) {
+        this.number = number;
     }
 
     public void setSpeedType(SpeedType speedType) {

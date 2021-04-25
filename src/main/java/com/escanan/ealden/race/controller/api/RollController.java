@@ -19,7 +19,7 @@ public class RollController extends ApiController {
         Roll roll = Roll.fromParameters(jsonRequest(request));
 
         Race race = raceService.getCurrentRace();
-        race.roll(roll.getRoll(), roll.getSpeedType());
+        race.roll(roll.getNumber(), roll.getSpeedType());
 
         jsonResponse(race, response);
     }
