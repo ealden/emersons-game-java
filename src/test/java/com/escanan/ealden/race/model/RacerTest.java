@@ -128,4 +128,34 @@ public class RacerTest {
         assertThat(json, hasEntry(DAMAGED, false));
         assertThat(json, hasEntry(WINNER, false));
     }
+
+    @Test
+    public void isWinnerMustReturnTrueIfOnFinishLine() {
+        int position = FINISH_LINE;
+
+        Racer racer = new Racer();
+        racer.setPosition(position);
+
+        assertThat(racer.isWinner(), is(true));
+    }
+
+    @Test
+    public void isWinnerMustReturnTrueIfCrossedFinishLine() {
+        int position = FINISH_LINE + 1;
+
+        Racer racer = new Racer();
+        racer.setPosition(position);
+
+        assertThat(racer.isWinner(), is(true));
+    }
+
+    @Test
+    public void isWinnerMustReturnFalseIfNotYetOnFinishLine() {
+        int position = FINISH_LINE - 1;
+
+        Racer racer = new Racer();
+        racer.setPosition(position);
+
+        assertThat(racer.isWinner(), is(false));
+    }
 }

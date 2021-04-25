@@ -17,12 +17,11 @@ public class Racer {
 
     private final Long id;
     private final String name;
-    private int position;
-    private int damage;
     private final int rank;
     private final boolean crashed;
     private final boolean damaged;
-    private final boolean winner;
+    private int position;
+    private int damage;
 
     public Racer() {
         id = 1L;
@@ -32,7 +31,6 @@ public class Racer {
         rank = 1;
         crashed = false;
         damaged = false;
-        winner = false;
     }
 
     public void roll(int number, SpeedType speedType) {
@@ -56,8 +54,16 @@ public class Racer {
         }
     }
 
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
     public int getDamage() {
         return damage;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public int getRank() {
@@ -73,15 +79,7 @@ public class Racer {
     }
 
     public boolean isWinner() {
-        return winner;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
+        return (position >= FINISH_LINE);
     }
 
     public Map<String, Object> asJSON() {
