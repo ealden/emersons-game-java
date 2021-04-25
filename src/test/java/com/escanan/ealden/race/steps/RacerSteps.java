@@ -21,7 +21,9 @@ public class RacerSteps {
     private static final String YES = "YES";
 
     private static EmersonsGame application;
+
     private RacePage page;
+    private RaceService raceService;
 
     private Race race;
 
@@ -46,7 +48,7 @@ public class RacerSteps {
 
         page.resetRace();
 
-        RaceService raceService = RaceServiceImpl.INSTANCE;
+        raceService = RaceServiceImpl.INSTANCE;
         race = raceService.getCurrentRace();
 
         page.load();
@@ -79,7 +81,9 @@ public class RacerSteps {
 
     @When("I choose to start over in a new race")
     public void createNewRace() {
-        throw new PendingException();
+        page.newRace();
+
+        race = raceService.getCurrentRace();
     }
 
     @When("all racers have crashed!")

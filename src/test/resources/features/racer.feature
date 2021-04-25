@@ -106,7 +106,6 @@ Feature: Emerson's Game
       | 9         | 0       | SUPER   | 5     | 5     | 10            | 2           | NO      | YES | WIN     |
       | 9         | 0       | SUPER   | 6     | 6     | 10            | 2           | NO      | YES | WIN     |
 
-  @wip
   Scenario: New Race
     Given I am in a race
     And   I am at position 2

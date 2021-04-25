@@ -1,0 +1,29 @@
+{
+  "id": 1,
+  "racers": [
+    {
+      "id": 1,
+      "name": "Alice",
+      "position": 0,
+      "damage": 0,
+      "rank": 1,
+      "crashed": false,
+      "damaged": false,
+      "winner": false
+    }
+  ],
+  "currentRacer": {
+    "id": 1,
+    "name": "Alice",
+    "position": 0,
+    "damage": 0,
+    "rank": 1,
+    "crashed": false,
+    "damaged": false,
+    "winner": false
+  },
+  "finishLine": 10,
+  "over": false,
+  "allCrashed": false,
+  "message": "Time to RACE!  Alice rolls first!"
+}
