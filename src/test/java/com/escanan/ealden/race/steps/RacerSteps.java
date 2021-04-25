@@ -18,6 +18,8 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class RacerSteps {
+    private static final String YES = "YES";
+
     private static EmersonsGame application;
     private RacePage page;
 
@@ -107,52 +109,56 @@ public class RacerSteps {
 
     @Then("I must now have a log entry with the following:")
     public void assertRollWithRacerLogged() {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getRacer(), is(equalTo(race.getCurrentRacer())));
     }
 
     @Then("Position: {int}")
     public void assertRollWithPositionLogged(int position) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getPosition(), is(equalTo(position)));
     }
 
     @Then("Damage: {int}")
     public void assertRollWithDamageLogged(int damage) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getDamage(), is(equalTo(damage)));
     }
 
     @Then("Speed: {string}")
     public void assertRollWithSpeedTypeLogged(String speedType) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getSpeedType(), is(equalTo(SpeedType.valueOf(speedType))));
     }
 
     @Then("Roll: {int}")
     public void assertRollWithRollLogged(int roll) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getNumber(), is(equalTo(roll)));
     }
 
     @Then("Move: {int}")
     public void assertRollWithMoveLogged(int move) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getMove(), is(equalTo(move)));
     }
 
     @Then("New Position: {int}")
     public void assertRollWithNewPositionLogged(int newPosition) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getNewPosition(), is(equalTo(newPosition)));
     }
 
     @Then("New Damage: {int}")
     public void assertRollWithNewDamageLogged(int newDamage) {
-        throw new PendingException();
+        assertThat(race.getLastRoll().getNewDamage(), is(equalTo(newDamage)));
     }
 
     @Then("Crashed: {string}")
     public void assertRollWithCrashedLogged(String crashed) {
-        throw new PendingException();
+        boolean didCrash = YES.equals(crashed);
+
+        assertThat(race.getLastRoll().isCrashed(), is(equalTo(didCrash)));
     }
 
     @Then("Win: {string}")
     public void assertRollWithWinLogged(String win) {
-        throw new PendingException();
+        boolean didWin = YES.equals(win);
+
+        assertThat(race.getLastRoll().isWin(), is(equalTo(didWin)));
     }
 
     @Then("I must see the message: {string}")

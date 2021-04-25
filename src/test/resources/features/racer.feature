@@ -23,6 +23,16 @@ Feature: Emerson's Game
     Then  I must now be at position <New Position>
     And   I must now have damage of <New Damage>
     And   I must see the race result: <Result>
+    And   I must now have a log entry with the following:
+          * Position: <Position>
+          * Damage: <Damage>
+          * Speed: "<Speed>"
+          * Roll: <Roll>
+          * Move: <Move>
+          * New Position: <New Position>
+          * New Damage: <New Damage>
+          * Crashed: "<Crashed>"
+          * Win: "<Win>"
 
     Examples: NORMAL speed is move 1 for odd roll, 2 for even roll
 
@@ -33,6 +43,18 @@ Feature: Emerson's Game
       | 0         | 0       | NORMAL  | 4     | 2     | 2             | 0           | NO      | NO  | --      |
       | 0         | 0       | NORMAL  | 5     | 1     | 1             | 0           | NO      | NO  | --      |
       | 0         | 0       | NORMAL  | 6     | 2     | 2             | 0           | NO      | NO  | --      |
+
+  Scenario Outline: Race
+    Given I am in a race
+    And   I am at position <Position>
+    And   I have damage of <Damage>
+    And   I see the finish line at position 10
+    When  I choose "<Speed>" speed
+    And   I roll a <Roll>
+    Then  I must now be at position <New Position>
+    And   I must now have damage of <New Damage>
+    And   I must see the race result: <Result>
+    And   I must now have a log entry with the following:
 
     Examples: SUPER speed is move based on roll but take 2 damage every time we roll
 
@@ -95,19 +117,6 @@ Feature: Emerson's Game
       | 9         | 0       | SUPER   | 4     | 4     | 10            | 2           | NO      | YES | WIN     |
       | 9         | 0       | SUPER   | 5     | 5     | 10            | 2           | NO      | YES | WIN     |
       | 9         | 0       | SUPER   | 6     | 6     | 10            | 2           | NO      | YES | WIN     |
-
-  @wip
-  Scenario: Race
-    And   I must now have a log entry with the following:
-          * Position: <Position>
-          * Damage: <Damage>
-          * Speed: "<Speed>"
-          * Roll: <Roll>
-          * Move: <Move>
-          * New Position: <New Position>
-          * New Damage: <New Damage>
-          * Crashed: "<Crashed>"
-          * Win: "<Win>"
 
   @wip
   Scenario: New Race

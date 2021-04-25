@@ -17,6 +17,7 @@ public class Race {
     private final int finishLine;
     private final boolean allCrashed;
     private final String message;
+    private Roll lastRoll;
 
     public Race() {
         id = 1L;
@@ -34,7 +35,20 @@ public class Race {
     }
 
     public void roll(int number, SpeedType speedType) {
+        int move = speedType.move(number, currentRacer.getDamage());
+
         currentRacer.roll(number, speedType);
+
+        lastRoll = new Roll();
+        lastRoll.setRacer(currentRacer);
+        lastRoll.setSpeedType(speedType);
+        lastRoll.setNumber(number);
+        lastRoll.setMove(move);
+        lastRoll.setNewPosition(currentRacer.getPosition());
+    }
+
+    public Roll getLastRoll() {
+        return lastRoll;
     }
 
     public Long getId() {
