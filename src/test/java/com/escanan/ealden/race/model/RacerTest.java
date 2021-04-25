@@ -220,4 +220,34 @@ public class RacerTest {
 
         assertThat(racer.isCrashed(), is(true));
     }
+
+    @Test
+    public void isDamagedMustBeTrueIfDamageGreaterThanZero() {
+        int damage = 1;
+
+        Racer racer = new Racer();
+        racer.setDamage(damage);
+
+        assertThat(racer.isDamaged(), is(true));
+    }
+
+    @Test
+    public void isDamagedMustBeFalseIfDamageIsZero() {
+        int damage = 0;
+
+        Racer racer = new Racer();
+        racer.setDamage(damage);
+
+        assertThat(racer.isDamaged(), is(false));
+    }
+
+    @Test
+    public void isDamagedMustBeFalseIfDamageIsLessThanZero() {
+        int damage = -1;
+
+        Racer racer = new Racer();
+        racer.setDamage(damage);
+
+        assertThat(racer.isDamaged(), is(false));
+    }
 }

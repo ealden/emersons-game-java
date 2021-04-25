@@ -84,7 +84,7 @@ public class Racer {
     }
 
     public boolean isDamaged() {
-        return false;
+        return damage > NO_DAMAGE;
     }
 
     public boolean isWinner() {
