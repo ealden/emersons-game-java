@@ -200,4 +200,19 @@ public class RaceTest {
 
         assertThat(race.isAllCrashed(), is(false));
     }
+
+    @Test
+    public void getMessageWhenNoRacersJoined() {
+        Race race = new Race();
+
+        assertThat(race.getMessage(), is(nullValue()));
+    }
+
+    @Test
+    public void getMessageWhenRacersJoined() {
+        Race race = new Race();
+        race.addRacer(new Racer("Alice"));
+
+        assertThat(race.getMessage(), is(equalTo("Time to RACE!  Alice rolls first!")));
+    }
 }
