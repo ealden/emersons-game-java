@@ -70,6 +70,16 @@ Feature: Emerson's Game
       | 2         | 5       | NORMAL  | 5     | 0     | 2             | 5           | NO      | NO  | --      |
       | 2         | 5       | NORMAL  | 6     | 0     | 2             | 5           | NO      | NO  | --      |
 
+    Examples: We will crash given max damage
+
+      | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
+      | 2         | 5       | SUPER   | 1     | 0     | 2             | 7           | YES     | NO  | --      |
+      | 2         | 5       | SUPER   | 2     | 0     | 2             | 7           | YES     | NO  | --      |
+      | 2         | 5       | SUPER   | 3     | 0     | 2             | 7           | YES     | NO  | --      |
+      | 2         | 5       | SUPER   | 4     | 0     | 2             | 7           | YES     | NO  | --      |
+      | 2         | 5       | SUPER   | 5     | 0     | 2             | 7           | YES     | NO  | --      |
+      | 2         | 5       | SUPER   | 6     | 1     | 3             | 7           | YES     | NO  | --      |
+
   @wip
   Scenario Outline: Race
     And   I must now have a log entry with the following:
@@ -82,16 +92,6 @@ Feature: Emerson's Game
           * New Damage: <New Damage>
           * Crashed: "<Crashed>"
           * Win: "<Win>"
-
-    Examples: We will crash given max damage
-
-      | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
-      | 2         | 5       | SUPER   | 1     | 0     | 2             | 7           | YES     | NO  | --      |
-      | 2         | 5       | SUPER   | 2     | 0     | 2             | 7           | YES     | NO  | --      |
-      | 2         | 5       | SUPER   | 3     | 0     | 2             | 7           | YES     | NO  | --      |
-      | 2         | 5       | SUPER   | 4     | 0     | 2             | 7           | YES     | NO  | --      |
-      | 2         | 5       | SUPER   | 5     | 0     | 2             | 7           | YES     | NO  | --      |
-      | 2         | 5       | SUPER   | 6     | 1     | 3             | 7           | YES     | NO  | --      |
 
     Examples: We win if we reach the finish line!
 
