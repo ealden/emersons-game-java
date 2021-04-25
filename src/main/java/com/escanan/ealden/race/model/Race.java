@@ -1,9 +1,19 @@
 package com.escanan.ealden.race.model;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Race {
+    static final String ID = "id";
+    static final String RACERS = "racers";
+    static final String CURRENT_RACER = "currentRacer";
+    static final String FINISH_LINE = "finishLine";
+    static final String OVER = "over";
+    static final String ALL_CRASHED = "allCrashed";
+    static final String MESSAGE = "message";
+
     private final Long id;
     private final List<Racer> racers;
     private Racer currentRacer;
@@ -58,5 +68,38 @@ public class Race {
 
     public String getMessage() {
         return message;
+    }
+
+    public Map<String, Object> asJSON() {
+        Map<String, Object> parameters = new HashMap<>();
+        parameters.put(ID, getId());
+        parameters.put(RACERS, racersJSON());
+        parameters.put(CURRENT_RACER, currentRacerJSON());
+        parameters.put(FINISH_LINE, getFinishLine());
+        parameters.put(OVER, isOver());
+        parameters.put(ALL_CRASHED, isAllCrashed());
+        parameters.put(MESSAGE, getMessage());
+
+        return parameters;
+    }
+
+    private List<Map<String, Object>> racersJSON() {
+        List<Map<String, Object>> racers = new ArrayList<>();
+
+        for (Racer racer : getRacers()) {
+            racers.add(racer.asJSON());
+        }
+
+        return racers;
+    }
+
+    private Map<String, Object> currentRacerJSON() {
+        Racer currentRacer = getCurrentRacer();
+
+        if (currentRacer != null) {
+            return currentRacer.asJSON();
+        } else {
+            return null;
+        }
     }
 }

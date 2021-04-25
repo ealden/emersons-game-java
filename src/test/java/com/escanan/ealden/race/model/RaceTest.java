@@ -2,6 +2,9 @@ package com.escanan.ealden.race.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Map;
+
+import static com.escanan.ealden.race.model.Race.*;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -21,5 +24,36 @@ public class RaceTest {
         race.addRacer(racer);
 
         assertThat(race.getCurrentRacer(), is(sameInstance(racer)));
+    }
+
+    @Test
+    public void asJSON() {
+        Race race = new Race();
+        race.addRacer(new Racer());
+
+        Map<String, Object> json = race.asJSON();
+
+        assertThat(json, hasEntry(ID, 1L));
+        assertThat(json, hasKey(RACERS));
+        assertThat(json, hasKey(CURRENT_RACER));
+        assertThat(json, hasEntry(FINISH_LINE, 10));
+        assertThat(json, hasEntry(OVER, false));
+        assertThat(json, hasEntry(ALL_CRASHED, false));
+        assertThat(json, hasEntry(MESSAGE, "Time to RACE!  Alice rolls first!"));
+    }
+
+    @Test
+    public void asJSONMustReturnJSONWhenNoRacers() {
+        Race race = new Race();
+
+        Map<String, Object> json = race.asJSON();
+
+        assertThat(json, hasEntry(ID, 1L));
+        assertThat(json, hasKey(RACERS));
+        assertThat(json, hasEntry(CURRENT_RACER, null));
+        assertThat(json, hasEntry(FINISH_LINE, 10));
+        assertThat(json, hasEntry(OVER, false));
+        assertThat(json, hasEntry(ALL_CRASHED, false));
+        assertThat(json, hasEntry(MESSAGE, "Time to RACE!  Alice rolls first!"));
     }
 }
