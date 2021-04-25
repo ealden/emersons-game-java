@@ -50,7 +50,7 @@ public class Racer {
     }
 
     public int getPosition() {
-        if (position > race.getFinishLine()) {
+        if (isWinner()) {
             return race.getFinishLine();
         } else {
             return position;
