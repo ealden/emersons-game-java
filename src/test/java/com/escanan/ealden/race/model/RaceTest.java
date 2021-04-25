@@ -5,6 +5,8 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Race.*;
+import static com.escanan.ealden.race.model.Racer.MAX_DAMAGE;
+import static com.escanan.ealden.race.model.Racer.NO_DAMAGE;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
@@ -128,5 +130,62 @@ public class RaceTest {
 
         assertThat(race.getLastRoll(), is(notNullValue()));
         assertThat(race.getLastRoll().getRacer(), is(sameInstance(racer)));
+    }
+
+    @Test
+    public void isAllCrashedMustReturnTrueIfAllRacersCrashed() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        racer.setDamage(MAX_DAMAGE);
+        race.addRacer(racer);
+
+        Racer racer2 = new Racer();
+        racer2.setDamage(MAX_DAMAGE);
+        race.addRacer(racer2);
+
+        Racer racer3 = new Racer();
+        racer3.setDamage(MAX_DAMAGE);
+        race.addRacer(racer3);
+
+        assertThat(race.isAllCrashed(), is(true));
+    }
+
+    @Test
+    public void isAllCrashedMustReturnFalseIfNotAllRacersCrashed() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        racer.setDamage(MAX_DAMAGE);
+        race.addRacer(racer);
+
+        Racer racer2 = new Racer();
+        racer2.setDamage(MAX_DAMAGE);
+        race.addRacer(racer2);
+
+        Racer racer3 = new Racer();
+        racer3.setDamage(NO_DAMAGE);
+        race.addRacer(racer3);
+
+        assertThat(race.isAllCrashed(), is(false));
+    }
+
+    @Test
+    public void isAllCrashedMustReturnFalseIfNoRacersCrashed() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        racer.setDamage(NO_DAMAGE);
+        race.addRacer(racer);
+
+        Racer racer2 = new Racer();
+        racer2.setDamage(NO_DAMAGE);
+        race.addRacer(racer2);
+
+        Racer racer3 = new Racer();
+        racer3.setDamage(NO_DAMAGE);
+        race.addRacer(racer3);
+
+        assertThat(race.isAllCrashed(), is(false));
     }
 }

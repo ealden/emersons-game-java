@@ -142,7 +142,6 @@ Feature: Emerson's Game
       | 9         | 0       | NORMAL  | 1     | Alice wins the race! Congratulations!!!                                                     |
       | 9         | 0       | SUPER   | 1     | Alice wins the race! Congratulations!!!                                                     |
 
-  @wip
   Scenario: Crash and Burn
     Given I am in a race
     When  all racers have crashed!

@@ -72,15 +72,25 @@ public class Race {
             }
         }
 
-        return false;
+        return isAllCrashed();
     }
 
     public boolean isAllCrashed() {
-        return false;
+        boolean allCrashed = !racers.isEmpty();
+
+        for (Racer racer : racers) {
+            allCrashed = (allCrashed && racer.isCrashed());
+        }
+
+        return allCrashed;
     }
 
     public String getMessage() {
-        return "Time to RACE!  Alice rolls first!";
+        if (!isAllCrashed()) {
+            return "Time to RACE!  Alice rolls first!";
+        } else {
+            return "All racers CRASHED!!! This race is over!";
+        }
     }
 
     public void setId(Long id) {

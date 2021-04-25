@@ -4,7 +4,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Racer {
-    static final int MAX_DAMAGE = 6;
+    public static final int MAX_DAMAGE = 6;
+    public static final int NO_DAMAGE = 0;
 
     static final String ID = "id";
     static final String NAME = "name";

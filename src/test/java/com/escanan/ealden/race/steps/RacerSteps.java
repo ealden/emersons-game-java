@@ -2,6 +2,7 @@ package com.escanan.ealden.race.steps;
 
 import com.escanan.ealden.race.EmersonsGame;
 import com.escanan.ealden.race.model.Race;
+import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.model.SpeedType;
 import com.escanan.ealden.race.page.RacePage;
 import com.escanan.ealden.race.service.RaceService;
@@ -13,6 +14,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import static com.escanan.ealden.race.model.Racer.MAX_DAMAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
@@ -85,7 +87,21 @@ public class RacerSteps {
 
     @When("all racers have crashed!")
     public void racersCrashed() {
-        throw new PendingException();
+        page.roll(1, SpeedType.NORMAL);
+
+        crashAllRacers();
+
+        page.load();
+    }
+
+    private void crashAllRacers() {
+        Race race = raceService.getCurrentRace();
+
+        for (Racer racer : race.getRacers()) {
+            racer.setDamage(MAX_DAMAGE);
+        }
+
+        raceService.save(race);
     }
 
     @Then("I must now be at position {int}")
@@ -169,7 +185,7 @@ public class RacerSteps {
 
     @Then("our race must be over!")
     public void assertRacersCrashedAndBurned() {
-        throw new PendingException();
+        assertThat(page.isOver(), is(true));
     }
 
     @Then("I must see the race result: --")
