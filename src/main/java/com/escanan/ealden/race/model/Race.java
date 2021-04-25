@@ -46,6 +46,20 @@ public class Race {
         currentRacer.roll(number, speedType);
 
         lastRoll = createRoll(currentRacer, oldPosition, oldDamage, number, speedType);
+
+        currentRacer = nextRacer();
+    }
+
+    private Racer nextRacer() {
+        int nextRank = ((currentRacer.getRank() % racers.size()) + 1);
+
+        for (Racer racer : racers) {
+            if (nextRank == racer.getRank()) {
+                return racer;
+            }
+        }
+
+        return currentRacer;
     }
 
     public Roll getLastRoll() {
@@ -91,6 +105,13 @@ public class Race {
     public String getMessage() {
         if (isAllCrashed()) {
             return "All racers CRASHED!!! This race is over!";
+        } else if (lastRoll != null) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
+                    lastRoll.getRacer().getName(),
+                    lastRoll.getSpeedType().toString().toUpperCase(),
+                    lastRoll.getNumber(),
+                    lastRoll.getMove(),
+                    currentRacer.getName());
         } else if (currentRacer != null) {
             return format("Time to RACE!  %s rolls first!", currentRacer.getName());
         } else {

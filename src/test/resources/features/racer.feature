@@ -120,6 +120,15 @@ Feature: Emerson's Game
     When  I am in a race
     Then  I must see the message: "Time to RACE! Alice rolls first!"
 
+  Scenario: Message
+    Given I am in a race
+    And   I am at position 0
+    And   I have damage of 0
+    And   I see the finish line at position 10
+    When  I choose "NORMAL" speed
+    And   I roll a 1
+    Then  I must see the message: "Alice chose NORMAL speed, and rolled 1 and moved 1. Bob rolls next!"
+
   @wip
   Scenario Outline: Message
     Given I am in a race

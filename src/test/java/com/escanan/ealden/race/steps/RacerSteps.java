@@ -28,6 +28,7 @@ public class RacerSteps {
     private RaceService raceService;
 
     private Race currentRace;
+    private Racer currentRacer;
 
     private SpeedType speedType;
 
@@ -75,6 +76,8 @@ public class RacerSteps {
 
     @When("I roll a {int}")
     public void roll(int roll) {
+        currentRacer = currentRace.getCurrentRacer();
+
         page.roll(roll, speedType);
     }
 
@@ -83,6 +86,7 @@ public class RacerSteps {
         page.newRace();
 
         currentRace = raceService.getCurrentRace();
+        currentRacer = currentRace.getCurrentRacer();
     }
 
     @When("all racers have crashed!")
@@ -106,12 +110,12 @@ public class RacerSteps {
 
     @Then("I must now be at position {int}")
     public void assertNewPosition(int newPosition) {
-        assertThat(page.getPositionOf(currentRace.getCurrentRacer()), is(equalTo(newPosition)));
+        assertThat(page.getPositionOf(currentRacer), is(equalTo(newPosition)));
     }
 
     @Then("I must now have damage of {int}")
     public void assertNewDamage(int newDamage) {
-        assertThat(page.getDamageOf(currentRace.getCurrentRacer()), is(equalTo(newDamage)));
+        assertThat(page.getDamageOf(currentRacer), is(equalTo(newDamage)));
     }
 
     @Then("I must see the race result: WIN")
@@ -126,7 +130,7 @@ public class RacerSteps {
 
     @Then("I must now have a log entry with the following:")
     public void assertRollWithRacerLogged() {
-        assertThat(currentRace.getLastRoll().getRacer(), is(equalTo(currentRace.getCurrentRacer())));
+        assertThat(currentRace.getLastRoll().getRacer(), is(equalTo(currentRacer)));
     }
 
     @Then("Position: {int}")

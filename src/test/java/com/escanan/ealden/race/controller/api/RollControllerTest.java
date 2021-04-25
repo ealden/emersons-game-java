@@ -63,6 +63,7 @@ public class RollControllerTest {
         Race currentRace = new Race();
         currentRace.setId(1L);
         currentRace.addRacer(new Racer("Alice"));
+        currentRace.addRacer(new Racer("Bob"));
 
         when(raceService.getCurrentRace()).thenReturn(currentRace);
 

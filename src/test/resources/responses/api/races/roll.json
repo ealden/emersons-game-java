@@ -10,14 +10,24 @@
       "crashed": false,
       "damaged": false,
       "winner": false
+    },
+    {
+      "id": 2,
+      "name": "Bob",
+      "position": 0,
+      "damage": 0,
+      "rank": 2,
+      "crashed": false,
+      "damaged": false,
+      "winner": false
     }
   ],
   "currentRacer": {
-    "id": 1,
-    "name": "Alice",
-    "position": 1,
+    "id": 2,
+    "name": "Bob",
+    "position": 0,
     "damage": 0,
-    "rank": 1,
+    "rank": 2,
     "crashed": false,
     "damaged": false,
     "winner": false
@@ -25,5 +35,5 @@
   "finishLine": 10,
   "over": false,
   "allCrashed": false,
-  "message": "Time to RACE!  Alice rolls first!"
+  "message": "Alice chose NORMAL speed, and rolled 1 and moved 1.  Bob rolls next!"
 }

@@ -145,6 +145,21 @@ public class RaceTest {
     }
 
     @Test
+    public void rollMustSetCurrentRacerToNextRacer() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        Racer racer2 = new Racer();
+        race.addRacer(racer2);
+
+        race.roll(1, NORMAL);
+
+        assertThat(race.getCurrentRacer(), is(sameInstance(racer2)));
+    }
+
+    @Test
     public void isAllCrashedMustReturnTrueIfAllRacersCrashed() {
         Race race = new Race();
 
@@ -214,5 +229,18 @@ public class RaceTest {
         race.addRacer(new Racer("Alice"));
 
         assertThat(race.getMessage(), is(equalTo("Time to RACE!  Alice rolls first!")));
+    }
+
+    @Test
+    public void getMessageAfterRacerRolls() {
+        Race race = new Race();
+        race.addRacer(new Racer("Alice"));
+        race.addRacer(new Racer("Bob"));
+        race.addRacer(new Racer("Charlie"));
+        race.addRacer(new Racer("Dave"));
+
+        race.roll(1, NORMAL);
+
+        assertThat(race.getMessage(), is(equalTo("Alice chose NORMAL speed, and rolled 1 and moved 1.  Bob rolls next!")));
     }
 }
