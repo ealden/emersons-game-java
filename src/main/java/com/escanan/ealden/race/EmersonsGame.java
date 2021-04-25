@@ -1,5 +1,6 @@
 package com.escanan.ealden.race;
 
+import com.escanan.ealden.race.service.impl.RaceServiceImpl;
 import org.apache.catalina.LifecycleException;
 import org.apache.catalina.WebResourceRoot;
 import org.apache.catalina.core.StandardContext;
@@ -23,6 +24,8 @@ public class EmersonsGame {
     private Tomcat tomcat;
 
     public static void main(String[] args) {
+        RaceServiceImpl.INSTANCE.newRace();
+
         EmersonsGame application = new EmersonsGame();
         application.start();
         application.await();
