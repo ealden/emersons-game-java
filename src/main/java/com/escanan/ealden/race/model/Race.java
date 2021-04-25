@@ -40,7 +40,6 @@ public class Race {
     public void roll(int number, SpeedType speedType) {
         int oldPosition = currentRacer.getPosition();
         int oldDamage = currentRacer.getDamage();
-        int move = speedType.move(number, currentRacer.getDamage());
 
         currentRacer.roll(number, speedType);
 
@@ -50,7 +49,7 @@ public class Race {
         lastRoll.setDamage(oldDamage);
         lastRoll.setSpeedType(speedType);
         lastRoll.setNumber(number);
-        lastRoll.setMove(move);
+        lastRoll.setMove(speedType.move(number, oldDamage));
         lastRoll.setNewPosition(currentRacer.getPosition());
         lastRoll.setNewDamage(currentRacer.getDamage());
     }
