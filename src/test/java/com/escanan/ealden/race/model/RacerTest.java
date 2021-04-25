@@ -2,11 +2,14 @@ package com.escanan.ealden.race.model;
 
 import org.junit.jupiter.api.Test;
 
-import static com.escanan.ealden.race.model.Racer.FINISH_LINE;
+import java.util.HashMap;
+import java.util.Map;
+
+import static com.escanan.ealden.race.model.Racer.*;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class RacerTest {
     @Test
@@ -108,5 +111,21 @@ public class RacerTest {
         racer.setPosition(position);
 
         assertThat(racer.getPosition(), is(FINISH_LINE));
+    }
+
+    @Test
+    public void asJSON() {
+        Racer racer = new Racer();
+
+        Map<String, Object> json = racer.asJSON();
+
+        assertThat(json, hasEntry(ID, 1L));
+        assertThat(json, hasEntry(NAME, "Alice"));
+        assertThat(json, hasEntry(POSITION, 0));
+        assertThat(json, hasEntry(DAMAGE, 0));
+        assertThat(json, hasEntry(RANK, 1));
+        assertThat(json, hasEntry(CRASHED, false));
+        assertThat(json, hasEntry(DAMAGED, false));
+        assertThat(json, hasEntry(WINNER, false));
     }
 }
