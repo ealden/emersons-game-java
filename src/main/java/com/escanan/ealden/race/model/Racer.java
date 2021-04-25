@@ -1,6 +1,6 @@
 package com.escanan.ealden.race.model;
 
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 public class Racer {
@@ -85,7 +85,7 @@ public class Racer {
     }
 
     public Map<String, Object> asJSON() {
-        Map<String, Object> parameters = new HashMap<>();
+        Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put(ID, getId());
         parameters.put(NAME, getName());
         parameters.put(POSITION, getPosition());
