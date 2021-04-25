@@ -21,6 +21,10 @@ public class Racer {
         winner = false;
     }
 
+    public void roll(int number, SpeedType speedType) {
+        position += 1;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,9 +55,5 @@ public class Racer {
 
     public boolean isWinner() {
         return winner;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
     }
 }
