@@ -97,7 +97,7 @@ public class RacerSteps {
 
     @Then("I must see the race result: WIN")
     public void assertRacerWins() {
-        throw new PendingException();
+        assertThat(page.isOver(), is(true));
     }
 
     @Then("I must see the race result: CRASHED")

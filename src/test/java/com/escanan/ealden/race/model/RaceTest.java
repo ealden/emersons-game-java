@@ -56,4 +56,34 @@ public class RaceTest {
         assertThat(json, hasEntry(ALL_CRASHED, false));
         assertThat(json, hasEntry(MESSAGE, "Time to RACE!  Alice rolls first!"));
     }
+
+    @Test
+    public void isOverMustReturnFalseIfNoRacersHaveWon() {
+        Racer racer = new Racer();
+        Racer racer2 = new Racer();
+        Racer racer3 = new Racer();
+
+        Race race = new Race();
+        race.addRacer(racer);
+        race.addRacer(racer2);
+        race.addRacer(racer3);
+
+        assertThat(race.isOver(), is(false));
+    }
+
+    @Test
+    public void isOverMustReturnTrueIfARacerHasWon() {
+        Racer racer = new Racer();
+        Racer racer2 = new Racer();
+        Racer racer3 = new Racer();
+
+        Race race = new Race();
+        race.addRacer(racer);
+        race.addRacer(racer2);
+        race.addRacer(racer3);
+
+        racer3.setPosition(Racer.FINISH_LINE);
+
+        assertThat(race.isOver(), is(true));
+    }
 }

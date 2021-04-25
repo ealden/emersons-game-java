@@ -13,7 +13,7 @@ Feature: Emerson's Game
 
   More info at: https://ealden.escanan.com/specification-by-example-1096b613cce2
 
-  Scenario: Race
+  Scenario Outline: Race
     Given I am in a race
     And   I am at position <Position>
     And   I have damage of <Damage>
@@ -80,19 +80,6 @@ Feature: Emerson's Game
       | 2         | 5       | SUPER   | 5     | 0     | 2             | 7           | YES     | NO  | --      |
       | 2         | 5       | SUPER   | 6     | 1     | 3             | 7           | YES     | NO  | --      |
 
-  @wip
-  Scenario Outline: Race
-    And   I must now have a log entry with the following:
-          * Position: <Position>
-          * Damage: <Damage>
-          * Speed: "<Speed>"
-          * Roll: <Roll>
-          * Move: <Move>
-          * New Position: <New Position>
-          * New Damage: <New Damage>
-          * Crashed: "<Crashed>"
-          * Win: "<Win>"
-
     Examples: We win if we reach the finish line!
 
       | Position  | Damage  | Speed   | Roll  | Move  | New Position  | New Damage  | Crashed | Win | Result  |
@@ -108,6 +95,19 @@ Feature: Emerson's Game
       | 9         | 0       | SUPER   | 4     | 4     | 10            | 2           | NO      | YES | WIN     |
       | 9         | 0       | SUPER   | 5     | 5     | 10            | 2           | NO      | YES | WIN     |
       | 9         | 0       | SUPER   | 6     | 6     | 10            | 2           | NO      | YES | WIN     |
+
+  @wip
+  Scenario: Race
+    And   I must now have a log entry with the following:
+          * Position: <Position>
+          * Damage: <Damage>
+          * Speed: "<Speed>"
+          * Roll: <Roll>
+          * Move: <Move>
+          * New Position: <New Position>
+          * New Damage: <New Damage>
+          * Crashed: "<Crashed>"
+          * Win: "<Win>"
 
   @wip
   Scenario: New Race

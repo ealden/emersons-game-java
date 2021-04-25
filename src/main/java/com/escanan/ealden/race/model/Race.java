@@ -15,7 +15,6 @@ public class Race {
     private final List<Racer> racers;
     private Racer currentRacer;
     private final int finishLine;
-    private final boolean over;
     private final boolean allCrashed;
     private final String message;
 
@@ -23,7 +22,6 @@ public class Race {
         id = 1L;
         racers = new ArrayList<>();
         finishLine = 10;
-        over = false;
         allCrashed = false;
         message = "Time to RACE!  Alice rolls first!";
     }
@@ -56,7 +54,13 @@ public class Race {
     }
 
     public boolean isOver() {
-        return over;
+        for (Racer racer : getRacers()) {
+            if (racer.isWinner()) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     public boolean isAllCrashed() {
