@@ -18,4 +18,14 @@ public class RaceServiceImpl implements RaceService {
 
         return race;
     }
+
+    @Override
+    public Race newRace() {
+        Race race = new Race();
+        race.addRacer(new Racer());
+
+        this.race = race;
+
+        return race;
+    }
 }

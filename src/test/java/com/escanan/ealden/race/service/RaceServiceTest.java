@@ -6,8 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.sameInstance;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class RaceServiceTest {
     private RaceService service;
@@ -23,5 +22,15 @@ public class RaceServiceTest {
         Race otherRace = service.getCurrentRace();
 
         assertThat(race, is(sameInstance(otherRace)));
+    }
+
+    @Test
+    public void newRaceMustReplaceCurrentRace() {
+        Race oldRace = service.getCurrentRace();
+        Race newRace = service.newRace();
+        Race race = service.getCurrentRace();
+
+        assertThat(oldRace, is(not(sameInstance(newRace))));
+        assertThat(newRace, is(sameInstance(race)));
     }
 }
