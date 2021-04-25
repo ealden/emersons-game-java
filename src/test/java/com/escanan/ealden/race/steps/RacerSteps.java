@@ -1,9 +1,11 @@
 package com.escanan.ealden.race.steps;
 
 import com.escanan.ealden.race.EmersonsGame;
-import com.escanan.ealden.race.model.Racer;
+import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.model.SpeedType;
 import com.escanan.ealden.race.page.RacePage;
+import com.escanan.ealden.race.service.RaceService;
+import com.escanan.ealden.race.service.impl.RaceServiceImpl;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.PendingException;
@@ -16,10 +18,10 @@ import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
 
 public class RacerSteps {
-    private static final Racer CURRENT_RACER = new Racer();
-
     private static EmersonsGame application;
     private RacePage page;
+
+    private Race race;
 
     private SpeedType speedType;
 
@@ -38,6 +40,9 @@ public class RacerSteps {
 
     @Given("I am in a race")
     public void newRace() {
+        RaceService raceService = RaceServiceImpl.INSTANCE;
+        race = raceService.getCurrentRace();
+
         page = new RacePage(true);
         page.resetRace();
         page.load();
@@ -80,12 +85,12 @@ public class RacerSteps {
 
     @Then("I must now be at position {int}")
     public void assertNewPosition(int newPosition) {
-        assertThat(page.getPositionOf(CURRENT_RACER), is(equalTo(newPosition)));
+        assertThat(page.getPositionOf(race.getCurrentRacer()), is(equalTo(newPosition)));
     }
 
     @Then("I must now have damage of {int}")
     public void assertNewDamage(int newDamage) {
-        assertThat(page.getDamageOf(CURRENT_RACER), is(equalTo(newDamage)));
+        assertThat(page.getDamageOf(race.getCurrentRacer()), is(equalTo(newDamage)));
     }
 
     @Then("I must see the race result: WIN")
