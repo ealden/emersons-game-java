@@ -21,6 +21,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import static com.escanan.ealden.race.Matchers.jsonResponseOf;
+import static com.escanan.ealden.race.controller.api.model.Roll.ROLL_PARAM;
+import static com.escanan.ealden.race.controller.api.model.Roll.SPEED_TYPE_PARAM;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
@@ -63,9 +65,9 @@ public class RollControllerTest {
 
         when(raceService.getCurrentRace()).thenReturn(race);
 
-        Map<String, Object> parameters = new HashMap<>();
-        parameters.put("speedType", "NORMAL");
-        parameters.put("roll", "1");
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put(SPEED_TYPE_PARAM, "NORMAL");
+        parameters.put(ROLL_PARAM, "1");
 
         String requestBody = new Gson().toJson(parameters);
 

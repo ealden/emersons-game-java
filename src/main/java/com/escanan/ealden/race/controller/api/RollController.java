@@ -11,6 +11,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+import static com.escanan.ealden.race.controller.api.model.Roll.ROLL_PARAM;
+import static com.escanan.ealden.race.controller.api.model.Roll.SPEED_TYPE_PARAM;
+
 @WebServlet(name = "Roll", urlPatterns = "/api/races/roll")
 public class RollController extends ApiController {
     private RaceService raceService = RaceServiceImpl.INSTANCE;
@@ -19,8 +22,8 @@ public class RollController extends ApiController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Map<String, String> parameters = jsonRequest(request);
 
-        int roll = Integer.parseInt(parameters.get("roll"));
-        SpeedType speedType = SpeedType.valueOf(parameters.get("speedType"));
+        int roll = Integer.parseInt(parameters.get(ROLL_PARAM));
+        SpeedType speedType = SpeedType.valueOf(parameters.get(SPEED_TYPE_PARAM));
 
         Race race = raceService.getCurrentRace();
         race.roll(roll, speedType);
