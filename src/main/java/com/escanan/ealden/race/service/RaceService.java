@@ -6,4 +6,6 @@ public interface RaceService {
     Race getCurrentRace();
 
     Race newRace();
+
+    Race save(Race race);
 }

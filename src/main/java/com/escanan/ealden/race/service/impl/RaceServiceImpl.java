@@ -27,4 +27,11 @@ public class RaceServiceImpl implements RaceService {
 
         return race;
     }
+
+    @Override
+    public Race save(Race race) {
+        currentRace = race;
+
+        return currentRace;
+    }
 }
