@@ -29,6 +29,9 @@ public class Race {
 
     public Race addRacer(Racer racer) {
         racers.add(racer);
+
+        racer.setRace(this);
+
         currentRacer = racer;
 
         return this;

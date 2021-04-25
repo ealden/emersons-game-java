@@ -27,6 +27,16 @@ public class RaceTest {
     }
 
     @Test
+    public void addRacerMustSetRaceToSameRace() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        assertThat(racer.getRace(), is(sameInstance(race)));
+    }
+
+    @Test
     public void asJSON() {
         Race race = new Race();
         race.addRacer(new Racer());
