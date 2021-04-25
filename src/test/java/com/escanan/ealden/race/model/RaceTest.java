@@ -70,13 +70,15 @@ public class RaceTest {
 
     @Test
     public void isOverMustReturnFalseIfNoRacersHaveWon() {
-        Racer racer = new Racer();
-        Racer racer2 = new Racer();
-        Racer racer3 = new Racer();
-
         Race race = new Race();
+
+        Racer racer = new Racer();
         race.addRacer(racer);
+
+        Racer racer2 = new Racer();
         race.addRacer(racer2);
+
+        Racer racer3 = new Racer();
         race.addRacer(racer3);
 
         assertThat(race.isOver(), is(false));
@@ -84,16 +86,17 @@ public class RaceTest {
 
     @Test
     public void isOverMustReturnTrueIfARacerHasWon() {
-        Racer racer = new Racer();
-        Racer racer2 = new Racer();
-        Racer racer3 = new Racer();
-
         Race race = new Race();
-        race.addRacer(racer);
-        race.addRacer(racer2);
-        race.addRacer(racer3);
 
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        Racer racer2 = new Racer();
+        race.addRacer(racer2);
+
+        Racer racer3 = new Racer();
         racer3.setPosition(race.getFinishLine());
+        race.addRacer(racer3);
 
         assertThat(race.isOver(), is(true));
     }
