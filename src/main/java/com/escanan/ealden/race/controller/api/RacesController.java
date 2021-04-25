@@ -14,7 +14,7 @@ public class RacesController extends ApiController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        jsonResponse(raceService.getCurrentRace(), response);
+        jsonResponse(raceService.getCurrentRace().asJSON(), response);
     }
 
     public void setRaceService(RaceService raceService) {
