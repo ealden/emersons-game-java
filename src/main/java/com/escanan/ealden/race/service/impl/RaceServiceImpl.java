@@ -12,8 +12,7 @@ public class RaceServiceImpl implements RaceService {
     @Override
     public Race getCurrentRace() {
         if (race == null) {
-            race = new Race();
-            race.addRacer(new Racer());
+            race = newRace();
         }
 
         return race;
