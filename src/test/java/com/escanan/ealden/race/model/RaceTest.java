@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Race.*;
+import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -95,5 +96,18 @@ public class RaceTest {
         racer3.setPosition(race.getFinishLine());
 
         assertThat(race.isOver(), is(true));
+    }
+
+    @Test
+    public void rollMustCreateNewRollEntry() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        race.roll(1, NORMAL);
+
+        assertThat(race.getLastRoll(), is(notNullValue()));
+        assertThat(race.getLastRoll().getRacer(), is(sameInstance(racer)));
     }
 }

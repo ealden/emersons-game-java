@@ -2,6 +2,8 @@ package com.escanan.ealden.race.model;
 
 import java.util.*;
 
+import static com.escanan.ealden.race.model.Roll.createRoll;
+
 public class Race {
     static final String ID = "id";
     static final String RACERS = "racers";
@@ -43,17 +45,7 @@ public class Race {
 
         currentRacer.roll(number, speedType);
 
-        lastRoll = new Roll();
-        lastRoll.setRacer(currentRacer);
-        lastRoll.setPosition(oldPosition);
-        lastRoll.setDamage(oldDamage);
-        lastRoll.setSpeedType(speedType);
-        lastRoll.setNumber(number);
-        lastRoll.setMove(speedType.move(number, oldDamage));
-        lastRoll.setNewPosition(currentRacer.getPosition());
-        lastRoll.setNewDamage(currentRacer.getDamage());
-        lastRoll.setCrashed(currentRacer.isCrashed());
-        lastRoll.setWin(currentRacer.isWinner());
+        lastRoll = createRoll(currentRacer, oldPosition, oldDamage, number, speedType);
     }
 
     public Roll getLastRoll() {
