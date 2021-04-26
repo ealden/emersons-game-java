@@ -33,22 +33,23 @@ public class MessageBuilder {
                     lastRoll.getRacer().getName(),
                     currentRacer.getName());
         } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
-            String template = null;
-
-            if (NORMAL == lastRoll.getSpeedType()) {
-                template = "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
-            } else if (SUPER == lastRoll.getSpeedType()) {
-                template = "%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!";
-            }
-
-            return format(template,
+            Object[] args = {
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
                     lastRoll.getMove(),
                     lastRoll.getRacer().getName(),
                     lastRoll.getNewDamage(),
-                    currentRacer.getName());
+                    currentRacer.getName()
+            };
+
+            if (NORMAL == lastRoll.getSpeedType()) {
+                return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!", args);
+            } else if (SUPER == lastRoll.getSpeedType()) {
+                return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!", args);
+            } else {
+                return null;
+            }
         } else if (race.isStarted()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                     lastRoll.getRacer().getName(),
