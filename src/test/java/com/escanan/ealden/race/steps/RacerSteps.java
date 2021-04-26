@@ -123,11 +123,6 @@ public class RacerSteps {
         assertThat(page.isOver(), is(true));
     }
 
-    @Then("I must see the race result: CRASHED")
-    public void assertRacerCrashed() {
-        throw new PendingException();
-    }
-
     @Then("I must now have a log entry with the following:")
     public void assertRollWithRacerLogged() {
         assertThat(currentRace.getLastRoll().getRacer(), is(equalTo(currentRacer)));
