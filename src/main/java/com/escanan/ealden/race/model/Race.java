@@ -91,11 +91,11 @@ public class Race {
     }
 
     public boolean isReady() {
-        return (currentRacer != null) && !isStarted();
+        return (currentRacer != null) && !isStarted() && !isOver();
     }
 
     public boolean isStarted() {
-        return lastRoll != null;
+        return (lastRoll != null) && !isOver();
     }
 
     public boolean isOver() {

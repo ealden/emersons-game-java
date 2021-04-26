@@ -240,6 +240,17 @@ public class RacerTest {
     }
 
     @Test
+    public void isReadyMustReturnFalseIfRaceIsOver() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        racer.setPosition(race.getFinishLine());
+        race.addRacer(racer);
+
+        assertThat(race.isReady(), equalTo(false));
+    }
+
+    @Test
     public void isStartedMustReturnFalseIfNoRacersJoined() {
         Race race = new Race();
 
@@ -262,5 +273,30 @@ public class RacerTest {
         race.roll(1, NORMAL);
 
         assertThat(race.isStarted(), equalTo(true));
+    }
+
+    @Test
+    public void isStartedMustReturnTrueIfRacersHaveRolled() {
+        Race race = new Race();
+        race.addRacer(new Racer());
+        race.addRacer(new Racer());
+
+        race.roll(1, NORMAL);
+        race.roll(1, NORMAL);
+
+        assertThat(race.isStarted(), equalTo(true));
+    }
+
+    @Test
+    public void isStartedMustReturnFalseIfRaceIsOver() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        racer.setPosition(race.getFinishLine());
+        race.addRacer(racer);
+
+        race.roll(1, NORMAL);
+
+        assertThat(race.isStarted(), equalTo(false));
     }
 }
