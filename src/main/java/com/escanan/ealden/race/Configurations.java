@@ -6,7 +6,11 @@ import com.escanan.ealden.race.service.impl.RaceServiceImpl;
 public final class Configurations {
     private static boolean testMode = false;
 
-    private static RaceService raceService;
+    private static final RaceService raceService;
+
+    static {
+        raceService = new RaceServiceImpl();
+    }
 
     private Configurations() {
     }
@@ -16,10 +20,6 @@ public final class Configurations {
     }
 
     public static RaceService raceService() {
-        if (raceService == null) {
-            raceService = new RaceServiceImpl();
-        }
-
         return raceService;
     }
 
