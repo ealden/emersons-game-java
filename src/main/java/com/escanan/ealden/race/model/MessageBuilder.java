@@ -1,5 +1,7 @@
 package com.escanan.ealden.race.model;
 
+import static com.escanan.ealden.race.model.SpeedType.NORMAL;
+import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static java.lang.String.format;
 
 public class MessageBuilder {
@@ -31,7 +33,15 @@ public class MessageBuilder {
                     lastRoll.getRacer().getName(),
                     currentRacer.getName());
         } else if (isRacing() && lastRoll.getRacer().isDamaged()) {
-            return format(racerDamagedMessage(),
+            String template = null;
+
+            if (NORMAL == lastRoll.getSpeedType()) {
+                template = "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
+            } else if (SUPER == lastRoll.getSpeedType()) {
+                template = "%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!";
+            }
+
+            return format(template,
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
@@ -49,17 +59,6 @@ public class MessageBuilder {
         } else {
             return null;
         }
-    }
-
-    private String racerDamagedMessage() {
-        switch (lastRoll.getSpeedType()) {
-            case NORMAL:
-                return "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
-            case SUPER:
-                return "%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!";
-        }
-
-        return null;
     }
 
     private boolean isTimeToRace() {
