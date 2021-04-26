@@ -9,10 +9,12 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.lang.reflect.Type;
 import java.util.Map;
 
 public abstract class ApiController extends HttpServlet {
+    private static final TypeToken<Map<String, String>> PARAMETERS_TOKEN = new TypeToken<>() {
+    };
+
     private final Gson gson = new Gson();
 
     protected void jsonResponse(Object responseObject, HttpServletResponse response) throws IOException {
@@ -36,8 +38,7 @@ public abstract class ApiController extends HttpServlet {
             sb.append(line);
         }
 
-        Type collectionType = new TypeToken<Map<String, String>>(){}.getType();
-        Map<String, String> parameters = new Gson().fromJson(sb.toString(), collectionType);
+        Map<String, String> parameters = new Gson().fromJson(sb.toString(), PARAMETERS_TOKEN.getType());
 
         return parameters;
     }
