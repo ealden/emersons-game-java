@@ -21,19 +21,11 @@ public class EmersonsGame {
 
     private Tomcat tomcat;
 
-    public static void main(String[] args) {
-        Configurations.raceService().newRace();
-
-        EmersonsGame application = new EmersonsGame();
-        application.start();
-        application.await();
+    public EmersonsGame() {
+        configure();
     }
 
-    private static String absolutePathOf(String file) {
-        return new File(file).getAbsolutePath();
-    }
-
-    public void start() {
+    private void configure() {
         tomcat = new Tomcat();
 
         if (PORT != null) {
@@ -45,7 +37,9 @@ public class EmersonsGame {
         WebResourceRoot resources = new StandardRoot(ctx);
         resources.addPreResources(new DirResourceSet(resources, WEBAPP_MOUNT, CLASSES_DIR_PATH, INTERNAL_PATH));
         ctx.setResources(resources);
+    }
 
+    public void start() {
         try {
             tomcat.start();
         } catch (LifecycleException e) {
@@ -59,5 +53,17 @@ public class EmersonsGame {
 
     public void testMode() {
         Configurations.setTestMode(true);
+    }
+
+    private static String absolutePathOf(String file) {
+        return new File(file).getAbsolutePath();
+    }
+
+    public static void main(String[] args) {
+        Configurations.raceService().newRace();
+
+        EmersonsGame application = new EmersonsGame();
+        application.start();
+        application.await();
     }
 }
