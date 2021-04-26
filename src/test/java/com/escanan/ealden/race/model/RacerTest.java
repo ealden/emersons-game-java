@@ -202,7 +202,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isDamagedMustBeTrueIfDamageGreaterThanZero() {
+    public void isDamagedMustReturnTrueIfDamageGreaterThanZero() {
         Racer racer = new Racer();
         racer.setDamage(1);
 
@@ -210,7 +210,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isDamagedMustBeFalseIfDamageIsZero() {
+    public void isDamagedMustReturnFalseIfDamageIsZero() {
         Racer racer = new Racer();
         racer.setDamage(0);
 
@@ -218,7 +218,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isDamagedMustBeFalseIfDamageIsLessThanZero() {
+    public void isDamagedMustReturnFalseIfDamageIsLessThanZero() {
         Racer racer = new Racer();
         racer.setDamage(-1);
 
