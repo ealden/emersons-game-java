@@ -55,7 +55,7 @@ public class MessageBuilderTest {
             racer.setDamage(MAX_DAMAGE);
         }
 
-        race.roll(0, NORMAL);
+        race.roll(1, NORMAL);
 
         String message = new MessageBuilder(race).build();
 
@@ -74,7 +74,7 @@ public class MessageBuilderTest {
         race.addRacer(new Racer("Charlie"));
         race.addRacer(new Racer("Dave"));
 
-        race.roll(0, NORMAL);
+        race.roll(1, NORMAL);
 
         String message = new MessageBuilder(race).build();
 
@@ -93,11 +93,11 @@ public class MessageBuilderTest {
         race.addRacer(new Racer("Charlie"));
         race.addRacer(new Racer("Dave"));
 
-        race.roll(0, NORMAL);
+        race.roll(1, NORMAL);
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 0 and moved 0.  Alice CRASHED!!!  Bob rolls next!")));
+        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 1 and moved 0.  Alice CRASHED!!!  Bob rolls next!")));
     }
 
     @Test
@@ -112,11 +112,11 @@ public class MessageBuilderTest {
         race.addRacer(new Racer("Charlie"));
         race.addRacer(new Racer("Dave"));
 
-        race.roll(0, NORMAL);
+        race.roll(1, NORMAL);
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 0 and moved 0.  Alice has 1 damage.  Bob rolls next!")));
+        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 1 and moved 0.  Alice has 1 damage.  Bob rolls next!")));
     }
 
     @Test
@@ -131,10 +131,10 @@ public class MessageBuilderTest {
         race.addRacer(new Racer("Charlie"));
         race.addRacer(new Racer("Dave"));
 
-        race.roll(0, SUPER);
+        race.roll(1, SUPER);
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose SUPER speed, and rolled 0 and moved 0.  Alice now has 3 damage.  Bob rolls next!")));
+        assertThat(message, is(equalTo("Alice chose SUPER speed, and rolled 1 and moved 0.  Alice now has 3 damage.  Bob rolls next!")));
     }
 }
