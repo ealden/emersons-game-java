@@ -34,6 +34,10 @@ dependencies {
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
 
+application {
+    mainClass = 'com.escanan.ealden.race.EmersonsGame'
+}
+
 java {
     sourceCompatibility = JavaVersion.VERSION_1_8
 }
@@ -58,10 +62,6 @@ task cucumber() {
             args = ['--tags', 'not @wip', '--plugin', 'pretty', '--glue', 'com.escanan.ealden.race', feature]
         }
     }
-}
-
-application {
-    mainClass = 'com.escanan.ealden.race.EmersonsGame'
 }
 
 task stage() {
