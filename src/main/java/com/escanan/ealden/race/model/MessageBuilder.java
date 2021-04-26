@@ -24,7 +24,7 @@ public class MessageBuilder {
             return "All racers CRASHED!!!  This race is over!";
         } else if (race.isOver()) {
             return format("%s wins the race!  Congratulations!!!", race.getLastRoll().getRacer().getName());
-        } else if (race.isRacing() && lastRoll.getRacer().isCrashed()) {
+        } else if (race.isStarted() && lastRoll.getRacer().isCrashed()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
@@ -32,7 +32,7 @@ public class MessageBuilder {
                     lastRoll.getMove(),
                     lastRoll.getRacer().getName(),
                     currentRacer.getName());
-        } else if (race.isRacing() && lastRoll.getRacer().isDamaged()) {
+        } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
             String template = null;
 
             if (NORMAL == lastRoll.getSpeedType()) {
@@ -49,7 +49,7 @@ public class MessageBuilder {
                     lastRoll.getRacer().getName(),
                     lastRoll.getNewDamage(),
                     currentRacer.getName());
-        } else if (race.isRacing()) {
+        } else if (race.isStarted()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
@@ -62,6 +62,6 @@ public class MessageBuilder {
     }
 
     private boolean isTimeToRace() {
-        return (currentRacer != null) && !race.isRacing();
+        return (currentRacer != null) && !race.isStarted();
     }
 }

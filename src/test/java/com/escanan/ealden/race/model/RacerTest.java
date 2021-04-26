@@ -225,27 +225,27 @@ public class RacerTest {
     }
 
     @Test
-    public void isRacingMustReturnFalseIfNoRacersJoined() {
+    public void isStartedMustReturnFalseIfNoRacersJoined() {
         Race race = new Race();
 
-        assertThat(race.isRacing(), equalTo(false));
+        assertThat(race.isStarted(), equalTo(false));
     }
 
     @Test
-    public void isRacingMustReturnFalseIfNoRacerHasRolled() {
+    public void isStartedMustReturnFalseIfNoRacerHasRolled() {
         Race race = new Race();
         race.addRacer(new Racer());
 
-        assertThat(race.isRacing(), equalTo(false));
+        assertThat(race.isStarted(), equalTo(false));
     }
 
     @Test
-    public void isRacingMustReturnTrueIfOneRacerHasRolled() {
+    public void isStartedMustReturnTrueIfOneRacerHasRolled() {
         Race race = new Race();
         race.addRacer(new Racer());
 
         race.roll(1, NORMAL);
 
-        assertThat(race.isRacing(), equalTo(true));
+        assertThat(race.isStarted(), equalTo(true));
     }
 }

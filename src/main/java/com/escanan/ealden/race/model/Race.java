@@ -90,7 +90,7 @@ public class Race {
         return finishLine;
     }
 
-    public boolean isRacing() {
+    public boolean isStarted() {
         return lastRoll != null;
     }
 
