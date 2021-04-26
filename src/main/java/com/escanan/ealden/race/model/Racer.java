@@ -64,7 +64,7 @@ public class Racer {
     }
 
     public boolean isCrashed() {
-        return (damage >= MAX_DAMAGE);
+        return damage >= MAX_DAMAGE;
     }
 
     public boolean isDamaged() {
@@ -72,7 +72,7 @@ public class Racer {
     }
 
     public boolean isWinner() {
-        return (position >= race.getFinishLine());
+        return position >= race.getFinishLine();
     }
 
     public void setId(Long id) {
