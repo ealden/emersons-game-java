@@ -90,7 +90,7 @@ public class Race {
         return finishLine;
     }
 
-    public boolean isTimeToRace() {
+    public boolean isReady() {
         return (currentRacer != null) && !isStarted();
     }
 

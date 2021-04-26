@@ -225,18 +225,18 @@ public class RacerTest {
     }
 
     @Test
-    public void isTimeToRaceMustReturnFalseIfNoRacersJoined() {
+    public void isReadyMustReturnFalseIfNoRacersJoined() {
         Race race = new Race();
 
-        assertThat(race.isTimeToRace(), equalTo(false));
+        assertThat(race.isReady(), equalTo(false));
     }
 
     @Test
-    public void isTimeToRaceMustReturnTrueIfARacerJoined() {
+    public void isReadyMustReturnTrueIfARacerJoined() {
         Race race = new Race();
         race.addRacer(new Racer());
 
-        assertThat(race.isTimeToRace(), equalTo(true));
+        assertThat(race.isReady(), equalTo(true));
     }
 
     @Test
