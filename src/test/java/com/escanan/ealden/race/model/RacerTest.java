@@ -225,6 +225,21 @@ public class RacerTest {
     }
 
     @Test
+    public void isTimeToRaceMustReturnFalseIfNoRacersJoined() {
+        Race race = new Race();
+
+        assertThat(race.isTimeToRace(), equalTo(false));
+    }
+
+    @Test
+    public void isTimeToRaceMustReturnTrueIfARacerJoined() {
+        Race race = new Race();
+        race.addRacer(new Racer());
+
+        assertThat(race.isTimeToRace(), equalTo(true));
+    }
+
+    @Test
     public void isStartedMustReturnFalseIfNoRacersJoined() {
         Race race = new Race();
 

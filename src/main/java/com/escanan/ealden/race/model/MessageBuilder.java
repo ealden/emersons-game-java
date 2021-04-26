@@ -18,7 +18,7 @@ public class MessageBuilder {
     }
 
     public String build() {
-        if (isTimeToRace()) {
+        if (race.isTimeToRace()) {
             return format("Time to RACE!  %s rolls first!", currentRacer.getName());
         } else if (race.isAllCrashed()) {
             return "All racers CRASHED!!!  This race is over!";
@@ -59,9 +59,5 @@ public class MessageBuilder {
         } else {
             return null;
         }
-    }
-
-    private boolean isTimeToRace() {
-        return (currentRacer != null) && !race.isStarted();
     }
 }
