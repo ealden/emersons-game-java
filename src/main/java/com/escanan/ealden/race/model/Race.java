@@ -8,6 +8,7 @@ import java.util.Map;
 
 import static com.escanan.ealden.race.model.Roll.createRoll;
 import static java.lang.String.format;
+import static java.util.stream.Collectors.toList;
 
 public class Race {
     static final String ID = "id";
@@ -178,7 +179,7 @@ public class Race {
     public Map<String, Object> asJson() {
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put(ID, getId());
-        parameters.put(RACERS, racersJSON());
+        parameters.put(RACERS, racers.stream().map(racer -> racer.asJson()).collect(toList()));
 
         if (currentRacer != null) {
             parameters.put(CURRENT_RACER, currentRacer.asJson());
@@ -192,15 +193,5 @@ public class Race {
         parameters.put(MESSAGE, getMessage());
 
         return parameters;
-    }
-
-    private List<Map<String, Object>> racersJSON() {
-        List<Map<String, Object>> racers = new ArrayList<>();
-
-        for (Racer racer : getRacers()) {
-            racers.add(racer.asJson());
-        }
-
-        return racers;
     }
 }
