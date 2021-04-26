@@ -127,20 +127,7 @@ public class Race {
                     lastRoll.getRacer().getName(),
                     currentRacer.getName());
         } else if (lastRoll.getRacer().isDamaged()) {
-            String template = null;
-
-            switch(lastRoll.getSpeedType()) {
-                case NORMAL:
-                    template = "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
-
-                    break;
-                case SUPER:
-                    template = "%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!";
-
-                    break;
-            }
-
-            return format(template,
+            return format(racerDamagedMessage(),
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
@@ -156,6 +143,17 @@ public class Race {
                     lastRoll.getMove(),
                     currentRacer.getName());
         }
+    }
+
+    private String racerDamagedMessage() {
+        switch(lastRoll.getSpeedType()) {
+            case NORMAL:
+                return "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
+            case SUPER:
+                return "%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!";
+        }
+
+        return null;
     }
 
     private boolean isTimeToRace() {
