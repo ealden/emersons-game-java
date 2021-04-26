@@ -12,7 +12,7 @@ import java.io.PrintWriter;
 import java.util.Map;
 
 public abstract class ApiController extends HttpServlet {
-    private static final TypeToken<Map<String, String>> PARAMETERS_TOKEN = new TypeToken<>() {
+    private static final TypeToken<Map<String, String>> PARAMETERS_TOKEN = new TypeToken<Map<String, String>>() {
     };
 
     private final Gson gson = new Gson();
@@ -38,8 +38,6 @@ public abstract class ApiController extends HttpServlet {
             sb.append(line);
         }
 
-        Map<String, String> parameters = new Gson().fromJson(sb.toString(), PARAMETERS_TOKEN.getType());
-
-        return parameters;
+        return new Gson().fromJson(sb.toString(), PARAMETERS_TOKEN.getType());
     }
 }
