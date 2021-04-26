@@ -3,10 +3,10 @@ package com.escanan.ealden.race.model;
 import static java.lang.String.format;
 
 public class MessageBuilder {
-    private Race race;
+    private final Race race;
 
-    private Racer currentRacer;
-    private Roll lastRoll;
+    private final Racer currentRacer;
+    private final Roll lastRoll;
 
     public MessageBuilder(Race race) {
         this.race = race;
@@ -22,15 +22,7 @@ public class MessageBuilder {
             return "All racers CRASHED!!!  This race is over!";
         } else if (race.isOver()) {
             return format("%s wins the race!  Congratulations!!!", race.getLastRoll().getRacer().getName());
-        } else if (isRacing()) {
-            return getMessageWhenRacing();
-        } else {
-            return null;
-        }
-    }
-
-    private String getMessageWhenRacing() {
-        if (lastRoll.getRacer().isCrashed()) {
+        } else if (isRacing() && lastRoll.getRacer().isCrashed()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
@@ -38,7 +30,7 @@ public class MessageBuilder {
                     lastRoll.getMove(),
                     lastRoll.getRacer().getName(),
                     currentRacer.getName());
-        } else if (lastRoll.getRacer().isDamaged()) {
+        } else if (isRacing() && lastRoll.getRacer().isDamaged()) {
             return format(racerDamagedMessage(),
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
@@ -47,13 +39,15 @@ public class MessageBuilder {
                     lastRoll.getRacer().getName(),
                     lastRoll.getNewDamage(),
                     currentRacer.getName());
-        } else {
+        } else if (isRacing() && isRacing()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
                     lastRoll.getMove(),
                     currentRacer.getName());
+        } else {
+            return null;
         }
     }
 
