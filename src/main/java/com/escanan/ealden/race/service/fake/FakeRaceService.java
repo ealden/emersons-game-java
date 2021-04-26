@@ -1,10 +1,10 @@
-package com.escanan.ealden.race.service.impl;
+package com.escanan.ealden.race.service.fake;
 
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.service.RaceService;
 
-public class RaceServiceImpl implements RaceService {
+public class FakeRaceService implements RaceService {
     private Race currentRace;
 
     @Override

@@ -1,7 +1,7 @@
 package com.escanan.ealden.race;
 
 import com.escanan.ealden.race.service.RaceService;
-import com.escanan.ealden.race.service.impl.RaceServiceImpl;
+import com.escanan.ealden.race.service.fake.FakeRaceService;
 
 public final class Configurations {
     private static boolean testMode = false;
@@ -9,7 +9,7 @@ public final class Configurations {
     private static final RaceService raceService;
 
     static {
-        raceService = new RaceServiceImpl();
+        raceService = new FakeRaceService();
     }
 
     private Configurations() {

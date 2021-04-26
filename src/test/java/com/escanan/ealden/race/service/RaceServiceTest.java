@@ -1,7 +1,7 @@
 package com.escanan.ealden.race.service;
 
 import com.escanan.ealden.race.model.Race;
-import com.escanan.ealden.race.service.impl.RaceServiceImpl;
+import com.escanan.ealden.race.service.fake.FakeRaceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -13,7 +13,7 @@ public class RaceServiceTest {
 
     @BeforeEach
     public void setUp() {
-        service = new RaceServiceImpl();
+        service = new FakeRaceService();
     }
 
     @Test
