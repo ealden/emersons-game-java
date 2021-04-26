@@ -179,7 +179,13 @@ public class Race {
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put(ID, getId());
         parameters.put(RACERS, racersJSON());
-        parameters.put(CURRENT_RACER, currentRacerJSON());
+
+        if (currentRacer != null) {
+            parameters.put(CURRENT_RACER, currentRacer.asJson());
+        } else {
+            parameters.put(CURRENT_RACER, null);
+        }
+
         parameters.put(FINISH_LINE, getFinishLine());
         parameters.put(OVER, isOver());
         parameters.put(ALL_CRASHED, isAllCrashed());
@@ -196,15 +202,5 @@ public class Race {
         }
 
         return racers;
-    }
-
-    private Map<String, Object> currentRacerJSON() {
-        Racer currentRacer = getCurrentRacer();
-
-        if (currentRacer != null) {
-            return currentRacer.asJson();
-        } else {
-            return null;
-        }
     }
 }
