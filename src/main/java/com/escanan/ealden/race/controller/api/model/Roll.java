@@ -12,17 +12,15 @@ public class Roll {
     private SpeedType speedType;
 
     public static Roll fromParameters(Map<String, String> parameters) {
-        Integer number = null;
+        Roll roll = new Roll();
 
         if (parameters.containsKey(ROLL_PARAM)) {
-            number = Integer.parseInt(parameters.get(ROLL_PARAM));
+            roll.setNumber(Integer.parseInt(parameters.get(ROLL_PARAM)));
         }
 
-        SpeedType speedType = SpeedType.valueOf(parameters.get(SPEED_TYPE_PARAM));
-
-        Roll roll = new Roll();
-        roll.setNumber(number);
-        roll.setSpeedType(speedType);
+        if (parameters.containsKey(SPEED_TYPE_PARAM)) {
+            roll.setSpeedType(SpeedType.valueOf(parameters.get(SPEED_TYPE_PARAM)));
+        }
 
         return roll;
     }
