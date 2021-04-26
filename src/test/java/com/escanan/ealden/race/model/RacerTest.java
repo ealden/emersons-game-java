@@ -9,8 +9,7 @@ import static com.escanan.ealden.race.model.Racer.*;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasEntry;
-import static org.hamcrest.Matchers.is;
+import static org.hamcrest.Matchers.*;
 
 public class RacerTest {
     private Race currentRace;
@@ -223,5 +222,30 @@ public class RacerTest {
         racer.setDamage(-1);
 
         assertThat(racer.isDamaged(), is(false));
+    }
+
+    @Test
+    public void isRacingMustReturnFalseIfNoRacersJoined() {
+        Race race = new Race();
+
+        assertThat(race.isRacing(), equalTo(false));
+    }
+
+    @Test
+    public void isRacingMustReturnFalseIfNoRacerHasRolled() {
+        Race race = new Race();
+        race.addRacer(new Racer());
+
+        assertThat(race.isRacing(), equalTo(false));
+    }
+
+    @Test
+    public void isRacingMustReturnTrueIfOneRacerHasRolled() {
+        Race race = new Race();
+        race.addRacer(new Racer());
+
+        race.roll(1, NORMAL);
+
+        assertThat(race.isRacing(), equalTo(true));
     }
 }

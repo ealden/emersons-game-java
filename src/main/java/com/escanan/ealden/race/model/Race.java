@@ -90,6 +90,10 @@ public class Race {
         return finishLine;
     }
 
+    public boolean isRacing() {
+        return lastRoll != null;
+    }
+
     public boolean isOver() {
         for (Racer racer : getRacers()) {
             if (racer.isWinner()) {
