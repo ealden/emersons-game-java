@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Roll.createRoll;
-import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static java.lang.String.format;
 
 public class Race {
@@ -146,7 +145,7 @@ public class Race {
     }
 
     private String racerDamagedMessage() {
-        switch(lastRoll.getSpeedType()) {
+        switch (lastRoll.getSpeedType()) {
             case NORMAL:
                 return "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
             case SUPER:
