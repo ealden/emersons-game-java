@@ -115,44 +115,36 @@ public class RacerTest {
 
     @Test
     public void getPositionMustReturnCurrentPositionIfNotYetOnFinishLine() {
-        int position = currentRace.getFinishLine() - 1;
-
         Racer racer = new Racer();
         racer.setRace(currentRace);
-        racer.setPosition(position);
+        racer.setPosition(1);
 
-        assertThat(racer.getPosition(), is(position));
+        assertThat(racer.getPosition(), is(1));
     }
 
     @Test
     public void getPositionMustReturnFinishLineIfCrossedFinishLine() {
-        int position = currentRace.getFinishLine() + 10;
-
         Racer racer = new Racer();
         racer.setRace(currentRace);
-        racer.setPosition(position);
+        racer.setPosition(currentRace.getFinishLine() + 10);
 
         assertThat(racer.getPosition(), is(currentRace.getFinishLine()));
     }
 
     @Test
     public void asJSON() {
-        Long id = 1L;
-        String name = "Alice";
-        int rank = 1;
-
-        Racer racer = new Racer(name);
-        racer.setId(id);
+        Racer racer = new Racer("Alice");
+        racer.setId(1L);
         racer.setRace(currentRace);
-        racer.setRank(rank);
+        racer.setRank(1);
 
         Map<String, Object> json = racer.asJSON();
 
-        assertThat(json, hasEntry(ID, id));
-        assertThat(json, hasEntry(NAME, name));
+        assertThat(json, hasEntry(ID, 1L));
+        assertThat(json, hasEntry(NAME, "Alice"));
         assertThat(json, hasEntry(POSITION, 0));
         assertThat(json, hasEntry(DAMAGE, 0));
-        assertThat(json, hasEntry(RANK, rank));
+        assertThat(json, hasEntry(RANK, 1));
         assertThat(json, hasEntry(CRASHED, false));
         assertThat(json, hasEntry(DAMAGED, false));
         assertThat(json, hasEntry(WINNER, false));
@@ -160,93 +152,75 @@ public class RacerTest {
 
     @Test
     public void isWinnerMustReturnTrueIfOnFinishLine() {
-        int position = currentRace.getFinishLine();
-
         Racer racer = new Racer();
         racer.setRace(currentRace);
-        racer.setPosition(position);
+        racer.setPosition(currentRace.getFinishLine());
 
         assertThat(racer.isWinner(), is(true));
     }
 
     @Test
     public void isWinnerMustReturnTrueIfCrossedFinishLine() {
-        int position = currentRace.getFinishLine() + 1;
-
         Racer racer = new Racer();
         racer.setRace(currentRace);
-        racer.setPosition(position);
+        racer.setPosition(currentRace.getFinishLine() + 1);
 
         assertThat(racer.isWinner(), is(true));
     }
 
     @Test
     public void isWinnerMustReturnFalseIfNotYetOnFinishLine() {
-        int position = currentRace.getFinishLine() - 1;
-
         Racer racer = new Racer();
         racer.setRace(currentRace);
-        racer.setPosition(position);
+        racer.setPosition(currentRace.getFinishLine() - 1);
 
         assertThat(racer.isWinner(), is(false));
     }
 
     @Test
     public void isCrashedMustReturnFalseIfDamageLessThanMaxDamage() {
-        int damage = MAX_DAMAGE - 1;
-
         Racer racer = new Racer();
-        racer.setDamage(damage);
+        racer.setDamage(MAX_DAMAGE - 1);
 
         assertThat(racer.isCrashed(), is(false));
     }
 
     @Test
     public void isCrashedMustReturnTrueIfDamageEqualToMaxDamage() {
-        int damage = MAX_DAMAGE;
-
         Racer racer = new Racer();
-        racer.setDamage(damage);
+        racer.setDamage(MAX_DAMAGE);
 
         assertThat(racer.isCrashed(), is(true));
     }
 
     @Test
     public void isCrashedMustReturnTrueIfDamageMoreThanMaxDamage() {
-        int damage = MAX_DAMAGE + 1;
-
-        Racer racer = new Racer();
-        racer.setDamage(damage);
+       Racer racer = new Racer();
+        racer.setDamage(MAX_DAMAGE + 1);
 
         assertThat(racer.isCrashed(), is(true));
     }
 
     @Test
     public void isDamagedMustBeTrueIfDamageGreaterThanZero() {
-        int damage = 1;
-
         Racer racer = new Racer();
-        racer.setDamage(damage);
+        racer.setDamage(1);
 
         assertThat(racer.isDamaged(), is(true));
     }
 
     @Test
     public void isDamagedMustBeFalseIfDamageIsZero() {
-        int damage = 0;
-
         Racer racer = new Racer();
-        racer.setDamage(damage);
+        racer.setDamage(0);
 
         assertThat(racer.isDamaged(), is(false));
     }
 
     @Test
     public void isDamagedMustBeFalseIfDamageIsLessThanZero() {
-        int damage = -1;
-
         Racer racer = new Racer();
-        racer.setDamage(damage);
+        racer.setDamage(-1);
 
         assertThat(racer.isDamaged(), is(false));
     }

@@ -64,15 +64,13 @@ public class RaceTest {
 
     @Test
     public void asJSON() {
-        Long id = 1L;
-
         Race race = new Race();
-        race.setId(id);
+        race.setId(1L);
         race.addRacer(new Racer("Alice"));
 
         Map<String, Object> json = race.asJSON();
 
-        assertThat(json, hasEntry(ID, id));
+        assertThat(json, hasEntry(ID, 1L));
         assertThat(json, hasKey(RACERS));
         assertThat(json, hasKey(CURRENT_RACER));
         assertThat(json, hasEntry(FINISH_LINE, 10));
@@ -83,14 +81,12 @@ public class RaceTest {
 
     @Test
     public void asJSONMustReturnJSONWhenNoRacers() {
-        Long id = 1L;
-
         Race race = new Race();
-        race.setId(id);
+        race.setId(1L);
 
         Map<String, Object> json = race.asJSON();
 
-        assertThat(json, hasEntry(ID, id));
+        assertThat(json, hasEntry(ID, 1L));
         assertThat(json, hasKey(RACERS));
         assertThat(json, hasEntry(CURRENT_RACER, null));
         assertThat(json, hasEntry(FINISH_LINE, 10));
