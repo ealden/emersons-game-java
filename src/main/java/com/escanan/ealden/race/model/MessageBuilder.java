@@ -25,40 +25,52 @@ public class MessageBuilder {
         } else if (race.isOver()) {
             return format("%s wins the race!  Congratulations!!!", race.getLastRoll().getRacer().getName());
         } else if (race.isStarted() && lastRoll.getRacer().isCrashed()) {
-            return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
-                    lastRoll.getRacer().getName(),
-                    lastRoll.getSpeedType().toString().toUpperCase(),
-                    lastRoll.getNumber(),
-                    lastRoll.getMove(),
-                    lastRoll.getRacer().getName(),
-                    currentRacer.getName());
+            return racerCrashed();
         } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
-            Object[] args = {
-                    lastRoll.getRacer().getName(),
-                    lastRoll.getSpeedType().toString().toUpperCase(),
-                    lastRoll.getNumber(),
-                    lastRoll.getMove(),
-                    lastRoll.getRacer().getName(),
-                    lastRoll.getNewDamage(),
-                    currentRacer.getName()
-            };
-
-            if (NORMAL == lastRoll.getSpeedType()) {
-                return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!", args);
-            } else if (SUPER == lastRoll.getSpeedType()) {
-                return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!", args);
-            } else {
-                return null;
-            }
+            return racerDamaged();
         } else if (race.isStarted()) {
-            return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
-                    lastRoll.getRacer().getName(),
-                    lastRoll.getSpeedType().toString().toUpperCase(),
-                    lastRoll.getNumber(),
-                    lastRoll.getMove(),
-                    currentRacer.getName());
+            return raceStarted();
         } else {
             return null;
         }
+    }
+
+    private String racerCrashed() {
+        return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
+                lastRoll.getRacer().getName(),
+                lastRoll.getSpeedType().toString().toUpperCase(),
+                lastRoll.getNumber(),
+                lastRoll.getMove(),
+                lastRoll.getRacer().getName(),
+                currentRacer.getName());
+    }
+
+    private String racerDamaged() {
+        Object[] args = {
+                lastRoll.getRacer().getName(),
+                lastRoll.getSpeedType().toString().toUpperCase(),
+                lastRoll.getNumber(),
+                lastRoll.getMove(),
+                lastRoll.getRacer().getName(),
+                lastRoll.getNewDamage(),
+                currentRacer.getName()
+        };
+
+        if (NORMAL == lastRoll.getSpeedType()) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!", args);
+        } else if (SUPER == lastRoll.getSpeedType()) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!", args);
+        } else {
+            return null;
+        }
+    }
+
+    private String raceStarted() {
+        return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
+                lastRoll.getRacer().getName(),
+                lastRoll.getSpeedType().toString().toUpperCase(),
+                lastRoll.getNumber(),
+                lastRoll.getMove(),
+                currentRacer.getName());
     }
 }
