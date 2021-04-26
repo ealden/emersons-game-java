@@ -10,8 +10,7 @@ import org.apache.catalina.webresources.StandardRoot;
 import java.io.File;
 
 public class EmersonsGame {
-    private static final int PORT = 8080;
-
+    private static final String PORT = System.getenv("PORT");
     private static final String CONTEXT_PATH = "/";
     private static final String WEBAPP_DIR = "src/main/webapp";
     private static final String WEBAPP_DIR_PATH = absolutePathOf(WEBAPP_DIR);
@@ -36,7 +35,10 @@ public class EmersonsGame {
 
     public void start() {
         tomcat = new Tomcat();
-        tomcat.setPort(PORT);
+
+        if (PORT != null) {
+            tomcat.setPort(Integer.parseInt(PORT));
+        }
 
         StandardContext ctx = (StandardContext) tomcat.addWebapp(CONTEXT_PATH, WEBAPP_DIR_PATH);
 
