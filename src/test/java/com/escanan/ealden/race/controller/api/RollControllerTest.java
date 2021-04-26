@@ -17,16 +17,18 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
 import static com.escanan.ealden.race.Matchers.jsonResponseOf;
 import static com.escanan.ealden.race.controller.api.model.Roll.ROLL_PARAM;
 import static com.escanan.ealden.race.controller.api.model.Roll.SPEED_TYPE_PARAM;
+import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class RollControllerTest {
@@ -76,10 +78,34 @@ public class RollControllerTest {
         when(request.getReader()).thenReturn(reader);
         when(reader.readLine()).thenReturn(requestBody).thenReturn(null);
 
+        controller.setTestMode(true);
         controller.doPost(request, response);
 
         verify(writer).print(responseBody.capture());
 
         assertThat(responseBody.getValue(), is(jsonResponseOf("/api/races/roll")));
+    }
+
+    @Test
+    public void doPostMustRandomizeRollIfNotInTestMode() throws IOException {
+        Race currentRace = mock(Race.class);
+
+        when(currentRace.asJson()).thenReturn(Collections.emptyMap());
+        when(raceService.getCurrentRace()).thenReturn(currentRace);
+
+        Map<String, String> parameters = new HashMap<>();
+        parameters.put(SPEED_TYPE_PARAM, "NORMAL");
+        parameters.put(ROLL_PARAM, "1");
+
+        String requestBody = new Gson().toJson(parameters);
+
+        when(request.getReader()).thenReturn(reader);
+        when(reader.readLine()).thenReturn(requestBody).thenReturn(null);
+
+        controller.setTestMode(false);
+        controller.doPost(request, response);
+
+        verify(writer).print(anyString());
+        verify(currentRace).roll(NORMAL);
     }
 }

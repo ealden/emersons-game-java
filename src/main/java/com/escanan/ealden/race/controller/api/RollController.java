@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.controller.api;
 
+import com.escanan.ealden.race.Configurations;
 import com.escanan.ealden.race.controller.api.model.Roll;
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.service.RaceService;
@@ -12,6 +13,8 @@ import java.io.IOException;
 
 @WebServlet(name = "Roll", urlPatterns = "/api/races/roll")
 public class RollController extends ApiController {
+    private boolean testMode = Configurations.isTestMode();
+
     private RaceService raceService = RaceServiceImpl.INSTANCE;
 
     @Override
@@ -19,12 +22,21 @@ public class RollController extends ApiController {
         Roll roll = Roll.fromParameters(jsonRequest(request));
 
         Race race = raceService.getCurrentRace();
-        race.roll(roll.getNumber(), roll.getSpeedType());
+
+        if (testMode) {
+            race.roll(roll.getNumber(), roll.getSpeedType());
+        } else {
+            race.roll(roll.getSpeedType());
+        }
 
         jsonResponse(race.asJson(), response);
     }
 
     public void setRaceService(RaceService raceService) {
         this.raceService = raceService;
+    }
+
+    public void setTestMode(boolean testMode) {
+        this.testMode = testMode;
     }
 }
