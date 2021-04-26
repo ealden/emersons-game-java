@@ -132,13 +132,13 @@ public class RacerTest {
     }
 
     @Test
-    public void asJSON() {
+    public void asJson() {
         Racer racer = new Racer("Alice");
         racer.setId(1L);
         racer.setRace(currentRace);
         racer.setRank(1);
 
-        Map<String, Object> json = racer.asJSON();
+        Map<String, Object> json = racer.asJson();
 
         assertThat(json, hasEntry(ID, 1L));
         assertThat(json, hasEntry(NAME, "Alice"));

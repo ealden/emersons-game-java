@@ -95,7 +95,7 @@ public class Racer {
         this.rank = rank;
     }
 
-    public Map<String, Object> asJSON() {
+    public Map<String, Object> asJson() {
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put(ID, getId());
         parameters.put(NAME, getName());

@@ -167,7 +167,7 @@ public class Race {
         this.id = id;
     }
 
-    public Map<String, Object> asJSON() {
+    public Map<String, Object> asJson() {
         Map<String, Object> parameters = new LinkedHashMap<>();
         parameters.put(ID, getId());
         parameters.put(RACERS, racersJSON());
@@ -184,7 +184,7 @@ public class Race {
         List<Map<String, Object>> racers = new ArrayList<>();
 
         for (Racer racer : getRacers()) {
-            racers.add(racer.asJSON());
+            racers.add(racer.asJson());
         }
 
         return racers;
@@ -194,7 +194,7 @@ public class Race {
         Racer currentRacer = getCurrentRacer();
 
         if (currentRacer != null) {
-            return currentRacer.asJSON();
+            return currentRacer.asJson();
         } else {
             return null;
         }
