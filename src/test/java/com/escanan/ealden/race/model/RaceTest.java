@@ -79,7 +79,7 @@ public class RaceTest {
     }
 
     @Test
-    public void asJsonMustReturnJSONWhenNoRacers() {
+    public void asJsonWhenNoRacersJoined() {
         Race race = new Race();
         race.setId(1L);
 
