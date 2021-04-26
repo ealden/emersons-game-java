@@ -39,20 +39,12 @@ public class Racer {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getName() {
         return name;
     }
 
     public Race getRace() {
         return race;
-    }
-
-    public void setRace(Race race) {
-        this.race = race;
     }
 
     public int getPosition() {
@@ -63,16 +55,8 @@ public class Racer {
         }
     }
 
-    public void setPosition(int position) {
-        this.position = position;
-    }
-
     public int getDamage() {
         return damage;
-    }
-
-    public void setDamage(int damage) {
-        this.damage = damage;
     }
 
     public int getRank() {
@@ -89,6 +73,22 @@ public class Racer {
 
     public boolean isWinner() {
         return (position >= race.getFinishLine());
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public void setRace(Race race) {
+        this.race = race;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setDamage(int damage) {
+        this.damage = damage;
     }
 
     public void setRank(int rank) {
