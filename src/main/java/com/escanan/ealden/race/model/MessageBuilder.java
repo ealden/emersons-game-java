@@ -49,7 +49,7 @@ public class MessageBuilder {
                     lastRoll.getRacer().getName(),
                     lastRoll.getNewDamage(),
                     currentRacer.getName());
-        } else if (isRacing() && isRacing()) {
+        } else if (isRacing()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
@@ -62,10 +62,10 @@ public class MessageBuilder {
     }
 
     private boolean isTimeToRace() {
-        return ((currentRacer != null) && (lastRoll == null));
+        return (currentRacer != null) && !isRacing();
     }
 
     private boolean isRacing() {
-        return ((currentRacer != null) && (lastRoll != null));
+        return (lastRoll != null);
     }
 }
