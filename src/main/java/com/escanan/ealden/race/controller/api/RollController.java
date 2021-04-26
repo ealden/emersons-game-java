@@ -31,11 +31,11 @@ public class RollController extends ApiController {
         jsonResponse(race.asJson(), response);
     }
 
-    public void setRaceService(RaceService raceService) {
+    void setRaceService(RaceService raceService) {
         this.raceService = raceService;
     }
 
-    public void setTestMode(boolean testMode) {
+    void setTestMode(boolean testMode) {
         this.testMode = testMode;
     }
 }

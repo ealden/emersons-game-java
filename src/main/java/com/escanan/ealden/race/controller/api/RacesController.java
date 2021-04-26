@@ -17,7 +17,7 @@ public class RacesController extends ApiController {
         jsonResponse(raceService.getCurrentRace().asJson(), response);
     }
 
-    public void setRaceService(RaceService raceService) {
+    void setRaceService(RaceService raceService) {
         this.raceService = raceService;
     }
 }

@@ -20,7 +20,7 @@ public class NewRaceController extends ApiController {
         jsonResponse(race.asJson(), response);
     }
 
-    public void setRaceService(RaceService raceService) {
+    void setRaceService(RaceService raceService) {
         this.raceService = raceService;
     }
 }
