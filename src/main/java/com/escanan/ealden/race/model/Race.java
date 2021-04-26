@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Roll.createRoll;
-import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static java.lang.String.format;
 
@@ -111,7 +110,15 @@ public class Race {
             return "All racers CRASHED!!!  This race is over!";
         } else if (isOver()) {
             return format("%s wins the race!  Congratulations!!!", lastRoll.getRacer().getName());
-        } else if (isRacing() && lastRoll.getRacer().isCrashed()) {
+        } else if (isRacing()) {
+            return getMessageWhenRacing();
+        } else {
+            return null;
+        }
+    }
+
+    private String getMessageWhenRacing() {
+        if (lastRoll.getRacer().isCrashed()) {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
@@ -119,8 +126,21 @@ public class Race {
                     lastRoll.getMove(),
                     lastRoll.getRacer().getName(),
                     currentRacer.getName());
-        } else if (isRacing() && lastRoll.getRacer().isDamaged() && (NORMAL == lastRoll.getSpeedType())) {
-            return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!",
+        } else if (lastRoll.getRacer().isDamaged()) {
+            String template = null;
+
+            switch(lastRoll.getSpeedType()) {
+                case NORMAL:
+                    template = "%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!";
+
+                    break;
+                case SUPER:
+                    template = "%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!";
+
+                    break;
+            }
+
+            return format(template,
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
@@ -128,24 +148,13 @@ public class Race {
                     lastRoll.getRacer().getName(),
                     lastRoll.getNewDamage(),
                     currentRacer.getName());
-        } else if (isRacing() && lastRoll.getRacer().isDamaged() && (SUPER == lastRoll.getSpeedType())) {
-            return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!",
-                    lastRoll.getRacer().getName(),
-                    lastRoll.getSpeedType().toString().toUpperCase(),
-                    lastRoll.getNumber(),
-                    lastRoll.getMove(),
-                    lastRoll.getRacer().getName(),
-                    lastRoll.getNewDamage(),
-                    currentRacer.getName());
-        } else if (isRacing()) {
+        } else {
             return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                     lastRoll.getRacer().getName(),
                     lastRoll.getSpeedType().toString().toUpperCase(),
                     lastRoll.getNumber(),
                     lastRoll.getMove(),
                     currentRacer.getName());
-        } else {
-            return null;
         }
     }
 
