@@ -127,21 +127,21 @@ public class Race {
     }
 
     public Map<String, Object> asJson() {
-        Map<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put(ID, getId());
-        parameters.put(RACERS, racers.stream().map(racer -> racer.asJson()).collect(toList()));
+        Map<String, Object> json = new LinkedHashMap<>();
+        json.put(ID, getId());
+        json.put(RACERS, racers.stream().map(racer -> racer.asJson()).collect(toList()));
 
         if (currentRacer != null) {
-            parameters.put(CURRENT_RACER, currentRacer.asJson());
+            json.put(CURRENT_RACER, currentRacer.asJson());
         } else {
-            parameters.put(CURRENT_RACER, null);
+            json.put(CURRENT_RACER, null);
         }
 
-        parameters.put(FINISH_LINE, getFinishLine());
-        parameters.put(OVER, isOver());
-        parameters.put(ALL_CRASHED, isAllCrashed());
-        parameters.put(MESSAGE, getMessage());
+        json.put(FINISH_LINE, getFinishLine());
+        json.put(OVER, isOver());
+        json.put(ALL_CRASHED, isAllCrashed());
+        json.put(MESSAGE, getMessage());
 
-        return parameters;
+        return json;
     }
 }

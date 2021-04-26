@@ -96,16 +96,16 @@ public class Racer {
     }
 
     public Map<String, Object> asJson() {
-        Map<String, Object> parameters = new LinkedHashMap<>();
-        parameters.put(ID, getId());
-        parameters.put(NAME, getName());
-        parameters.put(POSITION, getPosition());
-        parameters.put(DAMAGE, getDamage());
-        parameters.put(RANK, getRank());
-        parameters.put(CRASHED, isCrashed());
-        parameters.put(DAMAGED, isDamaged());
-        parameters.put(WINNER, isWinner());
+        Map<String, Object> json = new LinkedHashMap<>();
+        json.put(ID, getId());
+        json.put(NAME, getName());
+        json.put(POSITION, getPosition());
+        json.put(DAMAGE, getDamage());
+        json.put(RANK, getRank());
+        json.put(CRASHED, isCrashed());
+        json.put(DAMAGED, isDamaged());
+        json.put(WINNER, isWinner());
 
-        return parameters;
+        return json;
     }
 }
