@@ -10,7 +10,7 @@ import static org.hamcrest.Matchers.*;
 
 public class MessageBuilderTest {
     @Test
-    public void getMessageWhenNoRacersJoined() {
+    public void noRacers() {
         Race race = new Race();
 
         String message = new MessageBuilder(race).build();
@@ -19,7 +19,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageWhenRacersJoined() {
+    public void racerJoined() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
 
@@ -29,7 +29,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageAfterRacerRolls() {
+    public void currentRacerRolls() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
         race.addRacer(new Racer("Bob"));
@@ -44,7 +44,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageWhenAllRacersCrashed() {
+    public void allRacersCrashed() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
         race.addRacer(new Racer("Bob"));
@@ -63,7 +63,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageWhenARacerWins() {
+    public void currentRacerWins() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
@@ -82,7 +82,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageWhenLastRacerCrashed() {
+    public void currentRacerCrashed() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
@@ -101,7 +101,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageWhenLastRacerDamagedAndRollWithNormalSpeed() {
+    public void damagedCurrentRacerRollsNormal() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
@@ -120,7 +120,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void getMessageWhenLastRacerDamagedAndRollWithSuperSpeed() {
+    public void damagedCurrentRacerRollsSuper() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
