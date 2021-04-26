@@ -1,15 +1,14 @@
 package com.escanan.ealden.race.steps;
 
+import com.escanan.ealden.race.Configurations;
 import com.escanan.ealden.race.EmersonsGame;
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.model.SpeedType;
 import com.escanan.ealden.race.page.RacePage;
 import com.escanan.ealden.race.service.RaceService;
-import com.escanan.ealden.race.service.impl.RaceServiceImpl;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import io.cucumber.java.PendingException;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
@@ -48,7 +47,7 @@ public class RacerSteps {
 
     @Given("I am in a race")
     public void newRace() {
-        raceService = RaceServiceImpl.INSTANCE;
+        raceService = Configurations.raceService();
         currentRace = raceService.newRace();
 
         page = new RacePage(true);

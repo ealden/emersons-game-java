@@ -5,8 +5,6 @@ import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.service.RaceService;
 
 public class RaceServiceImpl implements RaceService {
-    public static final RaceService INSTANCE = new RaceServiceImpl();
-
     private Race currentRace;
 
     @Override
