@@ -9,7 +9,8 @@ import java.util.Map;
 import static com.escanan.ealden.race.controller.api.model.Roll.ROLL_PARAM;
 import static com.escanan.ealden.race.controller.api.model.Roll.SPEED_TYPE_PARAM;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 
 public class RollTest {
     @Test
@@ -20,8 +21,8 @@ public class RollTest {
 
         Roll roll = Roll.fromParameters(parameters);
 
-        assertThat(roll.getNumber(), is(equalTo(1)));
-        assertThat(roll.getSpeedType(), is(equalTo(SpeedType.NORMAL)));
+        assertThat(roll.getNumber(), equalTo(1));
+        assertThat(roll.getSpeedType(), equalTo(SpeedType.NORMAL));
     }
 
     @Test
@@ -31,7 +32,7 @@ public class RollTest {
 
         Roll roll = Roll.fromParameters(parameters);
 
-        assertThat(roll.getNumber(), is(nullValue()));
-        assertThat(roll.getSpeedType(), is(equalTo(SpeedType.NORMAL)));
+        assertThat(roll.getNumber(), nullValue());
+        assertThat(roll.getSpeedType(), equalTo(SpeedType.NORMAL));
     }
 }

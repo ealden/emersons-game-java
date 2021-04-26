@@ -8,7 +8,6 @@ import static com.escanan.ealden.race.model.Race.*;
 import static com.escanan.ealden.race.model.Racer.MAX_DAMAGE;
 import static com.escanan.ealden.race.model.Racer.NO_DAMAGE;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
-import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -17,7 +16,7 @@ public class RaceTest {
     public void currentRacerMustBeNullIfNoRaceHasNoRacers() {
         Race race = new Race();
 
-        assertThat(race.getCurrentRacer(), is(nullValue()));
+        assertThat(race.getCurrentRacer(), nullValue());
     }
 
     @Test
@@ -27,7 +26,7 @@ public class RaceTest {
         Racer racer = new Racer();
         race.addRacer(racer);
 
-        assertThat(race.getCurrentRacer(), is(sameInstance(racer)));
+        assertThat(race.getCurrentRacer(), sameInstance(racer));
     }
 
     @Test
@@ -37,7 +36,7 @@ public class RaceTest {
         Racer racer = new Racer();
         race.addRacer(racer);
 
-        assertThat(racer.getRace(), is(sameInstance(race)));
+        assertThat(racer.getRace(), sameInstance(race));
     }
 
     @Test
@@ -47,7 +46,7 @@ public class RaceTest {
         Racer racer = new Racer();
         race.addRacer(racer);
 
-        assertThat(racer.getRank(), is(equalTo(1)));
+        assertThat(racer.getRank(), equalTo(1));
     }
 
     @Test
@@ -59,7 +58,7 @@ public class RaceTest {
 
         race.addRacer(new Racer());
 
-        assertThat(race.getCurrentRacer(), is(sameInstance(racer)));
+        assertThat(race.getCurrentRacer(), sameInstance(racer));
     }
 
     @Test
@@ -108,7 +107,7 @@ public class RaceTest {
         Racer racer3 = new Racer();
         race.addRacer(racer3);
 
-        assertThat(race.isOver(), is(false));
+        assertThat(race.isOver(), equalTo(false));
     }
 
     @Test
@@ -125,7 +124,7 @@ public class RaceTest {
         racer3.setPosition(race.getFinishLine());
         race.addRacer(racer3);
 
-        assertThat(race.isOver(), is(true));
+        assertThat(race.isOver(), equalTo(true));
     }
 
     @Test
@@ -137,8 +136,8 @@ public class RaceTest {
 
         race.roll(1, NORMAL);
 
-        assertThat(race.getLastRoll(), is(notNullValue()));
-        assertThat(race.getLastRoll().getRacer(), is(sameInstance(racer)));
+        assertThat(race.getLastRoll(), notNullValue());
+        assertThat(race.getLastRoll().getRacer(), sameInstance(racer));
     }
 
     @Test
@@ -153,7 +152,7 @@ public class RaceTest {
 
         race.roll(1, NORMAL);
 
-        assertThat(race.getCurrentRacer(), is(sameInstance(racer2)));
+        assertThat(race.getCurrentRacer(), sameInstance(racer2));
     }
 
     @Test
@@ -165,7 +164,7 @@ public class RaceTest {
 
         race.roll(NORMAL);
 
-        assertThat(race.getLastRoll().getRacer().getPosition(), is(greaterThan(0)));
+        assertThat(race.getLastRoll().getRacer().getPosition(), greaterThan(0));
     }
 
     @Test
@@ -184,7 +183,7 @@ public class RaceTest {
         racer3.setDamage(MAX_DAMAGE);
         race.addRacer(racer3);
 
-        assertThat(race.isAllCrashed(), is(true));
+        assertThat(race.isAllCrashed(), equalTo(true));
     }
 
     @Test
@@ -203,7 +202,7 @@ public class RaceTest {
         racer3.setDamage(NO_DAMAGE);
         race.addRacer(racer3);
 
-        assertThat(race.isAllCrashed(), is(false));
+        assertThat(race.isAllCrashed(), equalTo(false));
     }
 
     @Test
@@ -222,13 +221,13 @@ public class RaceTest {
         racer3.setDamage(NO_DAMAGE);
         race.addRacer(racer3);
 
-        assertThat(race.isAllCrashed(), is(false));
+        assertThat(race.isAllCrashed(), equalTo(false));
     }
 
     @Test
     public void getMessage() {
         Race race = new Race();
 
-        assertThat(race.getMessage(), is(nullValue()));
+        assertThat(race.getMessage(), nullValue());
     }
 }

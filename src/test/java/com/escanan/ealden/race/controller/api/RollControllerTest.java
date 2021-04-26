@@ -26,7 +26,6 @@ import static com.escanan.ealden.race.controller.api.model.Roll.ROLL_PARAM;
 import static com.escanan.ealden.race.controller.api.model.Roll.SPEED_TYPE_PARAM;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
@@ -83,7 +82,7 @@ public class RollControllerTest {
 
         verify(writer).print(responseBody.capture());
 
-        assertThat(responseBody.getValue(), is(jsonResponseOf("/api/races/roll")));
+        assertThat(responseBody.getValue(), jsonResponseOf("/api/races/roll"));
     }
 
     @Test

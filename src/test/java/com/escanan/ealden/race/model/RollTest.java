@@ -18,16 +18,16 @@ public class RollTest {
 
         Roll roll = Roll.createRoll(racer, 0, 0, 1, NORMAL);
 
-        assertThat(roll, is(not(nullValue())));
-        assertThat(roll.getRacer(), is(sameInstance(racer)));
-        assertThat(roll.getPosition(), is(equalTo(0)));
-        assertThat(roll.getDamage(), is(equalTo(0)));
-        assertThat(roll.getSpeedType(), is(equalTo(NORMAL)));
-        assertThat(roll.getNumber(), is(equalTo(1)));
-        assertThat(roll.getMove(), is(equalTo(1)));
-        assertThat(roll.getNewPosition(), is(equalTo(1)));
-        assertThat(roll.getNewDamage(), is(equalTo(0)));
-        assertThat(roll.isCrashed(), is(equalTo(racer.isCrashed())));
-        assertThat(roll.isWin(), is(equalTo(racer.isWinner())));
+        assertThat(roll, notNullValue());
+        assertThat(roll.getRacer(), sameInstance(racer));
+        assertThat(roll.getPosition(), equalTo(0));
+        assertThat(roll.getDamage(), equalTo(0));
+        assertThat(roll.getSpeedType(), equalTo(NORMAL));
+        assertThat(roll.getNumber(), equalTo(1));
+        assertThat(roll.getMove(), equalTo(1));
+        assertThat(roll.getNewPosition(), equalTo(1));
+        assertThat(roll.getNewDamage(), equalTo(0));
+        assertThat(roll.isCrashed(), equalTo(racer.isCrashed()));
+        assertThat(roll.isWin(), equalTo(racer.isWinner()));
     }
 }

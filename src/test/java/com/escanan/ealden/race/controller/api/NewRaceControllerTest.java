@@ -18,7 +18,6 @@ import java.io.PrintWriter;
 
 import static com.escanan.ealden.race.Matchers.jsonResponseOf;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -62,6 +61,6 @@ public class NewRaceControllerTest {
         verify(raceService).newRace();
         verify(writer).print(responseBody.capture());
 
-        assertThat(responseBody.getValue(), is(jsonResponseOf("/api/races/new")));
+        assertThat(responseBody.getValue(), jsonResponseOf("/api/races/new"));
     }
 }

@@ -6,7 +6,8 @@ import static com.escanan.ealden.race.model.Racer.MAX_DAMAGE;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.equalTo;
+import static org.hamcrest.Matchers.nullValue;
 
 public class MessageBuilderTest {
     @Test
@@ -15,7 +16,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(nullValue()));
+        assertThat(message, nullValue());
     }
 
     @Test
@@ -25,7 +26,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Time to RACE!  Alice rolls first!")));
+        assertThat(message, equalTo("Time to RACE!  Alice rolls first!"));
     }
 
     @Test
@@ -40,7 +41,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 1 and moved 1.  Bob rolls next!")));
+        assertThat(message, equalTo("Alice chose NORMAL speed, and rolled 1 and moved 1.  Bob rolls next!"));
     }
 
     @Test
@@ -59,7 +60,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("All racers CRASHED!!!  This race is over!")));
+        assertThat(message, equalTo("All racers CRASHED!!!  This race is over!"));
     }
 
     @Test
@@ -78,7 +79,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice wins the race!  Congratulations!!!")));
+        assertThat(message, equalTo("Alice wins the race!  Congratulations!!!"));
     }
 
     @Test
@@ -97,7 +98,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 1 and moved 0.  Alice CRASHED!!!  Bob rolls next!")));
+        assertThat(message, equalTo("Alice chose NORMAL speed, and rolled 1 and moved 0.  Alice CRASHED!!!  Bob rolls next!"));
     }
 
     @Test
@@ -116,7 +117,7 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose NORMAL speed, and rolled 1 and moved 0.  Alice has 1 damage.  Bob rolls next!")));
+        assertThat(message, equalTo("Alice chose NORMAL speed, and rolled 1 and moved 0.  Alice has 1 damage.  Bob rolls next!"));
     }
 
     @Test
@@ -135,6 +136,6 @@ public class MessageBuilderTest {
 
         String message = new MessageBuilder(race).build();
 
-        assertThat(message, is(equalTo("Alice chose SUPER speed, and rolled 1 and moved 0.  Alice now has 3 damage.  Bob rolls next!")));
+        assertThat(message, equalTo("Alice chose SUPER speed, and rolled 1 and moved 0.  Alice now has 3 damage.  Bob rolls next!"));
     }
 }
