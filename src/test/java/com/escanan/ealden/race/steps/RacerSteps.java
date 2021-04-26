@@ -36,6 +36,7 @@ public class RacerSteps {
     public void setUp() {
         if (application == null) {
             application = new EmersonsGame();
+            application.testMode();
             application.start();
         }
     }

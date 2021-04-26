@@ -55,4 +55,8 @@ public class EmersonsGame {
     public void await() {
         tomcat.getServer().await();
     }
+
+    public void testMode() {
+        Configurations.setTestMode(true);
+    }
 }
