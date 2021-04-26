@@ -157,6 +157,18 @@ public class RaceTest {
     }
 
     @Test
+    public void rollWithNoNumberParameterMustRandomlyRollCurrentRacer() {
+        Race race = new Race();
+
+        Racer racer = new Racer();
+        race.addRacer(racer);
+
+        race.roll(NORMAL);
+
+        assertThat(race.getLastRoll().getRacer().getPosition(), is(greaterThan(0)));
+    }
+
+    @Test
     public void isAllCrashedMustReturnTrueIfAllRacersCrashed() {
         Race race = new Race();
 

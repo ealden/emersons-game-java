@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.model;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Race {
     static final String MESSAGE = "message";
 
     private static final int DEFAULT_FINISH_LINE = 10;
+    private static final int MAX_ROLL = 6;
 
     private final List<Racer> racers = new ArrayList<>();
     private final int finishLine = DEFAULT_FINISH_LINE;
@@ -37,6 +39,12 @@ public class Race {
         }
 
         return this;
+    }
+
+    public void roll(SpeedType speedType) {
+        int roll = new SecureRandom().nextInt(MAX_ROLL) + 1;
+
+        roll(roll, speedType);
     }
 
     public void roll(int number, SpeedType speedType) {
