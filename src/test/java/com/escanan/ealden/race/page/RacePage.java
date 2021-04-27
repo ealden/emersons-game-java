@@ -7,9 +7,13 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.ProtocolHandshake;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.logging.Logger;
+
 import static java.lang.Integer.parseInt;
+import static java.util.logging.Level.OFF;
 import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfElementLocated;
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
@@ -31,7 +35,13 @@ public class RacePage {
     private final By message = By.id("message");
 
     public RacePage(boolean headless) {
+        reallySilenceSelenium();
+
         driver = createDriver(headless);
+    }
+
+    private void reallySilenceSelenium() {
+        Logger.getLogger(ProtocolHandshake.class.getName()).setLevel(OFF);
     }
 
     public RacePage load() {
