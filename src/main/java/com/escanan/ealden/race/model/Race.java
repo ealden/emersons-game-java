@@ -90,6 +90,10 @@ public class Race {
         return finishLine;
     }
 
+    public String getMessage() {
+        return new MessageBuilder(this).build();
+    }
+
     public boolean isReady() {
         return (currentRacer != null) && !isStarted() && !isOver();
     }
@@ -116,10 +120,6 @@ public class Race {
         }
 
         return allCrashed;
-    }
-
-    public String getMessage() {
-        return new MessageBuilder(this).build();
     }
 
     public void setId(Long id) {
