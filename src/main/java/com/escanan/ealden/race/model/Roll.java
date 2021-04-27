@@ -37,6 +37,14 @@ public class Roll {
         return racer;
     }
 
+    public String getRacerName() {
+        if (racer != null) {
+            return racer.getName();
+        } else {
+            return null;
+        }
+    }
+
     public int getPosition() {
         return position;
     }

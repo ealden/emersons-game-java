@@ -49,4 +49,20 @@ public class RollTest {
         roll.setSpeedType(SUPER);
         assertThat(roll.getSpeed(), equalTo("SUPER"));
     }
+
+    @Test
+    public void getRacerNameMustReturnName() {
+        Roll roll = new Roll();
+        roll.setRacer(new Racer("Alice"));
+
+        assertThat(roll.getRacerName(), equalTo("Alice"));
+    }
+
+    @Test
+    public void getRacerNameMustReturnNullIfRacerIsNull() {
+        Roll roll = new Roll();
+        roll.setRacer(null);
+
+        assertThat(roll.getRacerName(), nullValue());
+    }
 }
