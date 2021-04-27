@@ -13,8 +13,8 @@ public class MessageBuilder {
     public MessageBuilder(Race race) {
         this.race = race;
 
-        this.currentRacer = race.getCurrentRacer();
-        this.lastRoll = race.getLastRoll();
+        currentRacer = race.getCurrentRacer();
+        lastRoll = race.getLastRoll();
     }
 
     public String build() {
