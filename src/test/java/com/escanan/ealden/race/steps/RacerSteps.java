@@ -18,8 +18,6 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
 public class RacerSteps {
-    private static final String YES = "YES";
-
     private static EmersonsGame application;
 
     private RacePage page;
@@ -162,18 +160,14 @@ public class RacerSteps {
         assertThat(currentRace.getLastRoll().getNewDamage(), equalTo(newDamage));
     }
 
-    @Then("Crashed: {string}")
-    public void assertRollWithCrashedLogged(String crashed) {
-        boolean didCrash = YES.equals(crashed);
-
-        assertThat(currentRace.getLastRoll().isCrashed(), equalTo(didCrash));
+    @Then("Crashed: {yesno}")
+    public void assertRollWithCrashedLogged(boolean crashed) {
+        assertThat(currentRace.getLastRoll().isCrashed(), equalTo(crashed));
     }
 
-    @Then("Win: {string}")
-    public void assertRollWithWinLogged(String win) {
-        boolean didWin = YES.equals(win);
-
-        assertThat(currentRace.getLastRoll().isWin(), equalTo(didWin));
+    @Then("Win: {yesno}")
+    public void assertRollWithWinLogged(boolean win) {
+        assertThat(currentRace.getLastRoll().isWin(), equalTo(win));
     }
 
     @Then("I must see the message: {string}")
