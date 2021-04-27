@@ -38,7 +38,7 @@ public class MessageBuilder {
     private String racerCrashed() {
         return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
                 lastRoll.getRacer().getName(),
-                lastRoll.getSpeedType().toString().toUpperCase(),
+                lastRoll.getSpeed(),
                 lastRoll.getNumber(),
                 lastRoll.getMove(),
                 lastRoll.getRacer().getName(),
@@ -48,7 +48,7 @@ public class MessageBuilder {
     private String racerDamaged() {
         Object[] args = {
                 lastRoll.getRacer().getName(),
-                lastRoll.getSpeedType().toString().toUpperCase(),
+                lastRoll.getSpeed(),
                 lastRoll.getNumber(),
                 lastRoll.getMove(),
                 lastRoll.getRacer().getName(),
@@ -68,7 +68,7 @@ public class MessageBuilder {
     private String raceStarted() {
         return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
                 lastRoll.getRacer().getName(),
-                lastRoll.getSpeedType().toString().toUpperCase(),
+                lastRoll.getSpeed(),
                 lastRoll.getNumber(),
                 lastRoll.getMove(),
                 currentRacer.getName());
