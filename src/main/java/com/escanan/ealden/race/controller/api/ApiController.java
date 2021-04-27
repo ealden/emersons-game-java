@@ -17,7 +17,7 @@ public abstract class ApiController extends HttpServlet {
 
     private final Gson gson = new Gson();
 
-    protected void jsonResponse(Object responseObject, HttpServletResponse response) throws IOException {
+    protected void renderJson(Object responseObject, HttpServletResponse response) throws IOException {
         String responseBody = gson.toJson(responseObject);
 
         response.setContentType("application/json");

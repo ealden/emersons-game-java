@@ -28,7 +28,7 @@ public class RollController extends ApiController {
             race.roll(roll.getSpeedType());
         }
 
-        jsonResponse(race.asJson(), response);
+        renderJson(race.asJson(), response);
     }
 
     void setRaceService(RaceService raceService) {

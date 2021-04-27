@@ -17,7 +17,7 @@ public class NewRaceController extends ApiController {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Race race = raceService.newRace();
 
-        jsonResponse(race.asJson(), response);
+        renderJson(race.asJson(), response);
     }
 
     void setRaceService(RaceService raceService) {

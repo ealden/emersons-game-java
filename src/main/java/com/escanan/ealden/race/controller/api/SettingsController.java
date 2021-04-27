@@ -15,6 +15,6 @@ public class SettingsController extends ApiController {
         Settings settings = new Settings();
         settings.setTestMode(Configurations.isTestMode());
 
-        jsonResponse(settings, response);
+        renderJson(settings, response);
     }
 }
