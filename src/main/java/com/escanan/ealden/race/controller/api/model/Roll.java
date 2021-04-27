@@ -17,7 +17,7 @@ public class Roll {
         return fromParameters(RequestParameters.fromRequest(request));
     }
 
-    public static Roll fromParameters(Map<String, String> parameters) {
+    static Roll fromParameters(Map<String, String> parameters) {
         Roll roll = new Roll();
 
         if (parameters.containsKey(ROLL_PARAM)) {
