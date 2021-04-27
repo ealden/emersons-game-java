@@ -16,7 +16,6 @@ import io.cucumber.java.en.When;
 import static com.escanan.ealden.race.model.Racer.MAX_DAMAGE;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.is;
 
 public class RacerSteps {
     private static final String YES = "YES";
@@ -110,85 +109,85 @@ public class RacerSteps {
 
     @Then("I must now be at position {int}")
     public void assertNewPosition(int newPosition) {
-        assertThat(page.getPositionOf(currentRacer), is(equalTo(newPosition)));
+        assertThat(page.getPositionOf(currentRacer), equalTo(newPosition));
     }
 
     @Then("I must now have damage of {int}")
     public void assertNewDamage(int newDamage) {
-        assertThat(page.getDamageOf(currentRacer), is(equalTo(newDamage)));
+        assertThat(page.getDamageOf(currentRacer), equalTo(newDamage));
     }
 
     @Then("I must see the race result: WIN")
     public void assertRacerWins() {
-        assertThat(page.isOver(), is(true));
+        assertThat(page.isOver(), equalTo(true));
     }
 
     @Then("I must now have a log entry with the following:")
     public void assertRollWithRacerLogged() {
-        assertThat(currentRace.getLastRoll().getRacer(), is(equalTo(currentRacer)));
+        assertThat(currentRace.getLastRoll().getRacer(), equalTo(currentRacer));
     }
 
     @Then("Position: {int}")
     public void assertRollWithPositionLogged(int position) {
-        assertThat(currentRace.getLastRoll().getPosition(), is(equalTo(position)));
+        assertThat(currentRace.getLastRoll().getPosition(), equalTo(position));
     }
 
     @Then("Damage: {int}")
     public void assertRollWithDamageLogged(int damage) {
-        assertThat(currentRace.getLastRoll().getDamage(), is(equalTo(damage)));
+        assertThat(currentRace.getLastRoll().getDamage(), equalTo(damage));
     }
 
     @Then("Speed: {string}")
     public void assertRollWithSpeedTypeLogged(String speedType) {
-        assertThat(currentRace.getLastRoll().getSpeedType(), is(equalTo(SpeedType.valueOf(speedType))));
+        assertThat(currentRace.getLastRoll().getSpeedType(), equalTo(SpeedType.valueOf(speedType)));
     }
 
     @Then("Roll: {int}")
     public void assertRollWithRollLogged(int roll) {
-        assertThat(currentRace.getLastRoll().getNumber(), is(equalTo(roll)));
+        assertThat(currentRace.getLastRoll().getNumber(), equalTo(roll));
     }
 
     @Then("Move: {int}")
     public void assertRollWithMoveLogged(int move) {
-        assertThat(currentRace.getLastRoll().getMove(), is(equalTo(move)));
+        assertThat(currentRace.getLastRoll().getMove(), equalTo(move));
     }
 
     @Then("New Position: {int}")
     public void assertRollWithNewPositionLogged(int newPosition) {
-        assertThat(currentRace.getLastRoll().getNewPosition(), is(equalTo(newPosition)));
+        assertThat(currentRace.getLastRoll().getNewPosition(), equalTo(newPosition));
     }
 
     @Then("New Damage: {int}")
     public void assertRollWithNewDamageLogged(int newDamage) {
-        assertThat(currentRace.getLastRoll().getNewDamage(), is(equalTo(newDamage)));
+        assertThat(currentRace.getLastRoll().getNewDamage(), equalTo(newDamage));
     }
 
     @Then("Crashed: {string}")
     public void assertRollWithCrashedLogged(String crashed) {
         boolean didCrash = YES.equals(crashed);
 
-        assertThat(currentRace.getLastRoll().isCrashed(), is(equalTo(didCrash)));
+        assertThat(currentRace.getLastRoll().isCrashed(), equalTo(didCrash));
     }
 
     @Then("Win: {string}")
     public void assertRollWithWinLogged(String win) {
         boolean didWin = YES.equals(win);
 
-        assertThat(currentRace.getLastRoll().isWin(), is(equalTo(didWin)));
+        assertThat(currentRace.getLastRoll().isWin(), equalTo(didWin));
     }
 
     @Then("I must see the message: {string}")
     public void assertMessage(String message) {
-        assertThat(page.getMessage(), is(equalTo(message)));
+        assertThat(page.getMessage(), equalTo(message));
     }
 
     @Then("our race must be over!")
     public void assertRacersCrashedAndBurned() {
-        assertThat(page.isOver(), is(true));
+        assertThat(page.isOver(), equalTo(true));
     }
 
     @Then("I must see the race result: --")
     public void assertNoRaceResult() {
-        assertThat(page.isOver(), is(false));
+        assertThat(page.isOver(), equalTo(false));
     }
 }
