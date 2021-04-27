@@ -2,6 +2,8 @@ package com.escanan.ealden.race.controller.api.model;
 
 import com.escanan.ealden.race.model.SpeedType;
 
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
 import java.util.Map;
 
 public class Roll {
@@ -10,6 +12,10 @@ public class Roll {
 
     private Integer number;
     private SpeedType speedType;
+
+    public static Roll fromRequest(HttpServletRequest request) throws IOException {
+        return fromParameters(RequestParameters.fromRequest(request));
+    }
 
     public static Roll fromParameters(Map<String, String> parameters) {
         Roll roll = new Roll();
