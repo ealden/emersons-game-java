@@ -3,6 +3,7 @@ package com.escanan.ealden.race.model;
 import org.junit.jupiter.api.Test;
 
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
+import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -29,5 +30,23 @@ public class RollTest {
         assertThat(roll.getNewDamage(), equalTo(0));
         assertThat(roll.isCrashed(), equalTo(racer.isCrashed()));
         assertThat(roll.isWin(), equalTo(racer.isWinner()));
+    }
+
+    @Test
+    public void getSpeedMustReturnNullIfSpeedTypeIsNull() {
+        Roll roll = new Roll();
+
+        assertThat(roll.getSpeed(), nullValue());
+    }
+
+    @Test
+    public void getSpeedMustReturnSpeedTypeInAllCaps() {
+        Roll roll = new Roll();
+
+        roll.setSpeedType(NORMAL);
+        assertThat(roll.getSpeed(), equalTo("NORMAL"));
+
+        roll.setSpeedType(SUPER);
+        assertThat(roll.getSpeed(), equalTo("SUPER"));
     }
 }

@@ -49,6 +49,14 @@ public class Roll {
         return speedType;
     }
 
+    public String getSpeed() {
+        if (speedType != null) {
+            return speedType.toString().toUpperCase();
+        } else {
+            return null;
+        }
+    }
+
     public int getNumber() {
         return number;
     }
