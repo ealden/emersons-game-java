@@ -28,7 +28,7 @@ public abstract class ApiController extends HttpServlet {
         out.flush();
     }
 
-    protected Map<String, String> jsonRequest(HttpServletRequest request) throws IOException {
+    protected Map<String, String> requestParameters(HttpServletRequest request) throws IOException {
         BufferedReader reader = request.getReader();
 
         StringBuilder sb = new StringBuilder();

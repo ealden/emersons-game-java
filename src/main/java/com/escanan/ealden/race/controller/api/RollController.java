@@ -18,7 +18,7 @@ public class RollController extends ApiController {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Roll roll = Roll.fromParameters(jsonRequest(request));
+        Roll roll = Roll.fromParameters(requestParameters(request));
 
         Race race = raceService.getCurrentRace();
 
