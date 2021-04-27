@@ -23,7 +23,7 @@ public class MessageBuilder {
         } else if (race.isAllCrashed()) {
             return "All racers CRASHED!!!  This race is over!";
         } else if (race.isOver()) {
-            return format("%s wins the race!  Congratulations!!!", race.getLastRoll().getRacer().getName());
+            return format("%s wins the race!  Congratulations!!!", lastRoll.getRacer().getName());
         } else if (race.isStarted() && lastRoll.getRacer().isCrashed()) {
             return racerCrashed();
         } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
