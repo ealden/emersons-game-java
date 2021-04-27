@@ -42,11 +42,7 @@ public class RacePage {
 
     private WebDriver createDriver(boolean headless) {
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--silent");
-
-        if (headless) {
-            options.addArguments("--headless");
-        }
+        options.setHeadless(headless);
 
         return new ChromeDriver(options);
     }
