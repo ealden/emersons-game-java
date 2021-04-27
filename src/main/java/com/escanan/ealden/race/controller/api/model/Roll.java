@@ -7,8 +7,8 @@ import java.io.IOException;
 import java.util.Map;
 
 public class Roll {
-    public static final String ROLL_PARAM = "roll";
-    public static final String SPEED_TYPE_PARAM = "speedType";
+    static final String ROLL_PARAM = "roll";
+    static final String SPEED_TYPE_PARAM = "speedType";
 
     private Integer number;
     private SpeedType speedType;
