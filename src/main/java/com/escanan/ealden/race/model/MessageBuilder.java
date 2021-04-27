@@ -23,7 +23,7 @@ public class MessageBuilder {
         } else if (race.isAllCrashed()) {
             return "All racers CRASHED!!!  This race is over!";
         } else if (race.isOver()) {
-            return format("%s wins the race!  Congratulations!!!", lastRoll.getRacer().getName());
+            return format("%s wins the race!  Congratulations!!!", lastRoll.getRacerName());
         } else if (race.isStarted() && lastRoll.getRacer().isCrashed()) {
             return racerCrashed();
         } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
@@ -37,21 +37,21 @@ public class MessageBuilder {
 
     private String racerCrashed() {
         return format("%s chose %s speed, and rolled %d and moved %d.  %s CRASHED!!!  %s rolls next!",
-                lastRoll.getRacer().getName(),
+                lastRoll.getRacerName(),
                 lastRoll.getSpeed(),
                 lastRoll.getNumber(),
                 lastRoll.getMove(),
-                lastRoll.getRacer().getName(),
+                lastRoll.getRacerName(),
                 currentRacer.getName());
     }
 
     private String racerDamaged() {
         Object[] args = {
-                lastRoll.getRacer().getName(),
+                lastRoll.getRacerName(),
                 lastRoll.getSpeed(),
                 lastRoll.getNumber(),
                 lastRoll.getMove(),
-                lastRoll.getRacer().getName(),
+                lastRoll.getRacerName(),
                 lastRoll.getNewDamage(),
                 currentRacer.getName()
         };
@@ -67,7 +67,7 @@ public class MessageBuilder {
 
     private String raceStarted() {
         return format("%s chose %s speed, and rolled %d and moved %d.  %s rolls next!",
-                lastRoll.getRacer().getName(),
+                lastRoll.getRacerName(),
                 lastRoll.getSpeed(),
                 lastRoll.getNumber(),
                 lastRoll.getMove(),
