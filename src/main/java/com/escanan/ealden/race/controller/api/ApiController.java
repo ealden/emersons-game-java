@@ -1,20 +1,16 @@
 package com.escanan.ealden.race.controller.api;
 
+import com.escanan.ealden.race.controller.api.model.RequestParameters;
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Map;
 
 public abstract class ApiController extends HttpServlet {
-    private static final TypeToken<Map<String, String>> PARAMETERS_TOKEN = new TypeToken<Map<String, String>>() {
-    };
-
     private final Gson gson = new Gson();
 
     protected void renderJson(Object responseObject, HttpServletResponse response) throws IOException {
@@ -29,15 +25,6 @@ public abstract class ApiController extends HttpServlet {
     }
 
     protected Map<String, String> requestParameters(HttpServletRequest request) throws IOException {
-        BufferedReader reader = request.getReader();
-
-        StringBuilder sb = new StringBuilder();
-        String line;
-
-        while ((line = reader.readLine()) != null) {
-            sb.append(line);
-        }
-
-        return new Gson().fromJson(sb.toString(), PARAMETERS_TOKEN.getType());
+        return RequestParameters.fromRequest(request);
     }
 }
