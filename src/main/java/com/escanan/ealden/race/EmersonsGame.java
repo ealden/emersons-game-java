@@ -8,6 +8,8 @@ import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 
 import java.io.File;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 public class EmersonsGame {
     private static final String PORT = System.getenv("PORT");
@@ -53,6 +55,20 @@ public class EmersonsGame {
 
     public void testMode() {
         Configurations.setTestMode(true);
+
+        System.setErr(new PrintStream(nullOutputStream()));
+    }
+
+    private static OutputStream nullOutputStream() {
+        return new OutputStream() {
+            @Override
+            public void write(int b) {
+            }
+
+            @Override
+            public void write(byte[] b, int off, int len) {
+            }
+        };
     }
 
     private static String absolutePathOf(String file) {
