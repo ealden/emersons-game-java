@@ -1,7 +1,6 @@
 package com.escanan.ealden.race.model;
 
 public class Roll {
-    private Long id;
     private Racer racer;
     private int position;
     private int damage;
@@ -27,10 +26,6 @@ public class Roll {
         roll.setWin(racer.isWinner());
 
         return roll;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public Racer getRacer() {
@@ -87,10 +82,6 @@ public class Roll {
 
     public boolean isWin() {
         return win;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public void setRacer(Racer racer) {
