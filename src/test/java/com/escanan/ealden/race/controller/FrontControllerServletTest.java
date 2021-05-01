@@ -25,6 +25,7 @@ import static com.escanan.ealden.race.Matchers.jsonResponseOf;
 import static com.escanan.ealden.race.controller.FrontControllerServlet.*;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -55,14 +56,12 @@ class FrontControllerServletTest {
     private SettingsController settingsController;
 
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         servlet = new FrontControllerServlet();
 
         Configurations.setRacesController(racesController);
         Configurations.setSettingsController(settingsController);
         Configurations.setTestMode(true);
-
-        when(response.getWriter()).thenReturn(writer);
     }
 
     @Test
@@ -74,6 +73,7 @@ class FrontControllerServletTest {
         currentRace.addRacer(new Racer("Alice"));
 
         when(racesController.index()).thenReturn(currentRace);
+        when(response.getWriter()).thenReturn(writer);
 
         servlet.doGet(request, response);
 
@@ -90,6 +90,7 @@ class FrontControllerServletTest {
         settings.put("testMode", false);
 
         when(settingsController.index()).thenReturn(settings);
+        when(response.getWriter()).thenReturn(writer);
 
         servlet.doGet(request, response);
 
@@ -107,6 +108,7 @@ class FrontControllerServletTest {
         currentRace.addRacer(new Racer("Alice"));
 
         when(racesController.newRace()).thenReturn(currentRace);
+        when(response.getWriter()).thenReturn(writer);
 
         servlet.doPost(request, response);
 
@@ -132,11 +134,30 @@ class FrontControllerServletTest {
         currentRace.roll(1, NORMAL);
 
         when(racesController.roll(any())).thenReturn(currentRace);
+        when(response.getWriter()).thenReturn(writer);
 
         servlet.doPost(request, response);
 
         verify(writer).print(jsonResponse.capture());
 
         assertThat(jsonResponse.getValue(), jsonResponseOf("/api/races/roll"));
+    }
+
+    @Test
+    void handleRequestIOException() throws IOException {
+        when(request.getPathInfo()).thenReturn(ROLL_RACE_URL);
+
+        when(request.getReader()).thenThrow(new IOException());
+
+        assertThrows(JsonException.class, () -> servlet.doPost(request, response));
+    }
+
+    @Test
+    void handleResponseIOException() throws IOException {
+        when(request.getPathInfo()).thenReturn(SETTINGS_URL);
+
+        when(response.getWriter()).thenThrow(new IOException());
+
+        assertThrows(JsonException.class, () -> servlet.doGet(request, response));
     }
 }
