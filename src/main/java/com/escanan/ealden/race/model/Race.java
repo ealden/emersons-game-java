@@ -9,7 +9,7 @@ import java.util.Map;
 import static com.escanan.ealden.race.model.Roll.createRoll;
 import static java.util.stream.Collectors.toList;
 
-public class Race {
+public class Race implements JsonAware {
     static final String ID_PARAM = "id";
     static final String RACERS_PARAM = "racers";
     static final String CURRENT_RACER_PARAM = "currentRacer";

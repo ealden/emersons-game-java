@@ -3,7 +3,7 @@ package com.escanan.ealden.race.model;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-public class Racer {
+public class Racer implements JsonAware {
     public static final int MAX_DAMAGE = 6;
     public static final int NO_DAMAGE = 0;
 

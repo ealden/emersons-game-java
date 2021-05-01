@@ -4,6 +4,7 @@ import com.escanan.ealden.race.Configurations;
 import com.escanan.ealden.race.controller.api.RacesController;
 import com.escanan.ealden.race.controller.api.SettingsController;
 import com.escanan.ealden.race.controller.api.model.Roll;
+import com.escanan.ealden.race.model.JsonAware;
 import com.escanan.ealden.race.model.Race;
 import com.google.gson.Gson;
 
@@ -30,7 +31,7 @@ public class FrontControllerServlet extends HttpServlet {
         if (RACES_URL.equals(request.getPathInfo())) {
             Race race = racesController.index();
 
-            renderJson(race.asJson(), response);
+            renderJson(race, response);
         }
 
         if (SETTINGS_URL.equals(request.getPathInfo())) {
@@ -49,13 +50,13 @@ public class FrontControllerServlet extends HttpServlet {
 
             Race race = racesController.roll(roll);
 
-            renderJson(race.asJson(), response);
+            renderJson(race, response);
         }
 
         if (NEW_RACE_URL.equals(request.getPathInfo())) {
             Race race = racesController.newRace();
 
-            renderJson(race.asJson(), response);
+            renderJson(race, response);
         }
     }
 
@@ -65,6 +66,10 @@ public class FrontControllerServlet extends HttpServlet {
         } catch (IOException e) {
             throw new JsonException(e);
         }
+    }
+
+    private void renderJson(JsonAware object, HttpServletResponse response) {
+        renderJson(object.asJson(), response);
     }
 
     private void renderJson(Object responseObject, HttpServletResponse response) {
