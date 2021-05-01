@@ -22,6 +22,8 @@ class SettingsControllerTest {
 
     @Test
     void indexMustReturnSettings() {
+        controller.setTestMode(false);
+
         Map<String, Boolean> settings = controller.index();
 
         assertThat(settings, hasEntry(TEST_MODE_PARAM, false));
