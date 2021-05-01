@@ -63,10 +63,12 @@ public class EmersonsGame {
         return new OutputStream() {
             @Override
             public void write(int b) {
+                // Do nothing
             }
 
             @Override
             public void write(byte[] b, int off, int len) {
+                // Do nothing
             }
         };
     }
