@@ -69,13 +69,13 @@ class RaceTest {
 
         Map<String, Object> json = race.asJson();
 
-        assertThat(json, hasEntry(ID, 1L));
-        assertThat(json, hasKey(RACERS));
-        assertThat(json, hasKey(CURRENT_RACER));
-        assertThat(json, hasEntry(FINISH_LINE, 10));
-        assertThat(json, hasEntry(OVER, false));
-        assertThat(json, hasEntry(ALL_CRASHED, false));
-        assertThat(json, hasEntry(MESSAGE, "Time to RACE!  Alice rolls first!"));
+        assertThat(json, hasEntry(ID_PARAM, 1L));
+        assertThat(json, hasKey(RACERS_PARAM));
+        assertThat(json, hasKey(CURRENT_RACER_PARAM));
+        assertThat(json, hasEntry(FINISH_LINE_PARAM, 10));
+        assertThat(json, hasEntry(OVER_PARAM, false));
+        assertThat(json, hasEntry(ALL_CRASHED_PARAM, false));
+        assertThat(json, hasEntry(MESSAGE_PARAM, "Time to RACE!  Alice rolls first!"));
     }
 
     @Test
@@ -85,13 +85,13 @@ class RaceTest {
 
         Map<String, Object> json = race.asJson();
 
-        assertThat(json, hasEntry(ID, 1L));
-        assertThat(json, hasKey(RACERS));
-        assertThat(json, hasEntry(CURRENT_RACER, null));
-        assertThat(json, hasEntry(FINISH_LINE, 10));
-        assertThat(json, hasEntry(OVER, false));
-        assertThat(json, hasEntry(ALL_CRASHED, false));
-        assertThat(json, hasEntry(MESSAGE, null));
+        assertThat(json, hasEntry(ID_PARAM, 1L));
+        assertThat(json, hasKey(RACERS_PARAM));
+        assertThat(json, hasEntry(CURRENT_RACER_PARAM, null));
+        assertThat(json, hasEntry(FINISH_LINE_PARAM, 10));
+        assertThat(json, hasEntry(OVER_PARAM, false));
+        assertThat(json, hasEntry(ALL_CRASHED_PARAM, false));
+        assertThat(json, hasEntry(MESSAGE_PARAM, null));
     }
 
     @Test

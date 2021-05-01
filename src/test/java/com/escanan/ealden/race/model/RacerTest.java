@@ -140,14 +140,14 @@ class RacerTest {
 
         Map<String, Object> json = racer.asJson();
 
-        assertThat(json, hasEntry(ID, 1L));
-        assertThat(json, hasEntry(NAME, "Alice"));
-        assertThat(json, hasEntry(POSITION, 0));
-        assertThat(json, hasEntry(DAMAGE, 0));
-        assertThat(json, hasEntry(RANK, 1));
-        assertThat(json, hasEntry(CRASHED, false));
-        assertThat(json, hasEntry(DAMAGED, false));
-        assertThat(json, hasEntry(WINNER, false));
+        assertThat(json, hasEntry(ID_PARAM, 1L));
+        assertThat(json, hasEntry(NAME_PARAM, "Alice"));
+        assertThat(json, hasEntry(POSITION_PARAM, 0));
+        assertThat(json, hasEntry(DAMAGE_PARAM, 0));
+        assertThat(json, hasEntry(RANK_PARAM, 1));
+        assertThat(json, hasEntry(CRASHED_PARAM, false));
+        assertThat(json, hasEntry(DAMAGED_PARAM, false));
+        assertThat(json, hasEntry(WINNER_PARAM, false));
     }
 
     @Test

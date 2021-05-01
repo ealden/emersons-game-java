@@ -10,13 +10,13 @@ import static com.escanan.ealden.race.model.Roll.createRoll;
 import static java.util.stream.Collectors.toList;
 
 public class Race {
-    static final String ID = "id";
-    static final String RACERS = "racers";
-    static final String CURRENT_RACER = "currentRacer";
-    static final String FINISH_LINE = "finishLine";
-    static final String OVER = "over";
-    static final String ALL_CRASHED = "allCrashed";
-    static final String MESSAGE = "message";
+    static final String ID_PARAM = "id";
+    static final String RACERS_PARAM = "racers";
+    static final String CURRENT_RACER_PARAM = "currentRacer";
+    static final String FINISH_LINE_PARAM = "finishLine";
+    static final String OVER_PARAM = "over";
+    static final String ALL_CRASHED_PARAM = "allCrashed";
+    static final String MESSAGE_PARAM = "message";
 
     private static final int DEFAULT_FINISH_LINE = 10;
     private static final int MAX_ROLL = 6;
@@ -128,19 +128,19 @@ public class Race {
 
     public Map<String, Object> asJson() {
         Map<String, Object> json = new LinkedHashMap<>();
-        json.put(ID, getId());
-        json.put(RACERS, racers.stream().map(racer -> racer.asJson()).collect(toList()));
+        json.put(ID_PARAM, getId());
+        json.put(RACERS_PARAM, racers.stream().map(racer -> racer.asJson()).collect(toList()));
 
         if (currentRacer != null) {
-            json.put(CURRENT_RACER, currentRacer.asJson());
+            json.put(CURRENT_RACER_PARAM, currentRacer.asJson());
         } else {
-            json.put(CURRENT_RACER, null);
+            json.put(CURRENT_RACER_PARAM, null);
         }
 
-        json.put(FINISH_LINE, getFinishLine());
-        json.put(OVER, isOver());
-        json.put(ALL_CRASHED, isAllCrashed());
-        json.put(MESSAGE, getMessage());
+        json.put(FINISH_LINE_PARAM, getFinishLine());
+        json.put(OVER_PARAM, isOver());
+        json.put(ALL_CRASHED_PARAM, isAllCrashed());
+        json.put(MESSAGE_PARAM, getMessage());
 
         return json;
     }

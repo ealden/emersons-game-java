@@ -7,14 +7,14 @@ public class Racer {
     public static final int MAX_DAMAGE = 6;
     public static final int NO_DAMAGE = 0;
 
-    static final String ID = "id";
-    static final String NAME = "name";
-    static final String POSITION = "position";
-    static final String DAMAGE = "damage";
-    static final String RANK = "rank";
-    static final String CRASHED = "crashed";
-    static final String DAMAGED = "damaged";
-    static final String WINNER = "winner";
+    static final String ID_PARAM = "id";
+    static final String NAME_PARAM = "name";
+    static final String POSITION_PARAM = "position";
+    static final String DAMAGE_PARAM = "damage";
+    static final String RANK_PARAM = "rank";
+    static final String CRASHED_PARAM = "crashed";
+    static final String DAMAGED_PARAM = "damaged";
+    static final String WINNER_PARAM = "winner";
 
     private Long id;
     private String name;
@@ -97,14 +97,14 @@ public class Racer {
 
     public Map<String, Object> asJson() {
         Map<String, Object> json = new LinkedHashMap<>();
-        json.put(ID, getId());
-        json.put(NAME, getName());
-        json.put(POSITION, getPosition());
-        json.put(DAMAGE, getDamage());
-        json.put(RANK, getRank());
-        json.put(CRASHED, isCrashed());
-        json.put(DAMAGED, isDamaged());
-        json.put(WINNER, isWinner());
+        json.put(ID_PARAM, getId());
+        json.put(NAME_PARAM, getName());
+        json.put(POSITION_PARAM, getPosition());
+        json.put(DAMAGE_PARAM, getDamage());
+        json.put(RANK_PARAM, getRank());
+        json.put(CRASHED_PARAM, isCrashed());
+        json.put(DAMAGED_PARAM, isDamaged());
+        json.put(WINNER_PARAM, isWinner());
 
         return json;
     }
