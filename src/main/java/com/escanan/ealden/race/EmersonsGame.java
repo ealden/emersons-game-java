@@ -45,7 +45,7 @@ public class EmersonsGame {
         try {
             tomcat.start();
         } catch (LifecycleException e) {
-            throw new RuntimeException(e);
+            throw new StartupException(e);
         }
     }
 
@@ -69,6 +69,12 @@ public class EmersonsGame {
             public void write(byte[] b, int off, int len) {
             }
         };
+    }
+
+    private static class StartupException extends RuntimeException {
+        public StartupException(Throwable cause) {
+            super(cause);
+        }
     }
 
     private static String absolutePathOf(String file) {
