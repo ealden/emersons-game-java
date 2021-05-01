@@ -18,7 +18,7 @@ public class RollController extends ApiController {
     private RaceService raceService = Configurations.raceService();
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
         Roll roll = shim.fromRequest(request);
 
         Race race = raceService.getCurrentRace();
@@ -32,8 +32,12 @@ public class RollController extends ApiController {
         renderJson(race.asJson(), response);
     }
 
-    Roll fromRequest(HttpServletRequest request) throws IOException {
-        return Roll.fromRequest(request);
+    Roll fromRequest(HttpServletRequest request) {
+        try {
+            return Roll.fromRequest(request);
+        } catch (IOException e) {
+            throw new JsonException(e);
+        }
     }
 
     void setShim(RollController shim) {

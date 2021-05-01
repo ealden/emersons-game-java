@@ -10,14 +10,24 @@ import java.io.PrintWriter;
 public abstract class ApiController extends HttpServlet {
     private final Gson gson = new Gson();
 
-    protected void renderJson(Object responseObject, HttpServletResponse response) throws IOException {
+    protected void renderJson(Object responseObject, HttpServletResponse response) {
         String responseBody = gson.toJson(responseObject);
 
         response.setContentType("application/json");
         response.setCharacterEncoding("UTF-8");
 
-        PrintWriter out = response.getWriter();
-        out.print(responseBody);
-        out.flush();
+        try {
+            PrintWriter out = response.getWriter();
+            out.print(responseBody);
+            out.flush();
+        } catch (IOException e) {
+            throw new JsonException(e);
+        }
+    }
+
+    static class JsonException extends RuntimeException {
+        public JsonException(Throwable cause) {
+            super(cause);
+        }
     }
 }
