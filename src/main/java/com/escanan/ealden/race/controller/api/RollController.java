@@ -5,12 +5,10 @@ import com.escanan.ealden.race.controller.api.model.Roll;
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.service.RaceService;
 
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "Roll", urlPatterns = "/api/races/roll")
 public class RollController extends ApiController {
     private boolean testMode = Configurations.isTestMode();
 
