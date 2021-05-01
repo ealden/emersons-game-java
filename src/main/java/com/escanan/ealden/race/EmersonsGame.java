@@ -13,7 +13,7 @@ import java.io.PrintStream;
 
 public class EmersonsGame {
     private static final String PORT = System.getenv("PORT");
-    private static final String CONTEXT_PATH = "/";
+    private static final String CONTEXT_PATH = "";
     private static final String WEBAPP_DIR = "src/main/webapp";
     private static final String WEBAPP_DIR_PATH = absolutePathOf(WEBAPP_DIR);
     private static final String WEBAPP_MOUNT = "/WEB-INF/classes";
