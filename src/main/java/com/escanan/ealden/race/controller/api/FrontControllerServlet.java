@@ -19,9 +19,6 @@ public class FrontControllerServlet extends ApiController {
     private static final RacesController racesController = new RacesController();
     private static final SettingsController settingsController = new SettingsController();
 
-    private static final RollController rollController = new RollController();
-    private static final NewRaceController newRaceController = new NewRaceController();
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
         if (RACES_URL.equals(request.getPathInfo())) {
@@ -40,11 +37,11 @@ public class FrontControllerServlet extends ApiController {
         if (ROLL_RACE_URL.equals(request.getPathInfo())) {
             Roll roll = fromRequest(request);
 
-            Race race = rollController.roll(roll);
+            Race race = racesController.roll(roll);
 
             renderJson(race.asJson(), response);
         } else if (NEW_RACE_URL.equals(request.getPathInfo())) {
-            Race race = newRaceController.newRace();
+            Race race = racesController.newRace();
 
             renderJson(race.asJson(), response);
         }
