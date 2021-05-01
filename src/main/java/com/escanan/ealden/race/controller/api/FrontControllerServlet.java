@@ -1,12 +1,11 @@
 package com.escanan.ealden.race.controller.api;
 
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "FrontController", urlPatterns = "/api/*")
-public class FrontControllerServlet extends HttpServlet {
+public class FrontControllerServlet extends ApiController {
     private static final String RACES_PATH = "/races";
     private static final String ROLL_RACE_PATH = "/races/roll";
     private static final String NEW_RACE_PATH = "/races/new";
