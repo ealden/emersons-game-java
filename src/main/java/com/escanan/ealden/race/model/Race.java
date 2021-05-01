@@ -70,10 +70,6 @@ public class Race {
         return currentRacer;
     }
 
-    public Roll getLastRoll() {
-        return lastRoll;
-    }
-
     public Long getId() {
         return id;
     }
@@ -84,6 +80,10 @@ public class Race {
 
     public Racer getCurrentRacer() {
         return currentRacer;
+    }
+
+    public Roll getLastRoll() {
+        return lastRoll;
     }
 
     public int getFinishLine() {
