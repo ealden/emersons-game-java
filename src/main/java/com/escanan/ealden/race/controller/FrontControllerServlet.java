@@ -17,16 +17,16 @@ import java.util.Map;
 
 @WebServlet(name = "FrontController", urlPatterns = "/api/*")
 public class FrontControllerServlet extends HttpServlet {
-    private static final String RACES_URL = "/races";
-    private static final String ROLL_RACE_URL = "/races/roll";
-    private static final String NEW_RACE_URL = "/races/new";
-    private static final String SETTINGS_URL = "/settings";
-
-    private static final RacesController racesController = Configurations.racesController();
-    private static final SettingsController settingsController = Configurations.settingsController();
+    static final String RACES_URL = "/races";
+    static final String ROLL_RACE_URL = "/races/roll";
+    static final String NEW_RACE_URL = "/races/new";
+    static final String SETTINGS_URL = "/settings";
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+        RacesController racesController = Configurations.racesController();
+        SettingsController settingsController = Configurations.settingsController();
+
         if (RACES_URL.equals(request.getPathInfo())) {
             Race race = racesController.index();
 
@@ -40,6 +40,8 @@ public class FrontControllerServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
+        RacesController racesController = Configurations.racesController();
+
         if (ROLL_RACE_URL.equals(request.getPathInfo())) {
             Roll roll = fromRequest(request);
 

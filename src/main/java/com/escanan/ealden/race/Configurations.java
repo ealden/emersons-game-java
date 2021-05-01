@@ -46,4 +46,12 @@ public final class Configurations {
     public static void setTestMode(boolean flag) {
         testMode = flag;
     }
+
+    public static void setRacesController(RacesController controller) {
+        racesController = controller;
+    }
+
+    public static void setSettingsController(SettingsController controller) {
+        settingsController = controller;
+    }
 }
