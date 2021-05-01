@@ -133,7 +133,7 @@ public class Race {
     public Map<String, Object> asJson() {
         Map<String, Object> json = new LinkedHashMap<>();
         json.put(ID_PARAM, getId());
-        json.put(RACERS_PARAM, racers.stream().map(racer -> racer.asJson()).collect(toList()));
+        json.put(RACERS_PARAM, racers.stream().map(Racer::asJson).collect(toList()));
 
         if (currentRacer != null) {
             json.put(CURRENT_RACER_PARAM, currentRacer.asJson());
