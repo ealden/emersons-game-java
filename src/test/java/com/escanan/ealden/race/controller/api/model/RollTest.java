@@ -35,4 +35,12 @@ class RollTest {
         assertThat(roll.getNumber(), nullValue());
         assertThat(roll.getSpeedType(), equalTo(SpeedType.NORMAL));
     }
+
+    @Test
+    void fromParametersWithNoParameters() {
+        Roll roll = Roll.fromParameters(new HashMap<>());
+
+        assertThat(roll.getNumber(), nullValue());
+        assertThat(roll.getSpeedType(), nullValue());
+    }
 }
