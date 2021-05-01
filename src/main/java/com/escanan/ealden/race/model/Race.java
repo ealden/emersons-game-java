@@ -18,7 +18,8 @@ public class Race {
     static final String ALL_CRASHED_PARAM = "allCrashed";
     static final String MESSAGE_PARAM = "message";
 
-    private static final int DEFAULT_FINISH_LINE = 10;
+    static final int DEFAULT_FINISH_LINE = 10;
+
     private static final int MAX_ROLL = 6;
 
     private final List<Racer> racers = new ArrayList<>();
