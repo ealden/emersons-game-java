@@ -12,9 +12,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 
-public class RollTest {
+class RollTest {
     @Test
-    public void fromParametersMustReturnRollModel() {
+    void fromParametersMustReturnRollModel() {
         Map<String, String> parameters = new HashMap<>();
         parameters.put(ROLL_PARAM, "1");
         parameters.put(SPEED_TYPE_PARAM, "NORMAL");
@@ -26,7 +26,7 @@ public class RollTest {
     }
 
     @Test
-    public void fromParametersMustReturnRollWithNullNumberIfParameterIsNotPresent() {
+    void fromParametersMustReturnRollWithNullNumberIfParameterIsNotPresent() {
         Map<String, String> parameters = new HashMap<>();
         parameters.put(SPEED_TYPE_PARAM, "NORMAL");
 

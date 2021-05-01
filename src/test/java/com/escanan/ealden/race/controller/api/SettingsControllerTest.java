@@ -19,7 +19,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class SettingsControllerTest {
+class SettingsControllerTest {
     private SettingsController controller;
 
     @Mock
@@ -35,14 +35,14 @@ public class SettingsControllerTest {
     private ArgumentCaptor<String> responseBody;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void setUp() throws IOException {
         controller = new SettingsController();
 
         when(response.getWriter()).thenReturn(writer);
     }
 
     @Test
-    public void doGetMustReturnJsonResponse() throws IOException {
+    void doGetMustReturnJsonResponse() throws IOException {
         controller.doGet(request, response);
 
         verify(writer).print(responseBody.capture());

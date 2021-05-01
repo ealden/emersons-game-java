@@ -22,7 +22,7 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class NewRaceControllerTest {
+class NewRaceControllerTest {
     private NewRaceController controller;
 
     @Mock
@@ -41,7 +41,7 @@ public class NewRaceControllerTest {
     private ArgumentCaptor<String> responseBody;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void setUp() throws IOException {
         controller = new NewRaceController();
         controller.setRaceService(raceService);
 
@@ -49,7 +49,7 @@ public class NewRaceControllerTest {
     }
 
     @Test
-    public void doPostMustCreateANewRace() throws IOException {
+    void doPostMustCreateANewRace() throws IOException {
         Race currentRace = new Race();
         currentRace.setId(1L);
         currentRace.addRacer(new Racer("Alice"));

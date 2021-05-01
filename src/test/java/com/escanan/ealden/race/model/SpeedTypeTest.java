@@ -7,9 +7,9 @@ import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 
-public class SpeedTypeTest {
+class SpeedTypeTest {
     @Test
-    public void calculate() {
+    void calculate() {
         assertThat(NORMAL.calculate(1), equalTo(1));
         assertThat(NORMAL.calculate(2), equalTo(2));
         assertThat(NORMAL.calculate(3), equalTo(1));
@@ -32,7 +32,7 @@ public class SpeedTypeTest {
     }
 
     @Test
-    public void move() {
+    void move() {
         assertThat(NORMAL.move(5, 0), equalTo(1));
         assertThat(NORMAL.move(5, 1), equalTo(0));
         assertThat(NORMAL.move(5, 2), equalTo(0));

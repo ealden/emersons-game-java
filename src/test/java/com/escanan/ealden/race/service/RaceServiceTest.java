@@ -9,16 +9,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.not;
 import static org.hamcrest.Matchers.sameInstance;
 
-public class RaceServiceTest {
+class RaceServiceTest {
     private RaceService service;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         service = new FakeRaceService();
     }
 
     @Test
-    public void getCurrentRaceMustReturnTheSameRace() {
+    void getCurrentRaceMustReturnTheSameRace() {
         Race race = service.getCurrentRace();
         Race otherRace = service.getCurrentRace();
 
@@ -26,7 +26,7 @@ public class RaceServiceTest {
     }
 
     @Test
-    public void newRaceMustReplaceCurrentRace() {
+    void newRaceMustReplaceCurrentRace() {
         Race oldRace = service.getCurrentRace();
         Race newRace = service.newRace();
         Race race = service.getCurrentRace();

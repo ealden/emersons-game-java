@@ -25,7 +25,7 @@ import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class RollControllerTest {
+class RollControllerTest {
     private RollController controller;
 
     @Mock
@@ -47,7 +47,7 @@ public class RollControllerTest {
     private ArgumentCaptor<String> responseBody;
 
     @BeforeEach
-    public void setUp() throws IOException {
+    void setUp() throws IOException {
         controller = new RollController();
         controller.setRaceService(raceService);
 
@@ -55,7 +55,7 @@ public class RollControllerTest {
     }
 
     @Test
-    public void doPostMustReturnJsonResponse() throws IOException {
+    void doPostMustReturnJsonResponse() throws IOException {
         Race currentRace = new Race();
         currentRace.setId(1L);
         currentRace.addRacer(new Racer("Alice"));
@@ -79,7 +79,7 @@ public class RollControllerTest {
     }
 
     @Test
-    public void doPostMustRandomizeRollIfNotInTestMode() throws IOException {
+    void doPostMustRandomizeRollIfNotInTestMode() throws IOException {
         Race currentRace = mock(Race.class);
 
         when(currentRace.asJson()).thenReturn(Collections.emptyMap());

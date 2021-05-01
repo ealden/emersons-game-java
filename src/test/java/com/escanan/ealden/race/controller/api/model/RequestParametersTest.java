@@ -15,7 +15,7 @@ import static org.hamcrest.Matchers.hasEntry;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class RequestParametersTest {
+class RequestParametersTest {
     @Mock
     private HttpServletRequest request;
 
@@ -23,7 +23,7 @@ public class RequestParametersTest {
     private BufferedReader reader;
 
     @Test
-    public void fromRequest() throws IOException {
+    void fromRequest() throws IOException {
         String requestBody = "{\"roll\":\"1\",\"speedType\":\"NORMAL\"}";
 
         when(request.getReader()).thenReturn(reader);

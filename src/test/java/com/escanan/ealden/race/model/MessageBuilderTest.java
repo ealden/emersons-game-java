@@ -9,9 +9,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 
-public class MessageBuilderTest {
+class MessageBuilderTest {
     @Test
-    public void noRacers() {
+    void noRacers() {
         Race race = new Race();
 
         String message = new MessageBuilder(race).build();
@@ -20,7 +20,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void racerJoined() {
+    void racerJoined() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
 
@@ -30,7 +30,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void currentRacerRolls() {
+    void currentRacerRolls() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
         race.addRacer(new Racer("Bob"));
@@ -45,7 +45,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void allRacersCrashed() {
+    void allRacersCrashed() {
         Race race = new Race();
         race.addRacer(new Racer("Alice"));
         race.addRacer(new Racer("Bob"));
@@ -64,7 +64,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void currentRacerWins() {
+    void currentRacerWins() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
@@ -83,7 +83,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void currentRacerCrashed() {
+    void currentRacerCrashed() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
@@ -102,7 +102,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void damagedCurrentRacerRollsNormal() {
+    void damagedCurrentRacerRollsNormal() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");
@@ -121,7 +121,7 @@ public class MessageBuilderTest {
     }
 
     @Test
-    public void damagedCurrentRacerRollsSuper() {
+    void damagedCurrentRacerRollsSuper() {
         Race race = new Race();
 
         Racer racer = new Racer("Alice");

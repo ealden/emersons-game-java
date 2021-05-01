@@ -11,16 +11,16 @@ import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class RaceTest {
+class RaceTest {
     @Test
-    public void currentRacerMustBeNullIfNoRaceHasNoRacers() {
+    void currentRacerMustBeNullIfNoRaceHasNoRacers() {
         Race race = new Race();
 
         assertThat(race.getCurrentRacer(), nullValue());
     }
 
     @Test
-    public void addRacerMustSetCurrentRacerToRacerAdded() {
+    void addRacerMustSetCurrentRacerToRacerAdded() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -30,7 +30,7 @@ public class RaceTest {
     }
 
     @Test
-    public void addRacerMustSetRaceToSameRace() {
+    void addRacerMustSetRaceToSameRace() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -40,7 +40,7 @@ public class RaceTest {
     }
 
     @Test
-    public void addRacerMustSetRankToRacersCount() {
+    void addRacerMustSetRankToRacersCount() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -50,7 +50,7 @@ public class RaceTest {
     }
 
     @Test
-    public void addRacerMustOnlySetFirstRacerAsCurrentRacer() {
+    void addRacerMustOnlySetFirstRacerAsCurrentRacer() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -62,7 +62,7 @@ public class RaceTest {
     }
 
     @Test
-    public void asJson() {
+    void asJson() {
         Race race = new Race();
         race.setId(1L);
         race.addRacer(new Racer("Alice"));
@@ -79,7 +79,7 @@ public class RaceTest {
     }
 
     @Test
-    public void asJsonWhenNoRacersJoined() {
+    void asJsonWhenNoRacersJoined() {
         Race race = new Race();
         race.setId(1L);
 
@@ -95,7 +95,7 @@ public class RaceTest {
     }
 
     @Test
-    public void isOverMustReturnFalseIfNoRacersHaveWon() {
+    void isOverMustReturnFalseIfNoRacersHaveWon() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -111,7 +111,7 @@ public class RaceTest {
     }
 
     @Test
-    public void isOverMustReturnTrueIfARacerHasWon() {
+    void isOverMustReturnTrueIfARacerHasWon() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -128,7 +128,7 @@ public class RaceTest {
     }
 
     @Test
-    public void rollMustCreateNewRollEntry() {
+    void rollMustCreateNewRollEntry() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -141,7 +141,7 @@ public class RaceTest {
     }
 
     @Test
-    public void rollMustSetCurrentRacerToNextRacer() {
+    void rollMustSetCurrentRacerToNextRacer() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -156,7 +156,7 @@ public class RaceTest {
     }
 
     @Test
-    public void rollWithNoNumberParameterMustRandomlyRollCurrentRacer() {
+    void rollWithNoNumberParameterMustRandomlyRollCurrentRacer() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -168,7 +168,7 @@ public class RaceTest {
     }
 
     @Test
-    public void isAllCrashedMustReturnTrueIfAllRacersCrashed() {
+    void isAllCrashedMustReturnTrueIfAllRacersCrashed() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -187,7 +187,7 @@ public class RaceTest {
     }
 
     @Test
-    public void isAllCrashedMustReturnFalseIfNotAllRacersCrashed() {
+    void isAllCrashedMustReturnFalseIfNotAllRacersCrashed() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -206,7 +206,7 @@ public class RaceTest {
     }
 
     @Test
-    public void isAllCrashedMustReturnFalseIfNoRacersCrashed() {
+    void isAllCrashedMustReturnFalseIfNoRacersCrashed() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -225,7 +225,7 @@ public class RaceTest {
     }
 
     @Test
-    public void getMessage() {
+    void getMessage() {
         Race race = new Race();
 
         assertThat(race.getMessage(), nullValue());

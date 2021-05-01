@@ -7,9 +7,9 @@ import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
-public class RollTest {
+class RollTest {
     @Test
-    public void createRoll() {
+    void createRoll() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -33,14 +33,14 @@ public class RollTest {
     }
 
     @Test
-    public void getSpeedMustReturnNullIfSpeedTypeIsNull() {
+    void getSpeedMustReturnNullIfSpeedTypeIsNull() {
         Roll roll = new Roll();
 
         assertThat(roll.getSpeed(), nullValue());
     }
 
     @Test
-    public void getSpeedMustReturnSpeedTypeInAllCaps() {
+    void getSpeedMustReturnSpeedTypeInAllCaps() {
         Roll roll = new Roll();
 
         roll.setSpeedType(NORMAL);
@@ -51,7 +51,7 @@ public class RollTest {
     }
 
     @Test
-    public void getRacerNameMustReturnName() {
+    void getRacerNameMustReturnName() {
         Roll roll = new Roll();
         roll.setRacer(new Racer("Alice"));
 
@@ -59,7 +59,7 @@ public class RollTest {
     }
 
     @Test
-    public void getRacerNameMustReturnNullIfRacerIsNull() {
+    void getRacerNameMustReturnNullIfRacerIsNull() {
         Roll roll = new Roll();
         roll.setRacer(null);
 

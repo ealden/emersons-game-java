@@ -12,16 +12,16 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.hasEntry;
 
-public class RacerTest {
+class RacerTest {
     private Race currentRace;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         currentRace = new Race();
     }
 
     @Test
-    public void rollMustSetPositionTo1WithNoDamageIfRollIsOddAndSpeedTypeNormal() {
+    void rollMustSetPositionTo1WithNoDamageIfRollIsOddAndSpeedTypeNormal() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.roll(1, NORMAL);
@@ -45,7 +45,7 @@ public class RacerTest {
     }
 
     @Test
-    public void rollMustSetPositionTo2WithNoDamageIfRollIsEvenAndSpeedTypeNormal() {
+    void rollMustSetPositionTo2WithNoDamageIfRollIsEvenAndSpeedTypeNormal() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.roll(2, NORMAL);
@@ -69,7 +69,7 @@ public class RacerTest {
     }
 
     @Test
-    public void rollMustSetPositionToRollWithDamageIfSpeedTypeSuper() {
+    void rollMustSetPositionToRollWithDamageIfSpeedTypeSuper() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.roll(1, SUPER);
@@ -114,7 +114,7 @@ public class RacerTest {
     }
 
     @Test
-    public void getPositionMustReturnCurrentPositionIfNotYetOnFinishLine() {
+    void getPositionMustReturnCurrentPositionIfNotYetOnFinishLine() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.setPosition(1);
@@ -123,7 +123,7 @@ public class RacerTest {
     }
 
     @Test
-    public void getPositionMustReturnFinishLineIfCrossedFinishLine() {
+    void getPositionMustReturnFinishLineIfCrossedFinishLine() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.setPosition(currentRace.getFinishLine() + 10);
@@ -132,7 +132,7 @@ public class RacerTest {
     }
 
     @Test
-    public void asJson() {
+    void asJson() {
         Racer racer = new Racer("Alice");
         racer.setId(1L);
         racer.setRace(currentRace);
@@ -151,7 +151,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isWinnerMustReturnTrueIfOnFinishLine() {
+    void isWinnerMustReturnTrueIfOnFinishLine() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.setPosition(currentRace.getFinishLine());
@@ -160,7 +160,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isWinnerMustReturnTrueIfCrossedFinishLine() {
+    void isWinnerMustReturnTrueIfCrossedFinishLine() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.setPosition(currentRace.getFinishLine() + 1);
@@ -169,7 +169,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isWinnerMustReturnFalseIfNotYetOnFinishLine() {
+    void isWinnerMustReturnFalseIfNotYetOnFinishLine() {
         Racer racer = new Racer();
         racer.setRace(currentRace);
         racer.setPosition(currentRace.getFinishLine() - 1);
@@ -178,7 +178,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isCrashedMustReturnFalseIfDamageLessThanMaxDamage() {
+    void isCrashedMustReturnFalseIfDamageLessThanMaxDamage() {
         Racer racer = new Racer();
         racer.setDamage(MAX_DAMAGE - 1);
 
@@ -186,7 +186,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isCrashedMustReturnTrueIfDamageEqualToMaxDamage() {
+    void isCrashedMustReturnTrueIfDamageEqualToMaxDamage() {
         Racer racer = new Racer();
         racer.setDamage(MAX_DAMAGE);
 
@@ -194,7 +194,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isCrashedMustReturnTrueIfDamageMoreThanMaxDamage() {
+    void isCrashedMustReturnTrueIfDamageMoreThanMaxDamage() {
         Racer racer = new Racer();
         racer.setDamage(MAX_DAMAGE + 1);
 
@@ -202,7 +202,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isDamagedMustReturnTrueIfDamageGreaterThanZero() {
+    void isDamagedMustReturnTrueIfDamageGreaterThanZero() {
         Racer racer = new Racer();
         racer.setDamage(1);
 
@@ -210,7 +210,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isDamagedMustReturnFalseIfDamageIsZero() {
+    void isDamagedMustReturnFalseIfDamageIsZero() {
         Racer racer = new Racer();
         racer.setDamage(0);
 
@@ -218,7 +218,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isDamagedMustReturnFalseIfDamageIsLessThanZero() {
+    void isDamagedMustReturnFalseIfDamageIsLessThanZero() {
         Racer racer = new Racer();
         racer.setDamage(-1);
 
@@ -226,14 +226,14 @@ public class RacerTest {
     }
 
     @Test
-    public void isReadyMustReturnFalseIfNoRacersJoined() {
+    void isReadyMustReturnFalseIfNoRacersJoined() {
         Race race = new Race();
 
         assertThat(race.isReady(), equalTo(false));
     }
 
     @Test
-    public void isReadyMustReturnTrueIfARacerJoined() {
+    void isReadyMustReturnTrueIfARacerJoined() {
         Race race = new Race();
         race.addRacer(new Racer());
 
@@ -241,7 +241,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isReadyMustReturnFalseIfRaceIsOver() {
+    void isReadyMustReturnFalseIfRaceIsOver() {
         Race race = new Race();
 
         Racer racer = new Racer();
@@ -252,14 +252,14 @@ public class RacerTest {
     }
 
     @Test
-    public void isStartedMustReturnFalseIfNoRacersJoined() {
+    void isStartedMustReturnFalseIfNoRacersJoined() {
         Race race = new Race();
 
         assertThat(race.isStarted(), equalTo(false));
     }
 
     @Test
-    public void isStartedMustReturnFalseIfNoRacerHasRolled() {
+    void isStartedMustReturnFalseIfNoRacerHasRolled() {
         Race race = new Race();
         race.addRacer(new Racer());
 
@@ -267,7 +267,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isStartedMustReturnTrueIfOneRacerHasRolled() {
+    void isStartedMustReturnTrueIfOneRacerHasRolled() {
         Race race = new Race();
         race.addRacer(new Racer());
 
@@ -277,7 +277,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isStartedMustReturnTrueIfRacersHaveRolled() {
+    void isStartedMustReturnTrueIfRacersHaveRolled() {
         Race race = new Race();
         race.addRacer(new Racer());
         race.addRacer(new Racer());
@@ -289,7 +289,7 @@ public class RacerTest {
     }
 
     @Test
-    public void isStartedMustReturnFalseIfRaceIsOver() {
+    void isStartedMustReturnFalseIfRaceIsOver() {
         Race race = new Race();
 
         Racer racer = new Racer();
