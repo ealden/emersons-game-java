@@ -1,5 +1,7 @@
-package com.escanan.ealden.race.controller.api;
+package com.escanan.ealden.race.controller;
 
+import com.escanan.ealden.race.controller.api.RacesController;
+import com.escanan.ealden.race.controller.api.SettingsController;
 import com.escanan.ealden.race.controller.api.model.Roll;
 import com.escanan.ealden.race.model.Race;
 import com.google.gson.Gson;
