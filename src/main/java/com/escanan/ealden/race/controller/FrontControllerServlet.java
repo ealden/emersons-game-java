@@ -31,7 +31,9 @@ public class FrontControllerServlet extends HttpServlet {
             Race race = racesController.index();
 
             renderJson(race.asJson(), response);
-        } else if (SETTINGS_URL.equals(request.getPathInfo())) {
+        }
+
+        if (SETTINGS_URL.equals(request.getPathInfo())) {
             Map<String, Boolean> settings = settingsController.index();
 
             renderJson(settings, response);
@@ -48,7 +50,9 @@ public class FrontControllerServlet extends HttpServlet {
             Race race = racesController.roll(roll);
 
             renderJson(race.asJson(), response);
-        } else if (NEW_RACE_URL.equals(request.getPathInfo())) {
+        }
+
+        if (NEW_RACE_URL.equals(request.getPathInfo())) {
             Race race = racesController.newRace();
 
             renderJson(race.asJson(), response);
