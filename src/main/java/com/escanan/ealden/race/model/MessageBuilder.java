@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.model;
 
+import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static java.lang.String.format;
 
 public class MessageBuilder {
@@ -54,13 +55,10 @@ public class MessageBuilder {
                 currentRacer.getName()
         };
 
-        switch (lastRoll.getSpeedType()) {
-            case NORMAL:
-                return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!", args);
-            case SUPER:
-                return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!", args);
-            default:
-                return null;
+        if (NORMAL == lastRoll.getSpeedType()) {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s has %d damage.  %s rolls next!", args);
+        } else {
+            return format("%s chose %s speed, and rolled %d and moved %d.  %s now has %d damage.  %s rolls next!", args);
         }
     }
 
