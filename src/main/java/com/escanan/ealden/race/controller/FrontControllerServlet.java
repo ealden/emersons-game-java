@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.controller;
 
+import com.escanan.ealden.race.Configurations;
 import com.escanan.ealden.race.controller.api.RacesController;
 import com.escanan.ealden.race.controller.api.SettingsController;
 import com.escanan.ealden.race.controller.api.model.Roll;
@@ -21,8 +22,8 @@ public class FrontControllerServlet extends HttpServlet {
     private static final String NEW_RACE_URL = "/races/new";
     private static final String SETTINGS_URL = "/settings";
 
-    private static final RacesController racesController = new RacesController();
-    private static final SettingsController settingsController = new SettingsController();
+    private static final RacesController racesController = Configurations.racesController();
+    private static final SettingsController settingsController = Configurations.settingsController();
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
