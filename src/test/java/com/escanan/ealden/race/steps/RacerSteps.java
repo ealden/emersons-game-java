@@ -63,7 +63,7 @@ public class RacerSteps {
 
     @Given("I see the finish line at position {int}")
     public void setFinishLine(int finishLine) {
-
+        currentRace.setFinishLine(finishLine);
     }
 
     @When("I choose {string} speed")

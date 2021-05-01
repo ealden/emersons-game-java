@@ -22,10 +22,10 @@ public class Race {
     private static final int MAX_ROLL = 6;
 
     private final List<Racer> racers = new ArrayList<>();
-    private final int finishLine = DEFAULT_FINISH_LINE;
     private Long id;
     private Racer currentRacer;
     private Roll lastRoll;
+    private int finishLine = DEFAULT_FINISH_LINE;
 
     public Race addRacer(Racer racer) {
         racers.add(racer);
@@ -124,6 +124,10 @@ public class Race {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public void setFinishLine(int finishLine) {
+        this.finishLine = finishLine;
     }
 
     public Map<String, Object> asJson() {
