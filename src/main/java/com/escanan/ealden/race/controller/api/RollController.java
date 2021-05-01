@@ -14,12 +14,12 @@ import java.io.IOException;
 public class RollController extends ApiController {
     private boolean testMode = Configurations.isTestMode();
 
-    private RollController _this = this;
+    private RollController shim = this;
     private RaceService raceService = Configurations.raceService();
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Roll roll = _this.fromRequest(request);
+        Roll roll = shim.fromRequest(request);
 
         Race race = raceService.getCurrentRace();
 
@@ -37,7 +37,7 @@ public class RollController extends ApiController {
     }
 
     void setShim(RollController shim) {
-        _this = shim;
+        this.shim = shim;
     }
 
     void setRaceService(RaceService raceService) {
