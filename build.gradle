@@ -58,6 +58,12 @@ jacocoTestReport {
     }
 }
 
+sonarqube {
+    properties {
+        property 'sonar.exclusions', '**/EmersonsGame.java'
+    }
+}
+
 task cucumber() {
     dependsOn assemble, compileTestJava
 
