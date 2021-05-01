@@ -3,50 +3,27 @@ package com.escanan.ealden.race.controller.api;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
-import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.Map;
 
-import static com.escanan.ealden.race.Matchers.jsonResponseOf;
+import static com.escanan.ealden.race.controller.api.SettingsController.TEST_MODE_PARAM;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
+import static org.hamcrest.Matchers.hasEntry;
 
 @ExtendWith(MockitoExtension.class)
 class SettingsControllerTest {
     private SettingsController controller;
 
-    @Mock
-    private HttpServletRequest request;
-
-    @Mock
-    private HttpServletResponse response;
-
-    @Mock
-    private PrintWriter writer;
-
-    @Captor
-    private ArgumentCaptor<String> responseBody;
-
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         controller = new SettingsController();
-
-        when(response.getWriter()).thenReturn(writer);
     }
 
     @Test
-    void doGetMustReturnJsonResponse() throws IOException {
-        controller.doGet(request, response);
+    void indexMustReturnSettings() {
+        Map<String, Boolean> settings = controller.index();
 
-        verify(writer).print(responseBody.capture());
-
-        assertThat(responseBody.getValue(), jsonResponseOf("/api/settings"));
+        assertThat(settings, hasEntry(TEST_MODE_PARAM, false));
     }
 }

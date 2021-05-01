@@ -1,15 +1,20 @@
 package com.escanan.ealden.race.controller.api;
 
+import com.escanan.ealden.race.controller.api.model.Roll;
+import com.escanan.ealden.race.model.Race;
+
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.Map;
 
 @WebServlet(name = "FrontController", urlPatterns = "/api/*")
 public class FrontControllerServlet extends ApiController {
-    private static final String RACES_PATH = "/races";
-    private static final String ROLL_RACE_PATH = "/races/roll";
-    private static final String NEW_RACE_PATH = "/races/new";
-    private static final String SETTINGS_PATH = "/settings";
+    private static final String RACES_URL = "/races";
+    private static final String ROLL_RACE_URL = "/races/roll";
+    private static final String NEW_RACE_URL = "/races/new";
+    private static final String SETTINGS_URL = "/settings";
 
     private static final RacesController racesController = new RacesController();
     private static final SettingsController settingsController = new SettingsController();
@@ -19,29 +24,37 @@ public class FrontControllerServlet extends ApiController {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        switch (request.getPathInfo()) {
-            case RACES_PATH:
-                racesController.doGet(request, response);
+        if (RACES_URL.equals(request.getPathInfo())) {
+            Race race = racesController.index();
 
-                break;
-            case SETTINGS_PATH:
-                settingsController.doGet(request, response);
+            renderJson(race.asJson(), response);
+        } else if (SETTINGS_URL.equals(request.getPathInfo())) {
+            Map<String, Boolean> settings = settingsController.index();
 
-                break;
+            renderJson(settings, response);
         }
     }
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        switch (request.getPathInfo()) {
-            case ROLL_RACE_PATH:
-                rollController.doPost(request, response);
+        if (ROLL_RACE_URL.equals(request.getPathInfo())) {
+            Roll roll = fromRequest(request);
 
-                break;
-            case NEW_RACE_PATH:
-                newRaceController.doPost(request, response);
+            Race race = rollController.roll(roll);
 
-                break;
+            renderJson(race.asJson(), response);
+        } else if (NEW_RACE_URL.equals(request.getPathInfo())) {
+            Race race = newRaceController.newRace();
+
+            renderJson(race.asJson(), response);
+        }
+    }
+
+    private Roll fromRequest(HttpServletRequest request) {
+        try {
+            return Roll.fromRequest(request);
+        } catch (IOException e) {
+            throw new JsonException(e);
         }
     }
 }

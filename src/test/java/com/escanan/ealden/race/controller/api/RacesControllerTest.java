@@ -6,19 +6,11 @@ import com.escanan.ealden.race.service.RaceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.ArgumentCaptor;
-import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.PrintWriter;
-
-import static com.escanan.ealden.race.Matchers.jsonResponseOf;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.verify;
+import static org.hamcrest.Matchers.sameInstance;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -28,38 +20,22 @@ class RacesControllerTest {
     @Mock
     private RaceService raceService;
 
-    @Mock
-    private HttpServletRequest request;
-
-    @Mock
-    private HttpServletResponse response;
-
-    @Mock
-    private PrintWriter writer;
-
-    @Captor
-    private ArgumentCaptor<String> responseBody;
-
     @BeforeEach
-    void setUp() throws IOException {
+    void setUp() {
         controller = new RacesController();
         controller.setRaceService(raceService);
-
-        when(response.getWriter()).thenReturn(writer);
     }
 
     @Test
-    void doGetMustReturnJsonResponse() throws IOException {
+    void indexMustReturnCurrentRace() {
         Race currentRace = new Race();
         currentRace.setId(1L);
         currentRace.addRacer(new Racer("Alice"));
 
         when(raceService.getCurrentRace()).thenReturn(currentRace);
 
-        controller.doGet(request, response);
+        Race race = controller.index();
 
-        verify(writer).print(responseBody.capture());
-
-        assertThat(responseBody.getValue(), jsonResponseOf("/api/races"));
+        assertThat(race, sameInstance(currentRace));
     }
 }

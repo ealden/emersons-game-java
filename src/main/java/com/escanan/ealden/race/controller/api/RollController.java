@@ -5,20 +5,12 @@ import com.escanan.ealden.race.controller.api.model.Roll;
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.service.RaceService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-
-public class RollController extends ApiController {
+public class RollController {
     private boolean testMode = Configurations.isTestMode();
 
-    private RollController shim = this;
     private RaceService raceService = Configurations.raceService();
 
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response) {
-        Roll roll = shim.fromRequest(request);
-
+    public Race roll(Roll roll) {
         Race race = raceService.getCurrentRace();
 
         if (testMode) {
@@ -27,19 +19,7 @@ public class RollController extends ApiController {
             race.roll(roll.getSpeedType());
         }
 
-        renderJson(race.asJson(), response);
-    }
-
-    Roll fromRequest(HttpServletRequest request) {
-        try {
-            return Roll.fromRequest(request);
-        } catch (IOException e) {
-            throw new JsonException(e);
-        }
-    }
-
-    void setShim(RollController shim) {
-        this.shim = shim;
+        return race;
     }
 
     void setRaceService(RaceService raceService) {

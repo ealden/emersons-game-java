@@ -4,17 +4,11 @@ import com.escanan.ealden.race.Configurations;
 import com.escanan.ealden.race.model.Race;
 import com.escanan.ealden.race.service.RaceService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-public class RacesController extends ApiController {
+public class RacesController {
     private RaceService raceService = Configurations.raceService();
 
-    @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) {
-        Race race = raceService.getCurrentRace();
-
-        renderJson(race.asJson(), response);
+    public Race index() {
+        return raceService.getCurrentRace();
     }
 
     void setRaceService(RaceService raceService) {
