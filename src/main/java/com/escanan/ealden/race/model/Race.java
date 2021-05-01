@@ -62,13 +62,11 @@ public class Race {
     private Racer nextRacer() {
         int nextRank = ((currentRacer.getRank() % racers.size()) + 1);
 
-        Racer nextRacer = null;
+        Racer nextRacer = currentRacer;
 
         for (Racer racer : racers) {
             if (nextRank == racer.getRank()) {
                 nextRacer = racer;
-
-                break;
             }
         }
 
