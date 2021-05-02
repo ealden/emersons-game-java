@@ -64,6 +64,7 @@ sonarqube {
         property 'sonar.exclusions', '**/EmersonsGame.java'
 
         property 'sonar.projectKey', 'ealden_emersons-game-java'
+        property 'sonar.projectName', 'emersons-game-java'
         property 'sonar.organization', 'ealden'
         property 'sonar.host.url', 'https://sonarcloud.io'
     }
