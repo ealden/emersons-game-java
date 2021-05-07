@@ -1,4 +1,4 @@
-package com.escanan.ealden.race.controller.api.model;
+package com.escanan.ealden.race.controller.api.util;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;

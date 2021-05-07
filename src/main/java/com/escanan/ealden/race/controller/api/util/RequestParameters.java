@@ -1,4 +1,4 @@
-package com.escanan.ealden.race.controller.api.model;
+package com.escanan.ealden.race.controller.api.util;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;

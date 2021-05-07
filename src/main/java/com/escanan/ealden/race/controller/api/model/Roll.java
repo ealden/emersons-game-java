@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.controller.api.model;
 
+import com.escanan.ealden.race.controller.api.util.RequestParameters;
 import com.escanan.ealden.race.model.SpeedType;
 
 import javax.servlet.http.HttpServletRequest;
