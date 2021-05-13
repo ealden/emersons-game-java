@@ -11,6 +11,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.ProtocolHandshake;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.logging.Logger;
 
 import static java.lang.Integer.parseInt;
@@ -123,7 +124,7 @@ public class RacePage {
     }
 
     private WebDriverWait doWait() {
-        return new WebDriverWait(driver, 20);
+        return new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 
     private WebElement findElement(By by) {
