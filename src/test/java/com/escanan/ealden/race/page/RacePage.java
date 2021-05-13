@@ -6,8 +6,9 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.CdpVersionFinder;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.remote.ProtocolHandshake;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -44,6 +45,7 @@ public class RacePage {
 
     private void reallySilenceSelenium() {
         Logger.getLogger(ProtocolHandshake.class.getName()).setLevel(OFF);
+        Logger.getLogger(CdpVersionFinder.class.getName()).setLevel(OFF);
     }
 
     public RacePage load() {
@@ -53,12 +55,12 @@ public class RacePage {
     }
 
     private WebDriver createDriver(boolean headless) {
-        WebDriverManager.chromedriver().setup();
+        WebDriverManager.edgedriver().setup();
 
-        ChromeOptions options = new ChromeOptions();
+        EdgeOptions options = new EdgeOptions();
         options.setHeadless(headless);
 
-        return new ChromeDriver(options);
+        return new EdgeDriver(options);
     }
 
     public void close() {
