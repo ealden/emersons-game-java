@@ -53,11 +53,11 @@ public class RacePage extends BasePage {
     }
 
     public int getPositionOf(Racer racer) {
-        return parseInt(findTestElement(racer, "position").getText());
+        return parseInt(findTestElement(racer.getId(), "position").getText());
     }
 
     public int getDamageOf(Racer racer) {
-        return parseInt(findTestElement(racer, "damage").getText());
+        return parseInt(findTestElement(racer.getId(), "damage").getText());
     }
 
     public boolean isOver() {

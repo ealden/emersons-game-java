@@ -1,6 +1,5 @@
 package com.escanan.ealden.race.page;
 
-import com.escanan.ealden.race.model.Racer;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -72,8 +71,8 @@ public abstract class BasePage {
         return doWait().until(visibilityOfElementLocated(by));
     }
 
-    protected WebElement findTestElement(Racer racer, String key) {
-        String testId = String.join("-", "test", "racer", racer.getId().toString(), key);
+    protected WebElement findTestElement(Long id, String key) {
+        String testId = String.join("-", "test", "racer", id.toString(), key);
 
         return findElement(By.id(testId));
     }
