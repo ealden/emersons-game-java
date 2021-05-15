@@ -19,7 +19,7 @@ import static org.openqa.selenium.support.ui.ExpectedConditions.invisibilityOfEl
 import static org.openqa.selenium.support.ui.ExpectedConditions.visibilityOfElementLocated;
 
 public abstract class BasePage {
-    protected final WebDriver driver;
+    private final WebDriver driver;
 
     private final By testProcessing = By.id("test-processing");
 
