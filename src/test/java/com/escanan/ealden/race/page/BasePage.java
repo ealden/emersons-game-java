@@ -11,6 +11,7 @@ import org.openqa.selenium.remote.ProtocolHandshake;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.logging.Logger;
 
 import static java.util.logging.Level.OFF;
@@ -69,6 +70,10 @@ public abstract class BasePage {
 
     protected WebElement findElement(By by) {
         return doWait().until(visibilityOfElementLocated(by));
+    }
+
+    protected List<WebElement> findElements(By by) {
+        return driver.findElements(by);
     }
 
     protected WebElement findTestElement(Long id, String key) {

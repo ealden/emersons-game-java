@@ -61,8 +61,8 @@ public class RacePage extends BasePage {
     }
 
     public boolean isOver() {
-        boolean raceControlsHidden = driver.findElements(raceControls).isEmpty();
-        boolean raceOverHidden = driver.findElements(raceOver).isEmpty();
+        boolean raceControlsHidden = findElements(raceControls).isEmpty();
+        boolean raceOverHidden = findElements(raceOver).isEmpty();
 
         return (raceControlsHidden && !raceOverHidden);
     }
