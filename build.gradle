@@ -2,7 +2,7 @@ plugins {
     id 'application'
     id 'war'
     id 'jacoco'
-    id 'org.sonarqube' version '3.2.0'
+    id 'org.sonarqube' version '3.2.+'
 }
 
 group 'com.escanan.ealden.race'
@@ -23,18 +23,18 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.5.65'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.65'
-    implementation 'com.google.code.gson:gson:2.8.6'
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testImplementation 'io.cucumber:cucumber-java:6.10.3'
-    testImplementation 'io.cucumber:cucumber-junit:6.10.3'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.5.+'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.+'
+    implementation 'com.google.code.gson:gson:2.8.+'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.+'
+    testImplementation 'io.cucumber:cucumber-java:6.10.+'
+    testImplementation 'io.cucumber:cucumber-junit:6.10.+'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.0.0-beta-3'
-    testImplementation 'org.hamcrest:hamcrest:2.2'
+    testImplementation 'org.hamcrest:hamcrest:2.+'
     testImplementation 'org.mockito:mockito-core:3.+'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:4.4.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:4.+'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.+'
 }
 
 application {
