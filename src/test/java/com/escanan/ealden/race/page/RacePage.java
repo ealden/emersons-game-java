@@ -4,6 +4,8 @@ import com.escanan.ealden.race.model.Racer;
 import com.escanan.ealden.race.model.SpeedType;
 import org.openqa.selenium.By;
 
+import static com.escanan.ealden.race.model.SpeedType.NORMAL;
+import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static java.lang.Integer.parseInt;
 
 public class RacePage extends BasePage {
@@ -33,9 +35,9 @@ public class RacePage extends BasePage {
     public RacePage roll(int roll, SpeedType speedType) {
         input(testRoll, roll);
 
-        if (SpeedType.NORMAL == speedType) {
+        if (NORMAL == speedType) {
             click(normalSpeed);
-        } else if (SpeedType.SUPER == speedType) {
+        } else if (SUPER == speedType) {
             click(superSpeed);
         }
 
