@@ -25,7 +25,7 @@ public class RacePage extends BasePage {
     }
 
     public RacePage load() {
-        driver.navigate().to(URL);
+        navigateTo(URL);
 
         return this;
     }

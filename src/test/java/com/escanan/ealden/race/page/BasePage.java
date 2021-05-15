@@ -47,6 +47,10 @@ public abstract class BasePage {
         driver.quit();
     }
 
+    protected void navigateTo(String url) {
+        driver.navigate().to(url);
+    }
+
     protected void click(By element) {
         findElement(element).click();
     }
