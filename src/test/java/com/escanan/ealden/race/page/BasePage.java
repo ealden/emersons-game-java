@@ -29,6 +29,10 @@ public abstract class BasePage {
         driver = createDriver(headless);
     }
 
+    public void close() {
+        driver.quit();
+    }
+
     private void reallySilenceSelenium() {
         Logger.getLogger(ProtocolHandshake.class.getName()).setLevel(OFF);
         Logger.getLogger(CdpVersionFinder.class.getName()).setLevel(OFF);
@@ -41,10 +45,6 @@ public abstract class BasePage {
         options.setHeadless(headless);
 
         return new EdgeDriver(options);
-    }
-
-    public void close() {
-        driver.quit();
     }
 
     protected void navigateTo(String url) {
@@ -68,10 +68,6 @@ public abstract class BasePage {
         doWait().until(invisibilityOfElementLocated(testProcessing));
     }
 
-    private WebDriverWait doWait() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20));
-    }
-
     protected WebElement findElement(By by) {
         return doWait().until(visibilityOfElementLocated(by));
     }
@@ -84,5 +80,9 @@ public abstract class BasePage {
         String testId = String.join("-", "test", "racer", id.toString(), key);
 
         return findElement(By.id(testId));
+    }
+
+    private WebDriverWait doWait() {
+        return new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 }
