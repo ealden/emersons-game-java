@@ -4,13 +4,11 @@ import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.devtools.CdpVersionFinder;
-import org.openqa.selenium.edge.EdgeDriver;
-import org.openqa.selenium.edge.EdgeOptions;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.ProtocolHandshake;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -35,16 +33,15 @@ public abstract class BasePage {
 
     private void reallySilenceSelenium() {
         Logger.getLogger(ProtocolHandshake.class.getName()).setLevel(OFF);
-        Logger.getLogger(CdpVersionFinder.class.getName()).setLevel(OFF);
     }
 
     private WebDriver createDriver(boolean headless) {
-        WebDriverManager.edgedriver().setup();
+        WebDriverManager.chromedriver().setup();
 
-        EdgeOptions options = new EdgeOptions();
+        ChromeOptions options = new ChromeOptions();
         options.setHeadless(headless);
 
-        return new EdgeDriver(options);
+        return new ChromeDriver(options);
     }
 
     protected void navigateTo(String url) {
@@ -83,6 +80,6 @@ public abstract class BasePage {
     }
 
     private WebDriverWait doWait() {
-        return new WebDriverWait(driver, Duration.ofSeconds(20));
+        return new WebDriverWait(driver, 20);
     }
 }
