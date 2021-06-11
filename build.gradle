@@ -70,22 +70,18 @@ sonarqube {
     }
 }
 
-task cucumber() {
+task cucumber(type: JavaExec) {
     dependsOn assemble, compileTestJava
 
-    doLast {
-        def feature = 'src/test/resources'
+    def feature = 'src/test/resources'
 
-        if (project.hasProperty('feature')) {
-            feature = project.getProperty('feature')
-        }
-
-        javaexec {
-            main = 'io.cucumber.core.cli.Main'
-            classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
-            args = ['--tags', 'not @wip', '--plugin', 'pretty', '--glue', 'com.escanan.ealden.race', feature]
-        }
+    if (project.hasProperty('feature')) {
+        feature = project.getProperty('feature')
     }
+
+    main = 'io.cucumber.core.cli.Main'
+    classpath = configurations.cucumberRuntime + sourceSets.main.output + sourceSets.test.output
+    args = ['--tags', 'not @wip', '--plugin', 'pretty', '--glue', 'com.escanan.ealden.race', feature]
 }
 
 task stage() {
