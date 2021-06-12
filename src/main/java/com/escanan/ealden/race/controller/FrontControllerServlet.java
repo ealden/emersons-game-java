@@ -47,7 +47,7 @@ public class FrontControllerServlet extends HttpServlet {
         RacesController racesController = Configurations.racesController();
 
         if (ROLL_RACE_URL.equals(request.getPathInfo())) {
-            Roll roll = fromRequest(request);
+            Roll roll = Roll.fromRequest(request);
 
             Race race = racesController.roll(roll);
 
@@ -58,14 +58,6 @@ public class FrontControllerServlet extends HttpServlet {
             Race race = racesController.newRace();
 
             renderJson(race, response);
-        }
-    }
-
-    private Roll fromRequest(HttpServletRequest request) {
-        try {
-            return Roll.fromRequest(request);
-        } catch (IOException e) {
-            throw new JsonException(e);
         }
     }
 

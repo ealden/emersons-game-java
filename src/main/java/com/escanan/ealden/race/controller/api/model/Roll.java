@@ -1,5 +1,6 @@
 package com.escanan.ealden.race.controller.api.model;
 
+import com.escanan.ealden.race.controller.api.JsonException;
 import com.escanan.ealden.race.controller.api.util.RequestParameters;
 import com.escanan.ealden.race.model.SpeedType;
 
@@ -14,8 +15,12 @@ public class Roll {
     private Integer number;
     private SpeedType speedType;
 
-    public static Roll fromRequest(HttpServletRequest request) throws IOException {
-        return fromParameters(RequestParameters.fromRequest(request));
+    public static Roll fromRequest(HttpServletRequest request) {
+        try {
+            return fromParameters(RequestParameters.fromRequest(request));
+        } catch (IOException e) {
+            throw new JsonException(e);
+        }
     }
 
     static Roll fromParameters(Map<String, String> parameters) {
