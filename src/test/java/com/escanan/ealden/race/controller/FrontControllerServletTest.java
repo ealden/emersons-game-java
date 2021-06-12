@@ -1,6 +1,7 @@
 package com.escanan.ealden.race.controller;
 
 import com.escanan.ealden.race.Configurations;
+import com.escanan.ealden.race.controller.api.JsonException;
 import com.escanan.ealden.race.controller.api.RacesController;
 import com.escanan.ealden.race.controller.api.SettingsController;
 import com.escanan.ealden.race.model.Race;

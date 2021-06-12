@@ -1,6 +1,7 @@
 package com.escanan.ealden.race.controller;
 
 import com.escanan.ealden.race.Configurations;
+import com.escanan.ealden.race.controller.api.JsonException;
 import com.escanan.ealden.race.controller.api.RacesController;
 import com.escanan.ealden.race.controller.api.SettingsController;
 import com.escanan.ealden.race.controller.api.model.Roll;
@@ -87,9 +88,4 @@ public class FrontControllerServlet extends HttpServlet {
         }
     }
 
-    static class JsonException extends RuntimeException {
-        public JsonException(Throwable cause) {
-            super(cause);
-        }
-    }
 }
