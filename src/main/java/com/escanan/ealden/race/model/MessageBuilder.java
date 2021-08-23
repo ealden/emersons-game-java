@@ -25,7 +25,7 @@ public class MessageBuilder {
             return raceOver();
         } else if (didPreviousRacerCrash()) {
             return racerCrashed();
-        } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
+        } else if (isPreviousRacerDamaged()) {
             return racerDamaged();
         } else if (race.isStarted()) {
             return raceStarted();
@@ -36,6 +36,10 @@ public class MessageBuilder {
 
     private boolean didPreviousRacerCrash() {
         return race.isStarted() && lastRoll.getRacer().isCrashed();
+    }
+
+    private boolean isPreviousRacerDamaged() {
+        return race.isStarted() && lastRoll.getRacer().isDamaged();
     }
 
     private String raceReady() {
