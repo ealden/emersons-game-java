@@ -18,11 +18,11 @@ public class MessageBuilder {
 
     public String build() {
         if (race.isReady()) {
-            return format("Time to RACE!  %s rolls first!", currentRacer.getName());
+            return raceReady();
         } else if (race.isAllCrashed()) {
-            return "All racers CRASHED!!!  This race is over!";
+            return allRacersCrashed();
         } else if (race.isOver()) {
-            return format("%s wins the race!  Congratulations!!!", lastRoll.getRacerName());
+            return raceOver();
         } else if (race.isStarted() && lastRoll.getRacer().isCrashed()) {
             return racerCrashed();
         } else if (race.isStarted() && lastRoll.getRacer().isDamaged()) {
@@ -32,6 +32,18 @@ public class MessageBuilder {
         } else {
             return null;
         }
+    }
+
+    private String raceReady() {
+        return format("Time to RACE!  %s rolls first!", currentRacer.getName());
+    }
+
+    private String allRacersCrashed() {
+        return "All racers CRASHED!!!  This race is over!";
+    }
+
+    private String raceOver() {
+        return format("%s wins the race!  Congratulations!!!", lastRoll.getRacerName());
     }
 
     private String racerCrashed() {
