@@ -47,7 +47,7 @@ public class MessageBuilder {
     }
 
     private String allRacersCrashed() {
-        return "All racers CRASHED!!!  This race is over!";
+        return format("All racers CRASHED!!!  This race is over!");
     }
 
     private String raceOver() {
