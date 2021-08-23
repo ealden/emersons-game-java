@@ -4,6 +4,8 @@ import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static java.lang.String.format;
 
 public class MessageBuilder {
+    private static final String ALL_RACERS_CRASHED = "All racers CRASHED!!!  This race is over!";
+
     private final Race race;
 
     private final Racer currentRacer;
@@ -20,7 +22,7 @@ public class MessageBuilder {
         if (race.isReady()) {
             return raceReady();
         } else if (race.isAllCrashed()) {
-            return allRacersCrashed();
+            return ALL_RACERS_CRASHED;
         } else if (race.isOver()) {
             return raceOver();
         } else if (didPreviousRacerCrash()) {
@@ -44,10 +46,6 @@ public class MessageBuilder {
 
     private String raceReady() {
         return format("Time to RACE!  %s rolls first!", currentRacer.getName());
-    }
-
-    private String allRacersCrashed() {
-        return format("All racers CRASHED!!!  This race is over!");
     }
 
     private String raceOver() {
