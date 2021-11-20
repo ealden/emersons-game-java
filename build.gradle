@@ -33,7 +33,7 @@ dependencies {
     testImplementation 'org.hamcrest:hamcrest:2.+'
     testImplementation 'org.mockito:mockito-core:3.+'
     testImplementation 'org.mockito:mockito-junit-jupiter:3.+'
-    testImplementation 'io.github.bonigarcia:webdrivermanager:4.+'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.+'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.+'
 }
 
