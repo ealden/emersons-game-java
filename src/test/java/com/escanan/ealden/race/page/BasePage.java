@@ -6,9 +6,11 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.devtools.CdpVersionFinder;
 import org.openqa.selenium.remote.ProtocolHandshake;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.time.Duration;
 import java.util.List;
 import java.util.logging.Logger;
 
@@ -33,6 +35,7 @@ public abstract class BasePage {
 
     private void reallySilenceSelenium() {
         Logger.getLogger(ProtocolHandshake.class.getName()).setLevel(OFF);
+        Logger.getLogger(CdpVersionFinder.class.getName()).setLevel(OFF);
     }
 
     private WebDriver createDriver(boolean headless) {
@@ -80,6 +83,6 @@ public abstract class BasePage {
     }
 
     private WebDriverWait doWait() {
-        return new WebDriverWait(driver, 20);
+        return new WebDriverWait(driver, Duration.ofSeconds(20));
     }
 }
