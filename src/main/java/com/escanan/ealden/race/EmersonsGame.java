@@ -15,10 +15,8 @@ public class EmersonsGame {
     private static final String PORT = System.getenv("PORT");
     private static final String CONTEXT_PATH = "";
     private static final String WEBAPP_DIR = "src/main/webapp";
-    private static final String WEBAPP_DIR_PATH = absolutePathOf(WEBAPP_DIR);
     private static final String WEBAPP_MOUNT = "/WEB-INF/classes";
     private static final String CLASSES_DIR = "build/classes";
-    private static final String CLASSES_DIR_PATH = absolutePathOf(CLASSES_DIR);
     private static final String INTERNAL_PATH = "/";
 
     private Tomcat tomcat;
@@ -34,10 +32,10 @@ public class EmersonsGame {
             tomcat.setPort(Integer.parseInt(PORT));
         }
 
-        StandardContext ctx = (StandardContext) tomcat.addWebapp(CONTEXT_PATH, WEBAPP_DIR_PATH);
+        StandardContext ctx = (StandardContext) tomcat.addWebapp(CONTEXT_PATH, pathTo(WEBAPP_DIR));
 
         WebResourceRoot resources = new StandardRoot(ctx);
-        resources.addPreResources(new DirResourceSet(resources, WEBAPP_MOUNT, CLASSES_DIR_PATH, INTERNAL_PATH));
+        resources.addPreResources(new DirResourceSet(resources, WEBAPP_MOUNT, pathTo(CLASSES_DIR), INTERNAL_PATH));
         ctx.setResources(resources);
     }
 
@@ -79,7 +77,7 @@ public class EmersonsGame {
         }
     }
 
-    private static String absolutePathOf(String file) {
+    private static String pathTo(String file) {
         return new File(file).getAbsolutePath();
     }
 
