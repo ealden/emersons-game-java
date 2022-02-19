@@ -71,7 +71,7 @@ sonarqube {
 }
 
 task cucumber(type: JavaExec) {
-    dependsOn assemble, compileTestJava
+    dependsOn build
 
     def feature = 'src/test/resources'
 
