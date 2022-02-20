@@ -10,7 +10,7 @@ import org.apache.catalina.webresources.StandardRoot;
 import java.io.File;
 
 public class EmersonsGame {
-    private static final String PORT = System.getenv("PORT");
+    private static final String PORT = "PORT";
     private static final String CONTEXT_PATH = "";
     private static final String WEBAPP_DIR = "src/main/webapp";
     private static final String WEBAPP_MOUNT = "/WEB-INF/classes";
@@ -23,15 +23,21 @@ public class EmersonsGame {
         Configurations.raceService().newRace();
 
         EmersonsGame application = new EmersonsGame();
-        application.listen();
+        application.listen(getPort());
+    }
+
+    private static int getPort() {
+        String value = System.getenv(PORT);
+
+        if (value != null) {
+            return Integer.parseInt(value);
+        }
+
+        return 8080;
     }
 
     public EmersonsGame() {
         container = new TomcatContainer();
-
-        if (PORT != null) {
-            container.setPort(PORT);
-        }
 
         container.addWebApp(CONTEXT_PATH, WEBAPP_DIR, WEBAPP_MOUNT, CLASSES_DIR, INTERNAL_PATH);
     }
@@ -42,7 +48,9 @@ public class EmersonsGame {
         container.start();
     }
 
-    public void listen() {
+    public void listen(int port) {
+        container.setPort(port);
+
         container.listen();
     }
 
