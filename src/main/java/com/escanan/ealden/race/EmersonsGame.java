@@ -8,8 +8,6 @@ import org.apache.catalina.webresources.DirResourceSet;
 import org.apache.catalina.webresources.StandardRoot;
 
 import java.io.File;
-import java.io.OutputStream;
-import java.io.PrintStream;
 
 public class EmersonsGame {
     private static final String PORT = System.getenv("PORT");
