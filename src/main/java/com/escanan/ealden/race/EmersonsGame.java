@@ -17,57 +17,81 @@ public class EmersonsGame {
     private static final String CLASSES_DIR = "build/classes";
     private static final String INTERNAL_PATH = "/";
 
-    private Tomcat tomcat;
+    private TomcatContainer container;
 
-    public EmersonsGame() {
-        configure();
+    public static void main(String[] args) {
+        Configurations.raceService().newRace();
+
+        EmersonsGame application = new EmersonsGame();
+        application.listen();
     }
 
-    private void configure() {
-        tomcat = new Tomcat();
+    public EmersonsGame() {
+        container = new TomcatContainer();
 
         if (PORT != null) {
-            tomcat.setPort(Integer.parseInt(PORT));
+            container.setPort(PORT);
         }
 
-        StandardContext ctx = (StandardContext) tomcat.addWebapp(CONTEXT_PATH, pathTo(WEBAPP_DIR));
-
-        WebResourceRoot resources = new StandardRoot(ctx);
-        resources.addPreResources(new DirResourceSet(resources, WEBAPP_MOUNT, pathTo(CLASSES_DIR), INTERNAL_PATH));
-        ctx.setResources(resources);
+        container.addWebApp(CONTEXT_PATH, WEBAPP_DIR, WEBAPP_MOUNT, CLASSES_DIR, INTERNAL_PATH);
     }
 
     public void start() {
-        try {
-            tomcat.start();
-        } catch (LifecycleException e) {
-            throw new StartupException(e);
-        }
+        container.start();
     }
 
-    public void await() {
-        tomcat.getServer().await();
+    public void listen() {
+        container.listen();
     }
 
     public void testMode() {
         Configurations.setTestMode(true);
     }
 
-    private static class StartupException extends RuntimeException {
-        public StartupException(Throwable cause) {
-            super(cause);
+    public static class TomcatContainer {
+        private Tomcat tomcat;
+
+        public TomcatContainer() {
+            tomcat = new Tomcat();
         }
-    }
 
-    private static String pathTo(String file) {
-        return new File(file).getAbsolutePath();
-    }
+        public void setPort(int port) {
+            tomcat.setPort(port);
+        }
 
-    public static void main(String[] args) {
-        Configurations.raceService().newRace();
+        public void setPort(String port) {
+            setPort(Integer.parseInt(port));
+        }
 
-        EmersonsGame application = new EmersonsGame();
-        application.start();
-        application.await();
+        public void addWebApp(String contextPath, String webAppDir, String webAppMount, String classesDir, String internalPath) {
+            String docBase = new File(webAppDir).getAbsolutePath();
+            String base = new File(classesDir).getAbsolutePath();
+
+            StandardContext ctx = (StandardContext) tomcat.addWebapp(contextPath, docBase);
+
+            WebResourceRoot resources = new StandardRoot(ctx);
+            resources.addPreResources(new DirResourceSet(resources, webAppMount, base, internalPath));
+            ctx.setResources(resources);
+        }
+
+        public void start() {
+            try {
+                tomcat.start();
+            } catch (LifecycleException e) {
+                throw new StartupException(e);
+            }
+        }
+
+        public void listen() {
+            start();
+
+            tomcat.getServer().await();
+        }
+
+        private static class StartupException extends RuntimeException {
+            public StartupException(Throwable cause) {
+                super(cause);
+            }
+        }
     }
 }
