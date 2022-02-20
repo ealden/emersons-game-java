@@ -36,16 +36,14 @@ public class EmersonsGame {
         container.addWebApp(CONTEXT_PATH, WEBAPP_DIR, WEBAPP_MOUNT, CLASSES_DIR, INTERNAL_PATH);
     }
 
-    public void start() {
+    public void startInTestMode() {
+        Configurations.setTestMode(true);
+
         container.start();
     }
 
     public void listen() {
         container.listen();
-    }
-
-    public void testMode() {
-        Configurations.setTestMode(true);
     }
 
     public static class TomcatContainer {
