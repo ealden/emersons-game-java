@@ -53,22 +53,6 @@ public class EmersonsGame {
 
     public void testMode() {
         Configurations.setTestMode(true);
-
-        System.setErr(new PrintStream(nullOutputStream()));
-    }
-
-    private static OutputStream nullOutputStream() {
-        return new OutputStream() {
-            @Override
-            public void write(int b) {
-                // Do nothing
-            }
-
-            @Override
-            public void write(byte[] b, int off, int len) {
-                // Do nothing
-            }
-        };
     }
 
     private static class StartupException extends RuntimeException {
