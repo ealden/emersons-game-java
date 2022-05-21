@@ -28,7 +28,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.+'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.+'
     testImplementation 'io.cucumber:cucumber-java:7.+'
-    testImplementation 'io.cucumber:cucumber-junit:7.+'
     testImplementation 'org.seleniumhq.selenium:selenium-java:4.+'
     testImplementation 'org.hamcrest:hamcrest:2.+'
     testImplementation 'org.mockito:mockito-core:4.+'
