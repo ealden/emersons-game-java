@@ -65,7 +65,6 @@ class FrontControllerServletTest {
         Configurations.setTestMode(true);
     }
 
-    @Test
     void getRacesUrl() throws IOException {
         when(request.getPathInfo()).thenReturn(RACES_URL);
 
@@ -83,7 +82,6 @@ class FrontControllerServletTest {
         assertThat(jsonResponse.getValue(), jsonResponseOf("/api/races"));
     }
 
-    @Test
     void getSettingsUrl() throws IOException {
         when(request.getPathInfo()).thenReturn(SETTINGS_URL);
 
@@ -100,7 +98,6 @@ class FrontControllerServletTest {
         assertThat(jsonResponse.getValue(), jsonResponseOf("/api/settings"));
     }
 
-    @Test
     void postNewRaceUrl() throws IOException {
         when(request.getPathInfo()).thenReturn(NEW_RACE_URL);
 
@@ -118,7 +115,6 @@ class FrontControllerServletTest {
         assertThat(jsonResponse.getValue(), jsonResponseOf("/api/races/new"));
     }
 
-    @Test
     void postRollRaceUrl() throws IOException {
         when(request.getPathInfo()).thenReturn(ROLL_RACE_URL);
         when(request.getReader()).thenReturn(reader);
