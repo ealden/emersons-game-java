@@ -7,7 +7,8 @@ import java.io.IOException;
 
 public class IsJsonResponseOf extends TypeSafeMatcher<String> {
     private static final String SPACE = " ";
-    private static final String NEW_LINE = "\n";
+    private static final String LF = "\n";
+    private static final String CRLF = "\r\n";
     private static final String BLANK = "";
 
     private final String url;
@@ -27,7 +28,7 @@ public class IsJsonResponseOf extends TypeSafeMatcher<String> {
     }
 
     private String trimSpacesAndNewLines(String input) {
-        return input.trim().replaceAll(SPACE, BLANK).replaceAll(NEW_LINE, BLANK);
+        return input.trim().replaceAll(SPACE, BLANK).replaceAll(LF, BLANK).replaceAll(CRLF, BLANK);
     }
 
     @Override
