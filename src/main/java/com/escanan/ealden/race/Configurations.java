@@ -28,7 +28,7 @@ public final class Configurations {
         if (racesController == null) {
             racesController = new RacesController();
             racesController.setTestMode(testMode);
-            racesController.setRaceService(raceService);
+            racesController.setRaceService(raceService());
         }
 
         return racesController;

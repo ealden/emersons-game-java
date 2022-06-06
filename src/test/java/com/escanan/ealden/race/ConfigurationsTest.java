@@ -1,4 +1,4 @@
-package com.escanan.ealden.race.controller;
+package com.escanan.ealden.race;
 
 import com.escanan.ealden.race.controller.api.RacesController;
 import com.escanan.ealden.race.controller.api.SettingsController;
@@ -23,7 +23,10 @@ class ConfigurationsTest {
     void defaultRaceController() {
         setRacesController(null);
 
-        assertThat(racesController(), notNullValue());
+        RacesController controller = racesController();
+
+        assertThat(controller, notNullValue());
+        assertThat(controller.getRaceService(), notNullValue());
     }
 
     @Test

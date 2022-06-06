@@ -29,6 +29,10 @@ public class RacesController {
         return race;
     }
 
+    public RaceService getRaceService() {
+        return raceService;
+    }
+
     public void setRaceService(RaceService raceService) {
         this.raceService = raceService;
     }
