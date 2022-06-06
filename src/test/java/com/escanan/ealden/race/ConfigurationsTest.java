@@ -8,8 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.escanan.ealden.race.Configurations.*;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.notNullValue;
-import static org.hamcrest.Matchers.sameInstance;
+import static org.hamcrest.Matchers.*;
 
 class ConfigurationsTest {
     @Test
@@ -76,5 +75,16 @@ class ConfigurationsTest {
         setSettingsController(settingsController);
 
         assertThat(settingsController(), sameInstance(settingsController));
+    }
+
+    @Test
+    void setTestModeMustOverrideExistingControllerInstances() {
+        assertThat(Configurations.racesController().isTestMode(), equalTo(false));
+        assertThat(Configurations.settingsController().isTestMode(), equalTo(false));
+
+        Configurations.setTestMode(true);
+
+        assertThat(Configurations.racesController().isTestMode(), equalTo(true));
+        assertThat(Configurations.settingsController().isTestMode(), equalTo(true));
     }
 }

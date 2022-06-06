@@ -45,6 +45,9 @@ public final class Configurations {
 
     public static void setTestMode(boolean flag) {
         testMode = flag;
+
+        racesController = null;
+        settingsController = null;
     }
 
     public static void setRaceService(RaceService service) {

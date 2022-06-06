@@ -33,6 +33,10 @@ public class RacesController {
         return raceService;
     }
 
+    public boolean isTestMode() {
+        return testMode;
+    }
+
     public void setRaceService(RaceService raceService) {
         this.raceService = raceService;
     }

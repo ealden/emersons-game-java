@@ -60,9 +60,9 @@ class FrontControllerServletTest {
     void setUp() {
         servlet = new FrontControllerServlet();
 
+        Configurations.setTestMode(true);
         Configurations.setRacesController(racesController);
         Configurations.setSettingsController(settingsController);
-        Configurations.setTestMode(true);
     }
 
     @Test

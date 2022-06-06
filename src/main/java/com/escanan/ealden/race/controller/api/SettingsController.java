@@ -15,6 +15,10 @@ public class SettingsController {
         return settings;
     }
 
+    public boolean isTestMode() {
+        return testMode;
+    }
+
     public void setTestMode(boolean testMode) {
         this.testMode = testMode;
     }
