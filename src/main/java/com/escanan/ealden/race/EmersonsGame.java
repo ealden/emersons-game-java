@@ -81,6 +81,8 @@ public class EmersonsGame {
         }
 
         public void start() {
+            tomcat.getConnector();
+
             try {
                 tomcat.start();
             } catch (LifecycleException e) {
