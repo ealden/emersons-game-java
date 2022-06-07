@@ -9,11 +9,7 @@ public class FakeRaceService implements RaceService {
 
     @Override
     public Race getCurrentRace() {
-        if (currentRace == null) {
-            return newRace();
-        } else {
-            return currentRace;
-        }
+        return currentRace;
     }
 
     @Override

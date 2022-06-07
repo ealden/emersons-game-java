@@ -6,7 +6,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.*;
+import static org.hamcrest.Matchers.not;
+import static org.hamcrest.Matchers.sameInstance;
 
 class RaceServiceTest {
     private RaceService service;
@@ -32,10 +33,5 @@ class RaceServiceTest {
 
         assertThat(oldRace, not(sameInstance(newRace)));
         assertThat(newRace, sameInstance(race));
-    }
-
-    @Test
-    void getCurrentRaceMustNeverBeNull() {
-        assertThat(service.getCurrentRace(), notNullValue());
     }
 }
