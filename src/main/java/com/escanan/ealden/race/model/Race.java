@@ -10,14 +10,6 @@ import static com.escanan.ealden.race.model.Roll.createRoll;
 import static java.util.stream.Collectors.toList;
 
 public class Race implements JsonAware {
-    static final String ID_PARAM = "id";
-    static final String RACERS_PARAM = "racers";
-    static final String CURRENT_RACER_PARAM = "currentRacer";
-    static final String FINISH_LINE_PARAM = "finishLine";
-    static final String OVER_PARAM = "over";
-    static final String ALL_CRASHED_PARAM = "allCrashed";
-    static final String MESSAGE_PARAM = "message";
-
     static final int DEFAULT_FINISH_LINE = 10;
 
     private static final int MAX_ROLL = 6;
@@ -135,19 +127,23 @@ public class Race implements JsonAware {
 
     public Map<String, Object> asJson() {
         Map<String, Object> json = new LinkedHashMap<>();
-        json.put(ID_PARAM, getId());
-        json.put(RACERS_PARAM, racers.stream().map(Racer::asJson).collect(toList()));
+        json.put("id", getId());
+        json.put("racers", racers.stream().map(Racer::asJson).collect(toList()));
+        json.put("currentRacer", currentRacerJson());
+        json.put("finishLine", getFinishLine());
+        json.put("over", isOver());
+        json.put("allCrashed", isAllCrashed());
+        json.put("message", getMessage());
+
+        return json;
+    }
+
+    private Map<String, Object> currentRacerJson() {
+        Map<String, Object> json = null;
 
         if (currentRacer != null) {
-            json.put(CURRENT_RACER_PARAM, currentRacer.asJson());
-        } else {
-            json.put(CURRENT_RACER_PARAM, null);
+            json = currentRacer.asJson();
         }
-
-        json.put(FINISH_LINE_PARAM, getFinishLine());
-        json.put(OVER_PARAM, isOver());
-        json.put(ALL_CRASHED_PARAM, isAllCrashed());
-        json.put(MESSAGE_PARAM, getMessage());
 
         return json;
     }

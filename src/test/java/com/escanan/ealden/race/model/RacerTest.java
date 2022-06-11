@@ -3,6 +3,7 @@ package com.escanan.ealden.race.model;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static com.escanan.ealden.race.model.Race.DEFAULT_FINISH_LINE;
@@ -11,7 +12,6 @@ import static com.escanan.ealden.race.model.SpeedType.NORMAL;
 import static com.escanan.ealden.race.model.SpeedType.SUPER;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.equalTo;
-import static org.hamcrest.Matchers.hasEntry;
 
 class RacerTest {
     private Race currentRace;
@@ -135,21 +135,22 @@ class RacerTest {
 
     @Test
     void asJson() {
+        Map<String, Object> expected = new HashMap<>();
+        expected.put("id", 1L);
+        expected.put("name", "Alice");
+        expected.put("position", 0);
+        expected.put("damage", 0);
+        expected.put("rank", 1);
+        expected.put("crashed", false);
+        expected.put("damaged", false);
+        expected.put("winner", false);
+
         Racer racer = new Racer("Alice");
         racer.setId(1L);
         racer.setRace(currentRace);
         racer.setRank(1);
 
-        Map<String, Object> json = racer.asJson();
-
-        assertThat(json, hasEntry(ID_PARAM, 1L));
-        assertThat(json, hasEntry(NAME_PARAM, "Alice"));
-        assertThat(json, hasEntry(POSITION_PARAM, 0));
-        assertThat(json, hasEntry(DAMAGE_PARAM, 0));
-        assertThat(json, hasEntry(RANK_PARAM, 1));
-        assertThat(json, hasEntry(CRASHED_PARAM, false));
-        assertThat(json, hasEntry(DAMAGED_PARAM, false));
-        assertThat(json, hasEntry(WINNER_PARAM, false));
+        assertThat(racer.asJson(), equalTo(expected));
     }
 
     @Test

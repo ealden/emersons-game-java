@@ -2,12 +2,14 @@ package com.escanan.ealden.race.model;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Map;
 
-import static com.escanan.ealden.race.model.Race.*;
 import static com.escanan.ealden.race.model.Racer.MAX_DAMAGE;
 import static com.escanan.ealden.race.model.Racer.NO_DAMAGE;
 import static com.escanan.ealden.race.model.SpeedType.NORMAL;
+import static java.util.Collections.singletonList;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
 
@@ -63,35 +65,47 @@ class RaceTest {
 
     @Test
     void asJson() {
+        Map<String, Object> expectedRacer = new HashMap<>();
+        expectedRacer.put("id", 1L);
+        expectedRacer.put("name", "Alice");
+        expectedRacer.put("position", 0);
+        expectedRacer.put("damage", 0);
+        expectedRacer.put("rank", 1);
+        expectedRacer.put("crashed", false);
+        expectedRacer.put("damaged", false);
+        expectedRacer.put("winner", false);
+
+        Map<String, Object> expectedRace = new HashMap<>();
+        expectedRace.put("id", 1L);
+        expectedRace.put("racers", singletonList(expectedRacer));
+        expectedRace.put("currentRacer", expectedRacer);
+        expectedRace.put("finishLine", 10);
+        expectedRace.put("over", false);
+        expectedRace.put("allCrashed", false);
+        expectedRace.put("message", "Time to RACE!  Alice rolls first!");
+
         Race race = new Race();
         race.setId(1L);
         race.addRacer(new Racer("Alice"));
 
-        Map<String, Object> json = race.asJson();
-
-        assertThat(json, hasEntry(ID_PARAM, 1L));
-        assertThat(json, hasKey(RACERS_PARAM));
-        assertThat(json, hasKey(CURRENT_RACER_PARAM));
-        assertThat(json, hasEntry(FINISH_LINE_PARAM, 10));
-        assertThat(json, hasEntry(OVER_PARAM, false));
-        assertThat(json, hasEntry(ALL_CRASHED_PARAM, false));
-        assertThat(json, hasEntry(MESSAGE_PARAM, "Time to RACE!  Alice rolls first!"));
+        assertThat(race.asJson(), equalTo(expectedRace));
     }
 
     @Test
     void asJsonWhenNoRacersJoined() {
+        Map<String, Object> expected = new HashMap<>();
+        expected.put("id", 1L);
+        expected.put("racers", Collections.emptyList());
+        expected.put("currentRacer", null);
+        expected.put("finishLine", 10);
+        expected.put("over", false);
+        expected.put("allCrashed", false);
+        expected.put("message", null);
+
         Race race = new Race();
         race.setId(1L);
 
-        Map<String, Object> json = race.asJson();
-
-        assertThat(json, hasEntry(ID_PARAM, 1L));
-        assertThat(json, hasKey(RACERS_PARAM));
-        assertThat(json, hasEntry(CURRENT_RACER_PARAM, null));
-        assertThat(json, hasEntry(FINISH_LINE_PARAM, 10));
-        assertThat(json, hasEntry(OVER_PARAM, false));
-        assertThat(json, hasEntry(ALL_CRASHED_PARAM, false));
-        assertThat(json, hasEntry(MESSAGE_PARAM, null));
+        assertThat(race.asJson(), equalTo(expected));
     }
 
     @Test

@@ -7,15 +7,6 @@ public class Racer implements JsonAware {
     public static final int MAX_DAMAGE = 6;
     public static final int NO_DAMAGE = 0;
 
-    static final String ID_PARAM = "id";
-    static final String NAME_PARAM = "name";
-    static final String POSITION_PARAM = "position";
-    static final String DAMAGE_PARAM = "damage";
-    static final String RANK_PARAM = "rank";
-    static final String CRASHED_PARAM = "crashed";
-    static final String DAMAGED_PARAM = "damaged";
-    static final String WINNER_PARAM = "winner";
-
     private Long id;
     private String name;
     private Race race;
@@ -97,14 +88,14 @@ public class Racer implements JsonAware {
 
     public Map<String, Object> asJson() {
         Map<String, Object> json = new LinkedHashMap<>();
-        json.put(ID_PARAM, getId());
-        json.put(NAME_PARAM, getName());
-        json.put(POSITION_PARAM, getPosition());
-        json.put(DAMAGE_PARAM, getDamage());
-        json.put(RANK_PARAM, getRank());
-        json.put(CRASHED_PARAM, isCrashed());
-        json.put(DAMAGED_PARAM, isDamaged());
-        json.put(WINNER_PARAM, isWinner());
+        json.put("id", getId());
+        json.put("name", getName());
+        json.put("position", getPosition());
+        json.put("damage", getDamage());
+        json.put("rank", getRank());
+        json.put("crashed", isCrashed());
+        json.put("damaged", isDamaged());
+        json.put("winner", isWinner());
 
         return json;
     }
