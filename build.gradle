@@ -68,7 +68,7 @@ sonarqube {
     }
 }
 
-task cucumber(type: JavaExec) {
+tasks.register('cucumber', JavaExec) {
     dependsOn build
 
     def feature = 'src/test/resources'
@@ -82,6 +82,6 @@ task cucumber(type: JavaExec) {
     args = ['--tags', 'not @wip', '--plugin', 'pretty', '--glue', project.group, feature]
 }
 
-task stage() {
+tasks.register('stage') {
     dependsOn installDist
 }
