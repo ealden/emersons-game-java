@@ -23,8 +23,8 @@ repositories {
 }
 
 dependencies {
-    implementation 'org.apache.tomcat.embed:tomcat-embed-core:8.5.+'
-    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:8.5.+'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-core:10.1.+'
+    implementation 'org.apache.tomcat.embed:tomcat-embed-jasper:10.1.+'
     implementation 'com.google.code.gson:gson:2.+'
     testImplementation 'org.junit.jupiter:junit-jupiter:5.+'
     testImplementation 'io.cucumber:cucumber-java:7.+'
@@ -40,7 +40,7 @@ application {
 }
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = JavaLanguageVersion.of(21)
 }
 
 test {

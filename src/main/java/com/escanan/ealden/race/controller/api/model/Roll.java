@@ -4,7 +4,7 @@ import com.escanan.ealden.race.controller.api.JsonException;
 import com.escanan.ealden.race.controller.api.util.RequestParameters;
 import com.escanan.ealden.race.model.SpeedType;
 
-import javax.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletRequest;
 import java.io.IOException;
 import java.util.Map;
 
