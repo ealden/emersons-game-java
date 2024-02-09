@@ -2,7 +2,6 @@ plugins {
     id 'application'
     id 'war'
     id 'jacoco'
-    id 'org.sonarqube' version '3.+'
 }
 
 group 'com.escanan.ealden.race'
@@ -54,17 +53,6 @@ jacocoTestReport {
 
     reports {
         xml.required = true
-    }
-}
-
-sonarqube {
-    properties {
-        property 'sonar.exclusions', '**/EmersonsGame.java'
-
-        property 'sonar.projectKey', 'ealden_emersons-game-java'
-        property 'sonar.projectName', 'emersons-game-java'
-        property 'sonar.organization', 'ealden'
-        property 'sonar.host.url', 'https://sonarcloud.io'
     }
 }
 
