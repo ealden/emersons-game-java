@@ -1,6 +1,7 @@
 plugins {
     id 'application'
     id 'war'
+    id 'jvm-test-suite'
 }
 
 group 'com.escanan.ealden.race'
@@ -42,8 +43,12 @@ java {
     sourceCompatibility = JavaLanguageVersion.of(21)
 }
 
-test {
-    useJUnitPlatform()
+testing {
+    suites {
+        test {
+            useJUnitJupiter()
+        }
+    }
 }
 
 tasks.register('cucumber', JavaExec) {
